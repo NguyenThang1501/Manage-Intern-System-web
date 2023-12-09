@@ -1,0 +1,21 @@
+.my-user{
+    position: absolute;
+    display: flex;
+    top: 40px;
+    right: 60px;
+    width: 200px;
+    padding-left: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.user-name{
+    color: black;
+    font-weight:bold ;
+}
+.user-role{
+    color: #9197B3;
+}
+.student-icon{
+    margin: 2px 5px 0px 1px;
+    font-size: 25px;
+}

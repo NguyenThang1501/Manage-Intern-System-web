@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jose": "^5.1.3",
+    "passlib": "^0.3.0"
+  }
+}

@@ -1,0 +1,97 @@
+/* .my-item{
+    color: #9197B3;
+    font-size: 17px;
+
+}
+.nav-item-link:hover{
+    color: #1C1E53 !important;
+}
+.my-sidebar{
+    background-color: #fff !important;
+    height: 100vh !important;
+    width: 280px;
+}
+
+.my-nav li a i {
+    width: 25px;
+    text-align: center;
+}
+.my-brand {
+    background-color:  #1C1E53;
+    text-align: center;
+    height: 60px;
+    padding-top: 15px;
+    width: 100%;
+}
+.navbar-icon, .navbar-icon-2{
+    font-size: 16px;
+    color: #9197B3;
+    margin-left: 10px;
+}
+.navbar-icon-2 {
+    position:absolute;
+    margin-left: 230px;
+} */
+
+.container-sidebar{
+    display: flex;
+}
+main{
+    width: 100%;
+    padding: 20px;
+}
+.sidebar{
+    background-color: #fff;
+    color: #9197B3;
+    height: 100vh;
+    width: 300px;
+}
+.top-section{
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    background-color: #1C1E53;
+}
+.logo-sidebar{
+    color: #fff;
+    font-size: 30px;
+}
+.bars{
+    display: flex;
+    font-size: 30px;
+    cursor: pointer;
+}
+.link{
+    display: flex;
+    color: #9197B3;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+}
+.link:hover{
+    color: #1C1E53;
+    transition: all 0.5s;
+}
+.icon-sidebar{
+    color: #9197B3;
+}
+.icon-sidebar:hover{
+    color: #1C1E53;
+    
+}
+
+.icon-sidebar{
+    font-size: 18px;
+    margin-top: 10px;
+}
+.link-text{
+    margin-top: 12px;
+    font-size: 18px;
+    text-align: center;
+}
+
+
+
+
+
+
