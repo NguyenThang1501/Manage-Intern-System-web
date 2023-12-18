@@ -30,8 +30,8 @@ body{
 }
 .icon:hover{
   cursor: pointer;
-  background-color: #1C1E53;
-  color: #fff;
+  background-color: #fff;
+  color:  #1C1E53;
 }
 a {
   text-decoration: none;

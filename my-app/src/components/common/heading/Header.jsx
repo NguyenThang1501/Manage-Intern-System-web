@@ -10,26 +10,27 @@ const Header = () => {
             <Head />
             <header>
                 <nav className='flexSB'>
-                    <ul className={click ? "mobile-nav" : "flexSB"} onClick={() => setClick(false)}>
-                        <li><Link to="/">Trang chủ</Link></li>
-                        <li><Link to="/courses">Tin tuyển dụng</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/team">Team</Link></li>
-                        <li><Link to="/pricing">Pricing</Link></li>
-                        <li><Link to="/journal">Journal</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
-                    </ul>
-                    <div className="start">
-                        <div >
-                            <Link to='/login'>
-                                <input type="submit" className="submit-header" value="Đăng nhập" />
-                            </Link>
 
+                        <ul className={click ? "mobile-nav" : "flexSB"} onClick={() => setClick(false)}>
+                            <li><Link to="/">Trang chủ</Link></li>
+                            <li><Link to="/courses">Tin tuyển dụng</Link></li>
+                            <li><Link to="/about">About</Link></li>
+                            <li><Link to="/team">Team</Link></li>
+                            {/* <li><Link to="/pricing">Pricing</Link></li>
+                            <li><Link to="/journal">Journal</Link></li> */}
+                            <li><Link to="/contact">Contact</Link></li>
+                        </ul>
+                        <div className="start">
+                            <div >
+                                <Link to='/login'>
+                                    <button type="submit" className="submit-header">ĐĂNG NHẬP</button>
+                                </Link>
+
+                            </div>
                         </div>
-                    </div>
-                    <button className='toggle' onClick={() => setClick(!click)}>
-                        {click ? <i className='fa fa-times'></i> : <i className='fa fa-bars'></i>}
-                    </button>
+                        <button className='toggle' onClick={() => setClick(!click)}>
+                            {click ? <i className='fa fa-times'></i> : <i className='fa fa-bars'></i>}
+                        </button>
                 </nav>
             </header>
         </>

@@ -7,11 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css"
 import StudentView from './components/student/StudentView';
-import StudentInfor from './components/student/StudentInfor';
+import StudentInfor from './components/student/infor/StudentInfor';
 import SideBar from './components/common/sidebar/SideBar';
-import StudentRegister from './components/student/StudentRegister';
-import NewsIntership from './components/student/NewsInternship';
-import Internshippositons from './components/student/Internshippositons';
+import StudentRegister from './components/student/register/StudentRegister';
+import NewsIntership from './components/student/news/NewsInternship';
+import Internshippositions from './components/student/positions/Internshippositions';
 import Fqas from './components/student/Fqas';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
@@ -22,10 +22,11 @@ const App = () => {
           <Route path='/' exact element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/student' element={<StudentView />} />
+          
           <Route path='/student/student-infor' element={<StudentInfor/>}/>
           <Route path='/student/student-register' element={<StudentRegister/>}/>
           <Route path='/student/news-internship' element={<NewsIntership/>}/>
-          <Route path='/student/internship-positions' element={<Internshippositons/>}/>
+          <Route path='/student/internship-positions' element={<Internshippositions/>}/>
           <Route path='/student/fqas' element={<Fqas/>}/>
         </Routes>
       </Router>

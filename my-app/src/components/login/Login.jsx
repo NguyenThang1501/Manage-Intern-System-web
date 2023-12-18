@@ -1,6 +1,6 @@
 import './login.css'
 import React, { useState, useEffect } from 'react'
-import { loginAPI } from '../../services/UserServices';
+import { loginAPI } from '../../api/loginApi';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -134,7 +134,7 @@ const Login = () => {
                 <div className="row row-login">
                     <div className="col-md-6 side-image">
                         <div className="text">
-                            <p>Join the community of developers <i>- ludiflex</i></p>
+                            {/* <p>Internship management system</p> */}
                         </div>
 
                     </div>

@@ -5,12 +5,14 @@ const Hero = () => {
   return (
     <>
     <section className='hero'>
-      <div className="container">
-        <div className="row">
-          <p>This is my wweb</p>
+      <div className="">
+        <div className="background-image">
           
         </div>
+        
       </div>
+
+      
     </section>
     </>
   )

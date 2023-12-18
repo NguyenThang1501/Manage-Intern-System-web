@@ -8,6 +8,10 @@ const StudentView = () => {
     <div className='student-view'>
       <SideBar />
       <Usersymbol/>
+      <div className='student-content'>
+        <h3>Hướng dẫn sinh viên đăng ký thực tập</h3>
+      </div>
+      
     </div>
 
   )

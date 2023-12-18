@@ -1,0 +1,24 @@
+{
+  "students": [
+      {
+          "MaSinhVien": "123456789",
+          "HoTen": "Nguyễn Văn A",
+          "Ngaysinh": "01/01/2003",
+          "GioiTinh": "Nam",
+          "KhoaID": "123",
+          "NgoainguID": "001",
+          "GPA": "2.0",
+          "GiaoVienQuanLiID": "002"
+      },
+      {
+        "MaSinhVien": "123456",
+          "HoTen": "Nguyễn Văn B",
+          "Ngaysinh": "01/01/2003",
+          "GioiTinh": "Nam",
+          "KhoaID": "123",
+          "NgoainguID": "001",
+          "GPA": "2.0",
+          "GiaoVienQuanLiID": "003"
+      }
+  ]
+}
