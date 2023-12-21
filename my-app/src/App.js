@@ -14,6 +14,7 @@ import NewsIntership from "./components/student/news/NewsInternship";
 import Internshippositions from "./components/student/positions/Internshippositions";
 import Fqas from "./components/student/Fqas";
 import RegisterInschool from "./components/student/register/RegisterInSchool";
+import RegisterOutSchool from "./components/student/register/RegisterOutSchool";
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
   return (
@@ -39,6 +40,10 @@ const App = () => {
             element={<RegisterInschool />}
           />
           <Route path="/student/fqas" element={<Fqas />} />
+          <Route
+            path="student/student-register/out-school"
+            element={<RegisterOutSchool />}
+          />
         </Routes>
       </Router>
     </>

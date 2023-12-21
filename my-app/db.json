@@ -1,24 +1,50 @@
 {
   "students": [
-      {
-          "MaSinhVien": "123456789",
-          "HoTen": "Nguyễn Văn A",
-          "Ngaysinh": "01/01/2003",
-          "GioiTinh": "Nam",
-          "KhoaID": "123",
-          "NgoainguID": "001",
-          "GPA": "2.0",
-          "GiaoVienQuanLiID": "002"
-      },
-      {
-        "MaSinhVien": "123456",
-          "HoTen": "Nguyễn Văn B",
-          "Ngaysinh": "01/01/2003",
-          "GioiTinh": "Nam",
-          "KhoaID": "123",
-          "NgoainguID": "001",
-          "GPA": "2.0",
-          "GiaoVienQuanLiID": "003"
-      }
+    {
+      "MaSinhVien": "123456789",
+      "HoTen": "Nguyễn Văn A",
+      "Ngaysinh": "01/01/2003",
+      "GioiTinh": "Nam",
+      "KhoaID": "123",
+      "NgoainguID": "001",
+      "GPA": "2.0",
+      "GiaoVienQuanLiID": "002"
+    },
+    {
+      "MaSinhVien": "123456",
+      "HoTen": "Nguyễn Văn B",
+      "Ngaysinh": "01/01/2003",
+      "GioiTinh": "Nam",
+      "KhoaID": "123",
+      "NgoainguID": "001",
+      "GPA": "2.0",
+      "GiaoVienQuanLiID": "003"
+    }
+  ],
+  "internship-positions": [
+    {
+      "MaVT": "DA-VT",
+      "TenViTri": "Data Analyst",
+      "MaDN": "Viettel",
+      "SoLuongTuyen": "5",
+      "YeuCau": "Kiến thức nền tảng",
+      "DiemSan": "2.8"
+    },
+    {
+      "MaVT": "DS-VT",
+      "TenViTri": "Data Scientist",
+      "MaDN": "Viettel",
+      "SoLuongTuyen": "4",
+      "YeuCau": "Kiến thức nền tảng",
+      "DiemSan": "2.8"
+    },
+    {
+      "MaVT": "DE-VT",
+      "TenViTri": "Data Engineer",
+      "MaDN": "Viettel",
+      "SoLuongTuyen": "3",
+      "YeuCau": "Kiến thức nền tảng",
+      "DiemSan": "2.8"
+    }
   ]
 }
