@@ -59,10 +59,7 @@ const StudentInfor = () => {
                 <tbody>
                   <tr>
                     <td className="field">Mã sinh viên</td>
-                    <td className="value">
-                      {studentInfor.MaSinhVien}
-                      123456
-                    </td>
+                    <td className="value">{studentInfor.MaSinhVien}</td>
                   </tr>
                   <tr>
                     <td className="field">Email</td>
@@ -81,10 +78,7 @@ const StudentInfor = () => {
                   </tr>
                   <tr>
                     <td className="field">GPA</td>
-                    <td className="value">
-                      {studentInfor.GPA}
-                      3.0
-                    </td>
+                    <td className="value">{studentInfor.GPA}</td>
                   </tr>
                   <tr>
                     <td className="field">Giáo viên quản lý</td>

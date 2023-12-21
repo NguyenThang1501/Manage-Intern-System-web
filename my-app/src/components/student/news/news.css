@@ -1,24 +1,31 @@
-.news-1{
-    display: flex;
-    margin-top: 100px;
-    margin-bottom: 50px;
+.news-1,
+.news-2 {
+  display: flex;
+  justify-content: space-between;
 }
-.first-one{
-    background-color: #fff;
+.news-1 {
+  margin-top: 70px;
 }
-.second-one{
-    margin-bottom: 10px;
-    
+.news-2 {
+  margin-top: 30px;
 }
-.small-news{
-    margin: 10px;
-    background-color: #fff;
+.first-one {
+  background-color: #fff;
 }
-.new-2{
-    display: flex;
-    
+.second-one {
+  margin-bottom: 10px;
 }
-.small-2{
-    background-color: #fff;
-    margin: 10px 10px;
+.small-news {
+  margin: 10px;
+  background-color: #fff;
+}
+
+.small-2 {
+  background-color: #fff;
+  margin: 10px 10px;
+}
+.n-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }

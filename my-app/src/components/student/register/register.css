@@ -1,0 +1,23 @@
+.nv-page {
+  padding-top: 50px;
+}
+.nv-heading {
+  margin-bottom: 20px;
+  color: #1c1e53;
+  text-align: center;
+}
+.nv-button {
+  position: fixed;
+  right: 8rem;
+  color: #1c1e53;
+  border: 1px solid #1c1e53;
+}
+.nv-button:hover {
+  color: #1c1e53;
+  background-color: #fcd980;
+  border: #fcd980;
+}
+.nv-button:active {
+  background-color: #fcd980;
+  color: #fcd980;
+}

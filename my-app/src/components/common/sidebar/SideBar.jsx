@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./Sidebar.css";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaAngleDown } from "react-icons/fa";
-import { BsFillPersonLinesFill, BsQuestionSquare } from "react-icons/bs";
+import {
+  BsFillPersonLinesFill,
+  BsQuestionSquare,
+  BsCardChecklist,
+} from "react-icons/bs";
 import { TfiWrite } from "react-icons/tfi";
 import { TbListDetails } from "react-icons/tb";
 import { FaRegNewspaper } from "react-icons/fa6";
@@ -17,6 +21,11 @@ const menuItem = [
     path: "/student/student-infor",
     name: "Hồ sơ cá nhân",
     icon: <BsFillPersonLinesFill />,
+  },
+  {
+    path: "/student/internship-positions",
+    name: "Chi tiết các vị trí thực tập",
+    icon: <TbListDetails />,
   },
   {
     path: "/student/student-register",
@@ -38,19 +47,14 @@ const menuItem = [
     ],
   },
   {
-    path: "/student/internship-positions",
-    name: "Chi tiết các vị trí thực tập",
-    icon: <TbListDetails />,
-  },
-  {
     path: "/student/news-internship",
     name: "Tin tuyển dụng",
     icon: <FaRegNewspaper />,
   },
   {
     path: "/student/fqas",
-    name: "FQAs",
-    icon: <BsQuestionSquare />,
+    name: "Kết quả phân công",
+    icon: <BsCardChecklist />,
   },
 ];
 

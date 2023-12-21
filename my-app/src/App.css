@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600;700&family=Poppins:wght@100;200;300;400;600;700&display=swap');
-*{
-  padding: 0; 
-  margin: 0; 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600;700&family=Poppins:wght@100;200;300;400;600;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
-body{
-  font-family: 'Poppins', sans-serif;
-  background-color: #F5F5F5;
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
   margin: 0;
   padding: 0;
 }
-.container{
+.container {
   max-width: 85%;
   margin: auto;
 }
-.flexSB{
+.flexSB {
   display: flex;
   justify-content: space-between;
 }
@@ -25,21 +25,20 @@ body{
   border-radius: 50%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.3);
-  color: #1C1E53;
+  color: #1c1e53;
   transition: 0.5s;
 }
-.icon:hover{
+.icon:hover {
   cursor: pointer;
   background-color: #fff;
-  color:  #1C1E53;
+  color: #1c1e53;
 }
 a {
   text-decoration: none;
 }
-li{
+li {
   list-style-type: none;
 }
-button{
+button {
   border: none;
 }
-
