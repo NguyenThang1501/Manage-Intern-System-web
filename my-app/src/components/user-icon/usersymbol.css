@@ -1,21 +1,27 @@
-.my-user{
-    position: absolute;
-    display: flex;
-    top: 40px;
-    right: 60px;
-    width: 200px;
-    padding-left: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
+.my-user {
+  position: absolute;
+  display: flex;
+  top: 20px;
+  right: 30px;
+  width: 180px;
+  padding-left: 10px;
+  border-radius: 10px;
+  background-color: #1c1e53;
+  text-align: center;
 }
-.user-name{
-    color: black;
-    font-weight:bold ;
+.user-name {
+  color: #fff;
+  font-weight: bold;
 }
-.user-role{
-    color: #9197B3;
+.user-role {
+  color: #9197b3;
 }
-.student-icon{
-    margin: 2px 5px 0px 1px;
-    font-size: 25px;
+.student-icon {
+  margin: 2px 5px 0px 1px;
+  font-size: 25px;
+  color: #fff;
+}
+.user-infor {
+  padding-left: 10px;
+  padding-right: 30px;
 }
