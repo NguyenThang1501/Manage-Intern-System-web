@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
-import { NavLink, Link } from "react-router-dom";
-import { FaBars, FaAngleDown } from "react-icons/fa";
-import {
-  BsFillPersonLinesFill,
-  BsQuestionSquare,
-  BsCardChecklist,
-} from "react-icons/bs";
+import { FaBars, FaRegListAlt, FaLockOpen } from "react-icons/fa";
+import { BsFillPersonLinesFill, BsCardChecklist } from "react-icons/bs";
 import { TfiWrite } from "react-icons/tfi";
-import { TbListDetails } from "react-icons/tb";
-import { FaRegNewspaper } from "react-icons/fa6";
-
+import { FaBusinessTime, FaRegNewspaper } from "react-icons/fa6";
+import { MdManageAccounts, MdFeaturedPlayList, MdTopic } from "react-icons/md";
+import { PiStudentBold } from "react-icons/pi";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-import { BiSolidSchool } from "react-icons/bi";
+import { BiSolidReport } from "react-icons/bi";
+import { GrScorecard } from "react-icons/gr";
 import { IoBusinessSharp } from "react-icons/io5";
 import SubMenu from "./SubMenu";
 
@@ -25,18 +21,18 @@ const menuItem = [
   {
     path: "/teacher/mana-student",
     name: "Quản lý hồ sơ sinh viên",
-    icon: <TbListDetails />,
+    icon: <PiStudentBold />,
   },
 
   {
     path: "/teacher/mana-business",
     name: "Quản lý doanh nghiệp",
-    icon: <FaRegNewspaper />,
+    icon: <FaBusinessTime />,
   },
   {
     path: "/teacher/mana-news",
     name: "Quản lý tin tuyển dụng",
-    icon: <BsCardChecklist />,
+    icon: <FaRegNewspaper />,
   },
   {
     path: "/teacher/allot-intern",
@@ -48,46 +44,46 @@ const menuItem = [
       {
         path: "/teacher/allot-intern/list-positions",
         name: "Thiết lập danh sách vị trí",
-        icon: <BiSolidSchool />,
+        icon: <FaRegListAlt />,
       },
       {
         path: "/teacher/allot-intern/open-register",
         name: "Mở đăng ký",
-        icon: <IoBusinessSharp />,
+        icon: <FaLockOpen />,
       },
       {
         path: "/teacher/allot-intern/list-register",
         name: "Danh sách đăng ký",
-        icon: <IoBusinessSharp />,
+        icon: <MdFeaturedPlayList />,
       },
       {
         path: "/teacher/allot-intern/result-intern",
         name: "Kết quả phân công thực tập",
-        icon: <IoBusinessSharp />,
+        icon: <BsCardChecklist />,
       },
     ],
   },
   {
     path: "/teacher/mana-intern",
     name: "Quản lý thực tập",
-    icon: <TfiWrite />,
+    icon: <MdManageAccounts />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
     subNav: [
       {
         path: "/teacher/mana-intern/regular-report",
         name: "Báo cáo thường xuyên",
-        icon: <BiSolidSchool />,
+        icon: <BiSolidReport />,
       },
       {
         path: "/teacher/mana-intern/topic-report",
         name: "Báo cáo đề tài thực tập",
-        icon: <IoBusinessSharp />,
+        icon: <MdTopic />,
       },
       {
         path: "/teacher/mana-intern/score",
         name: "Điểm",
-        icon: <IoBusinessSharp />,
+        icon: <GrScorecard />,
       },
     ],
   },
