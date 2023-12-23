@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient";
 
 const loginAPI = {
-  post: (username, password) => {
+  post: (_id, pass) => {
     const url = "/login";
-    return axiosClient.post(url, { username, password });
+    return axiosClient.post(url, { _id, pass });
   },
 };
 

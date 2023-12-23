@@ -35,8 +35,15 @@ const SubMenu = ({ item, isOpen }) => {
       {subnav &&
         item.subNav.map((item, index) => {
           return (
-            <NavLink to={item.path} key={index} className="link-submenu">
-              <div className="icon-sidebar">{item.icon}</div>
+            <NavLink
+              to={item.path}
+              key={index}
+              className="link-submenu"
+              activeClassName="active"
+            >
+              <div className="icon-sidebar" activeClassName="active">
+                {item.icon}
+              </div>
               <div
                 style={{ display: isOpen ? "block" : "none" }}
                 className="link-text"

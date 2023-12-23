@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../../common/sidebar/SideBar";
 import "../student.css";
 import studentApi from "../../../api/studentApi";
+import { useUser } from "../../../context/UserContext";
 
 const StudentInfor = () => {
+  const { user } = useUser();
   const [studentInfor, setStudentInfor] = useState([]);
 
+  console.log(user);
   useEffect(() => {
     const fetchStudentInfor = async () => {
       try {
         let response = await studentApi.getAll();
+        console.log(response);
         let data = response[0];
         setStudentInfor(data);
       } catch (error) {

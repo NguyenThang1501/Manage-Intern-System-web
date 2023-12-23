@@ -77,3 +77,6 @@ main {
 .fa-bar {
   color: #fff;
 }
+.active {
+  color: #1c1e53;
+}

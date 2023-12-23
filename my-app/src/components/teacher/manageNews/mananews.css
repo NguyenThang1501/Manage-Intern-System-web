@@ -1,0 +1,19 @@
+.container-mana-news {
+  position: absolute;
+  margin: 50px 30px 50px;
+  width: 900px;
+  height: 700px;
+}
+.bt-mana-news {
+  position: relative;
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+.box-mana-news {
+  position: relative;
+  width: 100%;
+}

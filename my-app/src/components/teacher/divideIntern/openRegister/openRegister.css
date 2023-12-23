@@ -1,0 +1,11 @@
+.open-date {
+  padding: 50px;
+}
+.list-date {
+  margin-top: 50px;
+  margin-left: 100px;
+  height: fit-content;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

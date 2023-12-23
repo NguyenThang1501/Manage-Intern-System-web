@@ -1,0 +1,33 @@
+.container-box {
+  display: flex;
+  background-color: #d6eaf8;
+  margin-top: 50px;
+  padding-bottom: 10px;
+  width: 100%;
+  position: relative;
+  border-radius: 20px;
+}
+
+.wrap-logo-box {
+  margin: 10px;
+  justify-content: center;
+}
+.logo-box {
+  width: 140px;
+  height: auto;
+  border-radius: 20px;
+}
+.company-name {
+  font-weight: bold;
+  margin-top: 15px;
+}
+.position-name {
+  margin-top: 20px;
+}
+.bottom-box {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 15px;
+  width: 70%;
+}

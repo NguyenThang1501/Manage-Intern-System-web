@@ -1,25 +1,36 @@
 import "./login.css";
 import React, { useState, useEffect } from "react";
 import loginAPI from "../../api/loginApi";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Link } from "react-router-dom";
-
-const token = "$2b$12$tvaCRm7ovjHaX.iGUn0yZudWXdlXS9fqk9nTvNmZmAzamVBQSZUjW";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 const Login = () => {
   const [_id, set_id] = useState("");
   const [pass, setpass] = useState("");
+  const [path, setPath] = useState("");
+  const { setUserInfo } = useUser();
+  const navigate = useNavigate();
 
-  const login = async () => {
+  const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/login", {
-        _id,
-        pass,
-      });
+      let response = await loginAPI.post(_id, pass);
       console.log(response);
+
+      let role = response.role;
+      setUserInfo(response._id, role);
+      console.log(role);
+      if (role === "student") {
+        navigate("/student");
+      } else {
+        if (role === "teacher") {
+          navigate("/teacher");
+        } else {
+          navigate("/business");
+        }
+      }
+      console.log(path);
     } catch (error) {
-      console.log(error);
+      console.log("Failed to login ", error);
     }
   };
 
@@ -49,7 +60,7 @@ const Login = () => {
               </div>
               <div className="input-field">
                 <input
-                  type="pass"
+                  type="password"
                   className="input"
                   id="pass"
                   required=""
@@ -62,7 +73,7 @@ const Login = () => {
 
               <div className="input-field">
                 <input
-                  onClick={login}
+                  onClick={handleLogin}
                   type="submit"
                   className="submit"
                   value="Đăng nhập"

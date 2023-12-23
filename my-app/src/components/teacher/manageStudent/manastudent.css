@@ -1,0 +1,26 @@
+.bt-mana-st {
+  position: relative;
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+.container-mana-st {
+  position: absolute;
+  border-radius: 20px;
+  margin-top: 50px;
+  width: 1028px;
+  height: 700px;
+  box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.table-mana-st {
+  justify-content: center;
+  position: relative;
+  width: max-content;
+  height: fit-content;
+  margin-left: 20px;
+  margin-top: 40px;
+  text-align: center;
+}

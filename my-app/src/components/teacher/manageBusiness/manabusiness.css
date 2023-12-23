@@ -1,0 +1,37 @@
+.container-mana-cp {
+  display: flex;
+}
+.intro-company,
+.td-company {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 100px 20px 100px 0;
+}
+.title-cp {
+  background-color: #1c1e53;
+  color: #fff;
+  height: 50px;
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+  font-size: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.content-intro-cp {
+  margin: 20px 20px 20px 20px;
+}
+.td-newsbox {
+  padding: 20px;
+}
+.contact-company {
+  margin-top: 100px;
+  margin-left: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  height: fit-content;
+}
+.address-company {
+  padding: 20px;
+}

@@ -15,36 +15,74 @@ import Internshippositions from "./components/student/positions/Internshippositi
 import Fqas from "./components/student/Fqas";
 import RegisterInschool from "./components/student/register/RegisterInSchool";
 import RegisterOutSchool from "./components/student/register/RegisterOutSchool";
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import ProtectedRoute from "./auth/ProtectedRoute";
+import { AuthProvider } from "./auth/AuthContext";
+import TeacherHome from "./components/teacher/TeacherHome";
+import ManageStudent from "./components/teacher/manageStudent/ManageStudent";
+import ManageNews from "./components/teacher/manageNews/ManageNews";
+import ManageBusiness from "./components/teacher/manageBusiness/ManageBusiness";
+import ListPositions from "./components/teacher/divideIntern/listPositions/ListPositions";
+import OpenRegister from "./components/teacher/divideIntern/openRegister/OpenRegister";
+import { UserProvider } from "./context/UserContext";
+import PrivateRoute from "./route/PrivateRoute";
+import TeacherInfor from "./components/teacher/TeacherInfor";
+import AllotIntern from "./components/teacher/divideIntern/AllotIntern";
+
 const App = () => {
   return (
     <>
       <Router>
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/student" element={<StudentView />} />
+        <UserProvider>
+          {/* <PrivateRoute
+            path="/student"
+            element={<StudentView />}
+            roles={["student"]}
+          /> */}
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/login" element={<Login />} />
 
-          <Route path="/student/student-infor" element={<StudentInfor />} />
-          <Route
-            path="/student/student-register"
-            element={<StudentRegister />}
-          />
-          <Route path="/student/news-internship" element={<NewsIntership />} />
-          <Route
-            path="/student/internship-positions"
-            element={<Internshippositions />}
-          />
-          <Route
-            path="/student/student-register/in-school"
-            element={<RegisterInschool />}
-          />
-          <Route path="/student/fqas" element={<Fqas />} />
-          <Route
-            path="student/student-register/out-school"
-            element={<RegisterOutSchool />}
-          />
-        </Routes>
+            <Route path="/student" element={<StudentView />} />
+
+            <Route path="/student/student-infor" element={<StudentInfor />} />
+            <Route
+              path="/student/student-register"
+              element={<StudentRegister />}
+            />
+            <Route
+              path="/student/news-internship"
+              element={<NewsIntership />}
+            />
+            <Route
+              path="/student/internship-positions"
+              element={<Internshippositions />}
+            />
+            <Route
+              path="/student/student-register/in-school"
+              element={<RegisterInschool />}
+            />
+            <Route path="/student/fqas" element={<Fqas />} />
+            <Route
+              path="student/student-register/out-school"
+              element={<RegisterOutSchool />}
+            />
+            <Route path="/teacher" element={<TeacherHome />} />
+            <Route path="/teacher/teacher-infor" element={<TeacherInfor />} />
+            <Route path="/teacher/allot-intern" element={<AllotIntern />} />
+
+            <Route path="/teacher/mana-student" element={<ManageStudent />} />
+            <Route path="/teacher/mana-news" element={<ManageNews />} />
+            <Route path="/teacher/mana-business" element={<ManageBusiness />} />
+            <Route
+              path="/teacher/allot-intern/list-positions"
+              element={<ListPositions />}
+            />
+            <Route
+              path="/teacher/allot-intern/open-register"
+              element={<OpenRegister />}
+            />
+          </Routes>
+        </UserProvider>
       </Router>
     </>
   );
