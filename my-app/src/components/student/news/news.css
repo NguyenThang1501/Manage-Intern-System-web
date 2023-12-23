@@ -1,29 +1,8 @@
-.news-1,
-.news-2 {
-  display: flex;
-  justify-content: space-between;
-}
-.news-1 {
-  margin-top: 70px;
-}
 .news-2 {
   margin-top: 30px;
-}
-.first-one {
-  background-color: #fff;
-}
-.second-one {
-  margin-bottom: 10px;
-}
-.small-news {
-  margin: 10px;
-  background-color: #fff;
+  width: 80%;
 }
 
-.small-2 {
-  background-color: #fff;
-  margin: 10px 10px;
-}
 .n-pagination {
   display: flex;
   justify-content: center;

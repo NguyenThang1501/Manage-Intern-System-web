@@ -35,3 +35,17 @@
 .address-company {
   padding: 20px;
 }
+.card-business {
+  margin-top: 70px;
+}
+
+.card-business-title {
+  color: #1c1e53;
+}
+
+.card-business-body:hover {
+  cursor: pointer;
+  border: 1px solid #1c1e53;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: 0.5s;
+}

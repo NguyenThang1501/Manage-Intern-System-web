@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomButton from "../../common/button/CustomButton";
 import "./manastudent.css";
 import Table from "react-bootstrap/Table";
@@ -6,13 +6,20 @@ import Search from "../../common/search/Search";
 import SideBar2 from "../../common/sidebar/SideBar2";
 import Container from "react-bootstrap/esm/Container";
 
+import AddStudent from "./AddStudent";
+
 const ManageStudent = () => {
+  const [addShow, setAddShow] = useState(false);
   return (
     <SideBar2>
       <Container>
         <div className="container-mana-st">
           <div className="bt-mana-st">
-            <CustomButton buttonText="Thêm hồ sơ sinh viên" />
+            <CustomButton
+              onClick={() => setAddShow(true)}
+              buttonText="Thêm hồ sơ sinh viên"
+            />
+            <AddStudent show={addShow} onHide={() => setAddShow(false)} />
             <Search searchText={"Tìm kiếm sinh viên..."} />
           </div>
           <div className="container-tb-mana-st">
@@ -53,6 +60,7 @@ const ManageStudent = () => {
               </tbody>
             </Table>
           </div>
+          {/* {isOverlayVisible && <AddStudent closeOverlay={closeOverlay} />} */}
         </div>
       </Container>
     </SideBar2>

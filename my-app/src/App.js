@@ -27,6 +27,11 @@ import { UserProvider } from "./context/UserContext";
 import PrivateRoute from "./route/PrivateRoute";
 import TeacherInfor from "./components/teacher/TeacherInfor";
 import AllotIntern from "./components/teacher/divideIntern/AllotIntern";
+import ManaIntern from "./components/teacher/manaIntern/ManaIntern";
+import AddStudent from "./components/teacher/manageStudent/AddStudent";
+import BusinessInfor from "./components/teacher/manageBusiness/BusinessInfor";
+import ResultAllot from "./components/teacher/divideIntern/resultAllot/ResultAllot";
+import ListRegister from "./components/teacher/divideIntern/listRegister/ListRegister";
 
 const App = () => {
   return (
@@ -80,6 +85,20 @@ const App = () => {
             <Route
               path="/teacher/allot-intern/open-register"
               element={<OpenRegister />}
+            />
+            <Route path="/teacher/mana-intern" element={<ManaIntern />} />
+            <Route path="/teacher/mana-student/add" element={<AddStudent />} />
+            <Route
+              path="/teacher/mana-business/business-infor"
+              element={<BusinessInfor />}
+            />
+            <Route
+              path="/teacher/allot-intern/result-intern"
+              element={<ResultAllot />}
+            />
+            <Route
+              path="/teacher/allot-intern/list-register"
+              element={<ListRegister />}
             />
           </Routes>
         </UserProvider>
