@@ -7,7 +7,6 @@ import { useUser } from "../../context/UserContext";
 const Login = () => {
   const [_id, set_id] = useState("");
   const [pass, setpass] = useState("");
-  const [path, setPath] = useState("");
   const { setUserInfo } = useUser();
   const navigate = useNavigate();
 
@@ -17,6 +16,7 @@ const Login = () => {
       console.log(response);
 
       let role = response.role;
+      localStorage.setItem("token", response.accessToken);
       setUserInfo(response._id, role);
       console.log(role);
       if (role === "student") {
@@ -28,7 +28,6 @@ const Login = () => {
           navigate("/business");
         }
       }
-      console.log(path);
     } catch (error) {
       console.log("Failed to login ", error);
     }

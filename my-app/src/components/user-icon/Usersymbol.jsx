@@ -1,25 +1,24 @@
 import React from "react";
 import "./usersymbol.css";
 import { PiStudentBold } from "react-icons/pi";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 
-import Dropdown from "react-bootstrap/Dropdown";
-const Usersymbol = () => {
+const Usersymbol = ({ onClick, userName, userRole }) => {
   return (
-    <Dropdown>
-      <div>
-        <Dropdown.Toggle className="my-user">
-          <PiStudentBold className="student-icon" />
-          <div className="user-infor">
-            <li className="user-name">Hi, Thang</li>
-            <li className="user-role">Student</li>
-          </div>
-        </Dropdown.Toggle>
+    <div onClick={onClick}>
+      <div className="my-user">
+        {userRole === "student" ? (
+          <PiStudentBold className="user-icon" />
+        ) : (
+          <LiaChalkboardTeacherSolid className="user-icon" />
+        )}
 
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Đăng xuất</Dropdown.Item>
-        </Dropdown.Menu>
+        <div className="user-infor">
+          <li className="user-name">Hi, {userName}</li>
+          <li className="user-role">Đăng xuất</li>
+        </div>
       </div>
-    </Dropdown>
+    </div>
   );
 };
 

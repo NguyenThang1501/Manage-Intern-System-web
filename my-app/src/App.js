@@ -25,7 +25,7 @@ import ListPositions from "./components/teacher/divideIntern/listPositions/ListP
 import OpenRegister from "./components/teacher/divideIntern/openRegister/OpenRegister";
 import { UserProvider } from "./context/UserContext";
 import PrivateRoute from "./route/PrivateRoute";
-import TeacherInfor from "./components/teacher/TeacherInfor";
+import TeacherInfor from "./components/teacher/teacherInfor/TeacherInfor";
 import AllotIntern from "./components/teacher/divideIntern/AllotIntern";
 import ManaIntern from "./components/teacher/manaIntern/ManaIntern";
 import AddStudent from "./components/teacher/manageStudent/AddStudent";

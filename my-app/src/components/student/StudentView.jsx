@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SideBar from "../common/sidebar/SideBar";
 import Usersymbol from "../user-icon/Usersymbol";
 import "./student.css";
 import Container from "react-bootstrap/esm/Container";
+import { useNavigate } from "react-router-dom";
 
 const StudentView = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="student-view">
       <SideBar />
       <div className="hi-user">
-        <Usersymbol />
+        <Usersymbol
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+          userName={"Thang"}
+          userRole={"student"}
+        />
       </div>
       <Container>
         <div className="student-content">

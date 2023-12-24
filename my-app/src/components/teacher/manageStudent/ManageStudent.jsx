@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomButton from "../../common/button/CustomButton";
 import "./manastudent.css";
 import Table from "react-bootstrap/Table";
@@ -7,8 +7,23 @@ import SideBar2 from "../../common/sidebar/SideBar2";
 import Container from "react-bootstrap/esm/Container";
 
 import AddStudent from "./AddStudent";
+import studentApi from "../../../api/studentApi";
 
 const ManageStudent = () => {
+  const [allStudents, setAllStudents] = useState([]);
+  useEffect(() => {
+    const fetchAllStudents = async () => {
+      try {
+        let response = await studentApi.getAll();
+        console.log(response);
+        setAllStudents(response);
+      } catch (error) {
+        console.log("Failed to fetch all students ", error);
+      }
+    };
+    fetchAllStudents();
+  }, []);
+
   const [addShow, setAddShow] = useState(false);
   return (
     <SideBar2>
@@ -34,7 +49,16 @@ const ManageStudent = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {allStudents.map((student, index) => {
+                  <tr key={student.MaSinhvien}>
+                    <td>{index + 1}</td>
+                    <td>{student.MaSinhvien}</td>
+                    <td>{student.HoTen}</td>
+                    <td>{student.Lop}</td>
+                    <td>Sua , Xoa</td>
+                  </tr>;
+                })}
+                {/* <tr>
                   <td>1</td>
                   <td>21000415</td>
                   <td>Vương Thị Diễm Quỳnh</td>
@@ -56,7 +80,7 @@ const ManageStudent = () => {
                   <td>Vương Thị Diễm Quỳnh</td>
                   <td>K66 Khoa học dữ liệu</td>
                   <td></td>
-                </tr>
+                </tr> */}
               </tbody>
             </Table>
           </div>
