@@ -32,6 +32,8 @@ import AddStudent from "./components/teacher/manageStudent/AddStudent";
 import BusinessInfor from "./components/teacher/manageBusiness/BusinessInfor";
 import ResultAllot from "./components/teacher/divideIntern/resultAllot/ResultAllot";
 import ListRegister from "./components/teacher/divideIntern/listRegister/ListRegister";
+import ProcessReport from "./components/teacher/manaIntern/processReport/ProcessReport";
+import ReportDetail from "./components/teacher/manaIntern/processReport/ReportDetail";
 
 const App = () => {
   return (
@@ -99,6 +101,14 @@ const App = () => {
             <Route
               path="/teacher/allot-intern/list-register"
               element={<ListRegister />}
+            />
+            <Route
+              path="/teacher/mana-intern/regular-report"
+              element={<ProcessReport />}
+            />
+            <Route
+              path="/teacher/mana-intern/regular-report/detail"
+              element={<ReportDetail />}
             />
           </Routes>
         </UserProvider>
