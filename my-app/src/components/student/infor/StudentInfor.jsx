@@ -4,6 +4,8 @@ import "../student.css";
 import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
 import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/Col";
 
 const StudentInfor = () => {
   const { user } = useUser();
@@ -40,6 +42,10 @@ const StudentInfor = () => {
                   </thead>
                   <tbody>
                     <tr>
+                      <td className="field">Mã sinh viên</td>
+                      <td className="value">{studentInfor.MaSinhVien}</td>
+                    </tr>
+                    <tr>
                       <td className="field">Họ và tên</td>
                       <td className="value">{studentInfor.HoTen}</td>
                     </tr>
@@ -52,47 +58,51 @@ const StudentInfor = () => {
                       <td className="value">{studentInfor.Ngaysinh}</td>
                     </tr>
                     <tr>
-                      <td className="field">Địa chỉ</td>
-                      <td className="value">{studentInfor.DiaChi}</td>
+                      <td className="field">Khoa</td>
+                      <td className="value">{studentInfor.KhoaID}</td>
+                    </tr>
+                    <tr>
+                      <td className="field">Ngành học</td>
+                      <td className="value"></td>
+                    </tr>
+                    <tr>
+                      <td className="field">Số điện thoại</td>
+                      <td className="value"></td>
+                    </tr>
+                    <tr>
+                      <td className="field">Email</td>
+                      <td className="value"></td>
                     </tr>
                   </tbody>
                 </table>
                 <table className="table table-profile">
                   <thead>
                     <tr>
-                      <th colSpan="2">BASIC INFORMATION</th>
+                      <th colSpan="2">Kết quả học tập</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="field">Mã sinh viên</td>
-                      <td className="value">{studentInfor.MaSinhVien}</td>
+                      <td className="field">CPA</td>
+                      <td className="value"></td>
                     </tr>
+                  </tbody>
+                </table>
+
+                <button className="add-english">
+                  Thêm chứng chỉ ngoại ngữ (nếu có)
+                </button>
+
+                <table className="table table-profile">
+                  <thead>
                     <tr>
-                      <td className="field">Email</td>
-                      <td className="value">123@hus.edu.vn</td>
+                      <th colSpan="2">Chứng chỉ ngoại ngữ</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     <tr>
-                      <td className="field">Khoa</td>
-                      <td className="value">
-                        {studentInfor.KhoaID}
-                        Toán - Cơ - Tin học
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="field">Ngành học</td>
-                      <td className="value">Khoa học dữ liệu</td>
-                    </tr>
-                    <tr>
-                      <td className="field">GPA</td>
-                      <td className="value">{studentInfor.GPA}</td>
-                    </tr>
-                    <tr>
-                      <td className="field">Giáo viên quản lý</td>
-                      <td className="value">
-                        {studentInfor.GiaoVienQuanLiID}
-                        Nguyễn Văn B
-                      </td>
+                      <td className="field">IELTS</td>
+                      <td className="value"></td>
                     </tr>
                   </tbody>
                 </table>

@@ -106,3 +106,14 @@ body .fc-widget-header a {
   position: fixed;
   right: 30px;
 }
+.add-english {
+  margin-left: 300px;
+  background-color: #1c1e53;
+  color: #fff;
+  border-radius: 10px;
+  width: fit-content;
+  height: 41px;
+  font-size: 15px;
+  padding: 5px;
+  font-weight: bold;
+}
