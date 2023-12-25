@@ -1,8 +1,8 @@
 import pymongo
 
 # Connect to MongoDB
-client = pymongo.MongoClient("mongodb://localhost:27017/")  # Use the correct IP address or hostname
-db = client["web"]
+client = pymongo.MongoClient("mongodb://127.0.0.1/")  # Use the correct IP address or hostname
+db = client["test4"]
 students_collection = db["students"]
 positions_collection = db['positions']
 promises_collection = db['promises']
@@ -84,7 +84,7 @@ with open("output_match.txt", "w", encoding="utf-8") as output_file:
 for x in match_std:
     print(x,match_std[x])
 
-results = db['internship_results']
+matching_results = db['matching_results']
 for i in match_std.keys():
     position_id = i
     position_data = positions_collection.find_one({"_id": position_id},{"name": 1,"business": 1})
@@ -105,4 +105,4 @@ for i in match_std.keys():
             "position": position_name,
             "business": business_name
         }
-        results.insert_one(result)
+        matching_results.insert_one(result)
