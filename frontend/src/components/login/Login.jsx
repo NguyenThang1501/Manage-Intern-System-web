@@ -7,7 +7,7 @@ import { useUser } from "../../context/UserContext";
 const Login = () => {
   const [_id, set_id] = useState("");
   const [pass, setpass] = useState("");
-  const { setUserInfo } = useUser();
+  const { login } = useUser();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -17,9 +17,10 @@ const Login = () => {
 
       let role = response.role;
       localStorage.setItem("token", response.accessToken);
-      setUserInfo(response._id, role);
+
       console.log(role);
       if (role === "student") {
+        login(response);
         navigate("/student");
       } else {
         if (role === "teacher") {

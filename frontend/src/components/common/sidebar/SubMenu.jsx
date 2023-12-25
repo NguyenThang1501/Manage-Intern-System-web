@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Sidebar.css";
 import { NavLink } from "react-router-dom";
 
-const SubMenu = ({ item, isOpen }) => {
+const SubMenu = ({ item, isOpen, isOpenSubNav, onToggleSubNav }) => {
   const [subnav, setSubnav] = useState(false);
   const showSubnav = () => setSubnav(!subnav);
 
@@ -11,7 +11,10 @@ const SubMenu = ({ item, isOpen }) => {
       <NavLink
         to={item.path}
         className="link"
-        onClick={item.subNav && showSubnav}
+        onClick={() => {
+          item.subNav && onToggleSubNav();
+          showSubnav();
+        }}
       >
         <div className="icon-sidebar">{item.icon}</div>
         <div
@@ -33,6 +36,7 @@ const SubMenu = ({ item, isOpen }) => {
         </div>
       </NavLink>
       {subnav &&
+        isOpenSubNav &&
         item.subNav.map((item, index) => {
           return (
             <NavLink

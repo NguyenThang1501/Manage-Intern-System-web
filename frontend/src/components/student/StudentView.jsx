@@ -4,10 +4,13 @@ import Usersymbol from "../user-icon/Usersymbol";
 import "./student.css";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 const StudentView = () => {
   const navigate = useNavigate();
+  const { userName } = useUser();
 
+  console.log(userName);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
@@ -23,7 +26,7 @@ const StudentView = () => {
             localStorage.removeItem("token");
             navigate("/login");
           }}
-          userName={"Thang"}
+          userName={userName}
           userRole={"student"}
         />
       </div>

@@ -4,21 +4,21 @@ import "../student.css";
 import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
 import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/Col";
 
 const StudentInfor = () => {
-  const { user } = useUser();
+  const { userInfo } = useUser();
+  const { setUserName } = useUser();
   const [studentInfor, setStudentInfor] = useState([]);
 
-  console.log(user);
+  console.log(userInfo);
   useEffect(() => {
     const fetchStudentInfor = async () => {
       try {
-        let response = await studentApi.getAll();
+        let response = await studentApi.get(userInfo._id, userInfo.accessToken);
         console.log(response);
-        let data = response[0];
+        let data = response;
         setStudentInfor(data);
+        setUserName(data.name);
       } catch (error) {
         console.log("Failed to fetch student infor ", error);
       }
@@ -43,35 +43,35 @@ const StudentInfor = () => {
                   <tbody>
                     <tr>
                       <td className="field">Mã sinh viên</td>
-                      <td className="value">{studentInfor.MaSinhVien}</td>
+                      <td className="value">{studentInfor._id}</td>
                     </tr>
                     <tr>
                       <td className="field">Họ và tên</td>
-                      <td className="value">{studentInfor.HoTen}</td>
+                      <td className="value">{studentInfor.name}</td>
                     </tr>
                     <tr>
                       <td className="field">Giới tính</td>
-                      <td className="value">{studentInfor.GioiTinh}</td>
+                      <td className="value">{studentInfor.sex}</td>
                     </tr>
                     <tr>
                       <td className="field">Ngày sinh</td>
-                      <td className="value">{studentInfor.Ngaysinh}</td>
+                      <td className="value">{studentInfor.birthday}</td>
                     </tr>
                     <tr>
                       <td className="field">Khoa</td>
-                      <td className="value">{studentInfor.KhoaID}</td>
+                      <td className="value">{studentInfor.field}</td>
                     </tr>
                     <tr>
                       <td className="field">Ngành học</td>
-                      <td className="value"></td>
+                      <td className="value">{studentInfor.major}</td>
                     </tr>
                     <tr>
                       <td className="field">Số điện thoại</td>
-                      <td className="value"></td>
+                      <td className="value">{studentInfor.phone}</td>
                     </tr>
                     <tr>
                       <td className="field">Email</td>
-                      <td className="value"></td>
+                      <td className="value">{studentInfor.email}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -84,7 +84,7 @@ const StudentInfor = () => {
                   <tbody>
                     <tr>
                       <td className="field">CPA</td>
-                      <td className="value"></td>
+                      <td className="value">{studentInfor.cpa}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -102,7 +102,7 @@ const StudentInfor = () => {
                   <tbody>
                     <tr>
                       <td className="field">IELTS</td>
-                      <td className="value"></td>
+                      <td className="value">{studentInfor.cert}</td>
                     </tr>
                   </tbody>
                 </table>

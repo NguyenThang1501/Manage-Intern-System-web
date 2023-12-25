@@ -1,19 +1,28 @@
-// userContext.js
+// Context
 import { createContext, useContext, useState } from "react";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
+  const [userName, setUserName] = useState(null);
 
-  const setUserInfo = (userInfo) => {
-    setUser(userInfo);
+  const login = (user) => {
+    setUserInfo(user);
+  };
+
+  const setName = (user) => {
+    setUserName(user);
+  };
+  const contextValue = {
+    userInfo,
+    userName,
+    login,
+    setName,
   };
 
   return (
-    <UserContext.Provider value={{ user, setUserInfo }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
 

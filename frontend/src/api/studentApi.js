@@ -6,9 +6,13 @@ const studentApi = {
     return axiosClient.get(url);
   },
 
-  get: (id) => {
-    const url = `/student/${id}`;
-    return axiosClient.get(url);
+  get: (id, token) => {
+    const url = `/teacher/student-mana/${id}`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
   },
   getPositions: () => {
     const url = `/student/internship-positions`;
