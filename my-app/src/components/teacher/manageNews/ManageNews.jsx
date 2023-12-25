@@ -10,7 +10,8 @@ import SideBar2 from "../../common/sidebar/SideBar2";
 
 const ManageNews = () => {
   return (
-    <SideBar2>
+    <div>
+      <SideBar2 />
       <Container>
         <Row>
           <Col md={{ span: 6, offset: 3 }} className="container-mana-news">
@@ -24,7 +25,7 @@ const ManageNews = () => {
           </Col>
         </Row>
       </Container>
-    </SideBar2>
+    </div>
   );
 };
 

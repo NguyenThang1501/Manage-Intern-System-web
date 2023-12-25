@@ -23,7 +23,6 @@ const NewsBox = () => {
         <div className="bottom-box">
           <p>Hà Nội</p>
           <p>Còn 17 ngày để ứng tuyển</p>
-          <CustomButton buttonText={"Ứng tuyển ngay"} />
         </div>
       </div>
     </div>

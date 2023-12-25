@@ -73,7 +73,8 @@ const ManageStudent = () => {
 
   const [addShow, setAddShow] = useState(false);
   return (
-    <SideBar2>
+    <div>
+      <SideBar2 />
       <Container>
         <div className="container-mana-st">
           <div className="bt-mana-st">
@@ -134,7 +135,7 @@ const ManageStudent = () => {
           {/* {isOverlayVisible && <AddStudent closeOverlay={closeOverlay} />} */}
         </div>
       </Container>
-    </SideBar2>
+    </div>
   );
 };
 

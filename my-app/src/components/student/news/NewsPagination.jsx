@@ -14,7 +14,7 @@ for (let number = 1; number <= 5; number++) {
 const NewsPagination = () => {
   return (
     <div>
-      <Pagination className="n-pagination">{items}</Pagination>
+      <Pagination>{items}</Pagination>
       <br />
     </div>
   );

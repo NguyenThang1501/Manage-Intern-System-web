@@ -7,15 +7,16 @@ import Container from "react-bootstrap/esm/Container";
 
 const NewsIntership = () => {
   return (
-    <SideBar>
+    <div>
+      <SideBar />
       <Container>
         <div className="news-2">
           <NewsBox />
           <NewsBox />
         </div>
-        <NewsPagination />
+        {/* <NewsPagination className="n-pagination" /> */}
       </Container>
-    </SideBar>
+    </div>
   );
 };
 

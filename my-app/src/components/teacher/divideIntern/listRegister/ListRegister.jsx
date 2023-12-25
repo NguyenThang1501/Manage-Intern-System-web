@@ -40,8 +40,9 @@ const ListRegister = () => {
 
   return (
     <div>
-      <SideBar2>
-        <Container>
+      <SideBar2 />
+      <Container>
+        <div className="wrap-allot-intern">
           <Table striped bordered hover className="table-allot-intern">
             <thead>
               <tr>
@@ -76,8 +77,8 @@ const ListRegister = () => {
             <CustomButton buttonText={"Phân công thực tập"} />
             <CustomButton buttonText={"Xem kết quả phân công"} />
           </div>
-        </Container>
-      </SideBar2>
+        </div>
+      </Container>
     </div>
   );
 };

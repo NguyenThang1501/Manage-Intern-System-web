@@ -8,7 +8,8 @@ import SideBar from "../../common/sidebar/SideBar";
 
 const RegisterOutSchool = () => {
   return (
-    <SideBar>
+    <div>
+      <SideBar />
       <Container>
         <Col sm={14} className="form-infor-business">
           <div className="heading-form">
@@ -84,7 +85,7 @@ const RegisterOutSchool = () => {
           </div>
         </Col>
       </Container>
-    </SideBar>
+    </div>
   );
 };
 

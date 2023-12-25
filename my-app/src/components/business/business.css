@@ -1,0 +1,17 @@
+.business-infor-content {
+  display: flex;
+}
+.wrap-business-infor {
+  margin-left: 100px;
+}
+.business-mana-news {
+  margin-left: 200px;
+  margin-top: 50px;
+  position: absolute;
+  width: 75%;
+}
+.wrap-business-news {
+  position: absolute;
+  width: 75%;
+  margin-left: 200px;
+}

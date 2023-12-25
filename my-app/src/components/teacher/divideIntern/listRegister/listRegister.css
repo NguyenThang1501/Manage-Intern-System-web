@@ -5,11 +5,11 @@
   /* padding-left: 100px;
   padding-right: 100px; */
   text-align: center;
+
+  margin-top: 70px;
 }
 .table-allot-intern {
   text-align: center;
-  margin-top: 60px;
-  margin-bottom: 30px;
 }
 .name {
   width: 200px;
@@ -19,4 +19,9 @@
 }
 .name-value {
   text-align: left;
+}
+.wrap-allot-intern {
+  position: absolute;
+  margin-left: 200px;
+  margin-top: 80px;
 }

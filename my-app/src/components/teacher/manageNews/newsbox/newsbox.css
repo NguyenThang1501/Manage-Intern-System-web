@@ -2,14 +2,14 @@
   display: flex;
   background-color: #d6eaf8;
   margin-top: 50px;
-  padding-bottom: 10px;
+  padding: 10px;
   width: 100%;
   position: relative;
   border-radius: 20px;
 }
 
 .wrap-logo-box {
-  margin: 10px;
+  margin: 5px;
   justify-content: center;
 }
 .logo-box {
@@ -25,9 +25,7 @@
   margin-top: 20px;
 }
 .bottom-box {
-  position: absolute;
   display: flex;
   justify-content: space-between;
-  bottom: 15px;
-  width: 70%;
+  width: 100%;
 }

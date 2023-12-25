@@ -8,8 +8,9 @@ import SideBar2 from "../../common/sidebar/SideBar2";
 const BusinessInfor = () => {
   return (
     <div>
-      <SideBar2>
-        <Container>
+      <SideBar2 />
+      <Container>
+        <div className="wrap-infor-cp">
           <div className="banner-company"></div>
           <div className="container-mana-cp">
             <Col sm={8} className="infor-company">
@@ -55,8 +56,8 @@ const BusinessInfor = () => {
               </div>
             </Col>
           </div>
-        </Container>
-      </SideBar2>
+        </div>
+      </Container>
     </div>
   );
 };

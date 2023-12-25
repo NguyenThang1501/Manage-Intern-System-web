@@ -5,11 +5,13 @@ import Row from "react-bootstrap/Row";
 import CustomButton from "../../../common/button/CustomButton";
 import "./openRegister.css";
 import SideBar2 from "../../../common/sidebar/SideBar2";
+import Container from "react-bootstrap/esm/Container";
 
 const OpenRegister = () => {
   return (
-    <SideBar2>
-      <div>
+    <div>
+      <SideBar2 />
+      <Container>
         <Col sm={8} className="list-date">
           <div className="title-cp">Thiết lập ngày mở đăng ký thực tập</div>
           <div className="open-date">
@@ -33,8 +35,8 @@ const OpenRegister = () => {
             <CustomButton buttonText={"Ghi nhận"} />
           </div>
         </Col>
-      </div>
-    </SideBar2>
+      </Container>
+    </div>
   );
 };
 

@@ -3,12 +3,14 @@ import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Table from "react-bootstrap/esm/Table";
 import SideBar2 from "../../../common/sidebar/SideBar2";
+import "./report.css";
 
 const ReportDetail = () => {
   return (
     <div>
-      <SideBar2>
-        <Container>
+      <SideBar2 />
+      <Container>
+        <div className="detail-report">
           <Col sm={10}>
             <div className="title-cp">Thông tin sinh viên</div>
 
@@ -97,8 +99,8 @@ const ReportDetail = () => {
               </tbody>
             </Table>
           </Col>
-        </Container>
-      </SideBar2>
+        </div>
+      </Container>
     </div>
   );
 };

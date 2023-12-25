@@ -8,12 +8,14 @@ import CustomButton from "../../common/button/CustomButton";
 import { NavLink } from "react-router-dom";
 import BusinessInfor from "./BusinessInfor";
 import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/esm/Container";
 
 const ManageBusiness = () => {
   return (
-    <SideBar2>
-      <div className="card-business">
-        <Row xs={1} md={2} className="g-4">
+    <div className="">
+      <SideBar2 />
+      <Container>
+        <Row xs={1} md={2} className="g-4 card-business">
           {Array.from({ length: 5 }).map((_, idx) => (
             <Col key={idx}>
               <Card className="card-business-body">
@@ -34,8 +36,8 @@ const ManageBusiness = () => {
             </Col>
           ))}
         </Row>
-      </div>
-    </SideBar2>
+      </Container>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 .container-mana-news {
   position: absolute;
-  margin: 50px 30px 50px;
-  width: 900px;
+  margin: 50px 30px 50px 300px;
+  width: 60%;
   height: 700px;
 }
 .bt-mana-news {

@@ -34,6 +34,11 @@ import ResultAllot from "./components/teacher/divideIntern/resultAllot/ResultAll
 import ListRegister from "./components/teacher/divideIntern/listRegister/ListRegister";
 import ProcessReport from "./components/teacher/manaIntern/processReport/ProcessReport";
 import ReportDetail from "./components/teacher/manaIntern/processReport/ReportDetail";
+import BusinessInformation from "./components/business/BusinessInformation";
+import BusinessNews from "./components/business/BusinessNews";
+import BusinessHome from "./components/business/BusinessHome";
+import BusinessAddNews from "./components/business/BusinessAddNews";
+import BusinessNewsDetail from "./components/business/BusinessNewsDetail";
 
 const App = () => {
   return (
@@ -109,6 +114,20 @@ const App = () => {
             <Route
               path="/teacher/mana-intern/regular-report/detail"
               element={<ReportDetail />}
+            />
+            <Route path="/business" element={<BusinessHome />} />
+            <Route
+              path="/business/business-information"
+              element={<BusinessInformation />}
+            />
+            <Route path="/business/manage-news" element={<BusinessNews />} />
+            <Route
+              path="/business/manage-news/add-news"
+              element={<BusinessAddNews />}
+            />
+            <Route
+              path="/business/manage-news/news-detail"
+              element={<BusinessNewsDetail />}
             />
           </Routes>
         </UserProvider>

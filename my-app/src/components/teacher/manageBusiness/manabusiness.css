@@ -1,5 +1,6 @@
 .container-mana-cp {
   display: flex;
+  margin-left: 150px;
 }
 .intro-company,
 .td-company {
@@ -36,7 +37,10 @@
   padding: 20px;
 }
 .card-business {
+  position: absolute;
   margin-top: 70px;
+  margin-left: 160px;
+  width: 80%;
 }
 
 .card-business-title {
@@ -48,4 +52,7 @@
   border: 1px solid #1c1e53;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   transition: 0.5s;
+}
+.wrap-infor-cp {
+  padding-left: 100px;
 }

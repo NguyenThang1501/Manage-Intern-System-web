@@ -1,5 +1,6 @@
 .container-sidebar {
   display: flex;
+  position: fixed;
 }
 main {
   width: 100%;

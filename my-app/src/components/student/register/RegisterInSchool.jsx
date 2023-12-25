@@ -6,7 +6,8 @@ import Container from "react-bootstrap/Container";
 
 const RegisterInschool = () => {
   return (
-    <SideBar>
+    <div>
+      <SideBar />
       <Container>
         <div className="nv-page">
           <h4 className="nv-heading">Nhập các nguyện vọng</h4>
@@ -42,7 +43,7 @@ const RegisterInschool = () => {
           </Button>{" "}
         </div>
       </Container>
-    </SideBar>
+    </div>
   );
 };
 

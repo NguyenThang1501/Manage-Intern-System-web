@@ -1,4 +1,7 @@
 .positions-table {
   margin-top: 100px;
-  padding-top: 100px;
+  margin-left: 250px;
+}
+.wrap-intern-positions {
+  display: flex;
 }
