@@ -224,6 +224,18 @@ const authController = {
             console.error(err);
             res.status(500).json({ error: 'Internal Server Error', details: err.message, success: false });
         }
+    },
+    get_result: async (req, res) => {
+        try {
+            // Fetch all documents from the InternshipResult collection
+            const internshipResults = await Result.find();
+    
+            // Return the results as JSON
+            res.status(200).json(internshipResults);
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
     
     
