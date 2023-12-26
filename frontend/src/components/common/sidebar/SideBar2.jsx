@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
+import { Link } from "react-router-dom";
 import { FaBars, FaRegListAlt, FaLockOpen } from "react-icons/fa";
 import { BsFillPersonLinesFill, BsCardChecklist } from "react-icons/bs";
 import { TfiWrite } from "react-icons/tfi";
@@ -67,25 +68,6 @@ const menuItem = [
     path: "/teacher/mana-intern",
     name: "Quản lý thực tập",
     icon: <MdManageAccounts />,
-    iconClosed: <IoIosArrowDown />,
-    iconOpened: <IoIosArrowUp />,
-    subNav: [
-      {
-        path: "/teacher/mana-intern/regular-report",
-        name: "Báo cáo thường xuyên",
-        icon: <BiSolidReport />,
-      },
-      {
-        path: "/teacher/mana-intern/topic-report",
-        name: "Báo cáo đề tài thực tập",
-        icon: <MdTopic />,
-      },
-      {
-        path: "/teacher/mana-intern/score",
-        name: "Điểm",
-        icon: <GrScorecard />,
-      },
-    ],
   },
 ];
 
@@ -97,10 +79,18 @@ const SideBar2 = ({ children }) => {
 
   return (
     <div className="container-sidebar">
-      <div style={{ width: isOpen ? "380px" : "50px" }} className="sidebar">
+      <div style={{ width: isOpen ? "300px" : "50px" }} className="sidebar">
         <div className="top-section">
+          <Link to="/teacher">
+            <h1
+              style={{ display: isOpen ? "block" : "none" }}
+              className="logo-sidebar"
+            >
+              IMS_HUS
+            </h1>
+          </Link>
           <div
-            style={{ marginLeft: isOpen ? "210px" : "0px" }}
+            style={{ marginLeft: isOpen ? "110px" : "0px" }}
             className="bars"
           >
             <FaBars className="fa-bar" onClick={toggle} />

@@ -61,11 +61,6 @@ const menuItem = [
 const SideBar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
-  const [openSubNav, setOpenSubNav] = useState(null);
-
-  const handleSubNavToggle = (index) => {
-    setOpenSubNav(openSubNav === index ? null : index);
-  };
 
   return (
     <div className="container-sidebar">
@@ -87,15 +82,7 @@ const SideBar = ({ children }) => {
           </div>
         </div>
         {menuItem.map((item, index) => {
-          return (
-            <SubMenu
-              item={item}
-              key={index}
-              isOpen={isOpen}
-              isOpenSubNav={openSubNav === index}
-              onToggleSubNav={() => handleSubNavToggle(index)}
-            />
-          );
+          return <SubMenu item={item} key={index} isOpen={isOpen} />;
         })}
       </div>
       <main>{children}</main>

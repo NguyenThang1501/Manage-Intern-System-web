@@ -14,9 +14,13 @@ const studentApi = {
       },
     });
   },
-  getPositions: () => {
-    const url = `/student/internship-positions`;
-    return axiosClient.get(url);
+  getPositions: (token) => {
+    const url = `/student/internship-register/collab/positions`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
   },
 };
 

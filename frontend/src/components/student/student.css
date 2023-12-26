@@ -107,6 +107,8 @@ body .fc-widget-header a {
   right: 30px;
 }
 .add-english {
+  margin-top: 20px;
+  margin-bottom: 100px;
   margin-left: 300px;
   background-color: #1c1e53;
   color: #fff;
@@ -116,4 +118,10 @@ body .fc-widget-header a {
   font-size: 15px;
   padding: 5px;
   font-weight: bold;
+}
+.result-table {
+  margin-top: 100px;
+  margin-left: 250px;
+  position: absolute;
+  width: 70%;
 }

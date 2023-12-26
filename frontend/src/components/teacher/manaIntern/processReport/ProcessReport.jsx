@@ -82,7 +82,13 @@ const ProcessReport = (props) => {
                     buttonText={"Xem báo cáo"}
                   />
                 </td>
-                <td>{item.Detai}</td>
+                <button
+                  onClick={() => {
+                    navigate("/teacher/mana-intern/regular-report/topic");
+                  }}
+                >
+                  <td>{item.Detai}</td>
+                </button>
               </tr>
             ))}
           </tbody>

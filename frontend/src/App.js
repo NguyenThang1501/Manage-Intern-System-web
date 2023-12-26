@@ -27,7 +27,6 @@ import { UserProvider } from "./context/UserContext";
 import PrivateRoute from "./route/PrivateRoute";
 import TeacherInfor from "./components/teacher/teacherInfor/TeacherInfor";
 import AllotIntern from "./components/teacher/divideIntern/AllotIntern";
-import ManaIntern from "./components/teacher/manaIntern/ManaIntern";
 import AddStudent from "./components/teacher/manageStudent/AddStudent";
 import BusinessInfor from "./components/teacher/manageBusiness/BusinessInfor";
 import ResultAllot from "./components/teacher/divideIntern/resultAllot/ResultAllot";
@@ -39,6 +38,7 @@ import BusinessNews from "./components/business/BusinessNews";
 import BusinessHome from "./components/business/BusinessHome";
 import BusinessAddNews from "./components/business/BusinessAddNews";
 import BusinessNewsDetail from "./components/business/BusinessNewsDetail";
+import TopicIntern from "./components/teacher/manaIntern/processReport/TopicIntern";
 
 const App = () => {
   return (
@@ -93,7 +93,7 @@ const App = () => {
               path="/teacher/allot-intern/open-register"
               element={<OpenRegister />}
             />
-            <Route path="/teacher/mana-intern" element={<ManaIntern />} />
+            <Route path="/teacher/mana-intern" element={<ProcessReport />} />
             <Route path="/teacher/mana-student/add" element={<AddStudent />} />
             <Route
               path="/teacher/mana-business/business-infor"
@@ -107,10 +107,7 @@ const App = () => {
               path="/teacher/allot-intern/list-register"
               element={<ListRegister />}
             />
-            <Route
-              path="/teacher/mana-intern/regular-report"
-              element={<ProcessReport />}
-            />
+
             <Route
               path="/teacher/mana-intern/regular-report/detail"
               element={<ReportDetail />}
@@ -128,6 +125,10 @@ const App = () => {
             <Route
               path="/business/manage-news/news-detail"
               element={<BusinessNewsDetail />}
+            />
+            <Route
+              path="/teacher/mana-intern/regular-report/topic"
+              element={<TopicIntern />}
             />
           </Routes>
         </UserProvider>

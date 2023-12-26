@@ -11,25 +11,39 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/esm/Container";
 
 const ManageBusiness = () => {
+  const cards = [
+    {
+      id: 1,
+      title: "Viettel",
+      text: "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+    },
+    {
+      id: 2,
+      title: "FPT",
+      text: "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+    },
+    {
+      id: 3,
+      title: "vin",
+      text: "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+    },
+  ];
+
   return (
     <div className="">
       <SideBar2 />
       <Container>
         <Row xs={1} md={2} className="g-4 card-business">
-          {Array.from({ length: 5 }).map((_, idx) => (
-            <Col key={idx}>
+          {cards.map((card) => (
+            <Col key={Card.id}>
               <Card className="card-business-body">
                 <Link
                   to="/teacher/mana-business/business-infor"
                   className="card-business-title"
                 >
                   <Card.Body>
-                    <Card.Title>Viettel</Card.Title>
-                    <Card.Text>
-                      This is a longer card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </Card.Text>
+                    <Card.Title>{card.title}</Card.Title>
+                    <Card.Text>{card.text}</Card.Text>
                   </Card.Body>
                 </Link>
               </Card>

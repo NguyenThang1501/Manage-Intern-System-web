@@ -1,20 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../common/sidebar/SideBar";
 import Usersymbol from "../user-icon/Usersymbol";
 import "./student.css";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import studentApi from "../../api/studentApi";
 
 const StudentView = () => {
   const navigate = useNavigate();
-  const { userName } = useUser();
+  const { userInfo } = useUser();
+  const [userName, setUserName] = useState();
 
-  console.log(userName);
+  console.log(userInfo);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     }
+  }, []);
+
+  useEffect(() => {
+    const fetchStudentInfor = async () => {
+      try {
+        let response = await studentApi.get(userInfo._id, userInfo.accessToken);
+        console.log(response);
+        let data = response;
+        console.log(data);
+        setUserName(data.name);
+      } catch (error) {
+        console.log("Failed to fetch student infor ", error);
+      }
+    };
+    fetchStudentInfor();
   }, []);
 
   return (

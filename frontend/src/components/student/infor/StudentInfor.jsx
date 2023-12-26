@@ -7,9 +7,47 @@ import Container from "react-bootstrap/esm/Container";
 
 const StudentInfor = () => {
   const { userInfo } = useUser();
-  const { setUserName } = useUser();
   const [studentInfor, setStudentInfor] = useState([]);
 
+  const [firstSelectValue, setFirstSelectValue] = useState("");
+  const [secondSelectValue, setSecondSelectValue] = useState("");
+  const [optionsForSecondSelect, setOptionsForSecondSelect] = useState([]);
+
+  //Select English cert
+  const handleFirstSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    setFirstSelectValue(selectedValue);
+
+    // Dựa vào giá trị của select đầu tiên, cập nhật danh sách tùy chọn của select thứ hai
+    if (selectedValue === "option1") {
+      setOptionsForSecondSelect([
+        "9.0",
+        "8.5",
+        "8.0",
+        "7.5",
+        "7.0",
+        "6.5",
+        "6.0",
+        "5.5",
+        "5.0",
+        "4.5",
+        "4.0",
+      ]);
+    } else if (selectedValue === "option2") {
+      setOptionsForSecondSelect(["Option X", "Option Y", "Option Z"]);
+    } else {
+      setOptionsForSecondSelect([]);
+    }
+
+    setSecondSelectValue("");
+  };
+
+  const handleSecondSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    setSecondSelectValue(selectedValue);
+  };
+
+  //call API
   console.log(userInfo);
   useEffect(() => {
     const fetchStudentInfor = async () => {
@@ -18,7 +56,6 @@ const StudentInfor = () => {
         console.log(response);
         let data = response;
         setStudentInfor(data);
-        setUserName(data.name);
       } catch (error) {
         console.log("Failed to fetch student infor ", error);
       }
@@ -89,11 +126,7 @@ const StudentInfor = () => {
                   </tbody>
                 </table>
 
-                <button className="add-english">
-                  Thêm chứng chỉ ngoại ngữ (nếu có)
-                </button>
-
-                <table className="table table-profile">
+                <table className="table table-profile table-cert">
                   <thead>
                     <tr>
                       <th colSpan="2">Chứng chỉ ngoại ngữ</th>
@@ -101,11 +134,38 @@ const StudentInfor = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="field">IELTS</td>
-                      <td className="value">{studentInfor.cert}</td>
+                      <td className="field">
+                        <select
+                          value={firstSelectValue}
+                          onChange={handleFirstSelectChange}
+                        >
+                          <option value="">Tên chứng chỉ</option>
+                          <option value="option1">IELTS</option>
+                          <option value="option2">Toiec</option>
+                        </select>
+                      </td>
+                      <td className="value">
+                        <select
+                          value={secondSelectValue}
+                          onChange={handleSecondSelectChange}
+                        >
+                          <option value="">Điểm</option>
+                          {optionsForSecondSelect.map((option, index) => (
+                            <option key={index} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
+                <button
+                  className="add-english"
+                  onClick={() => alert("Thêm chứng chỉ thành công")}
+                >
+                  Thêm chứng chỉ ngoại ngữ (nếu có)
+                </button>
               </div>
             </div>
           </div>
