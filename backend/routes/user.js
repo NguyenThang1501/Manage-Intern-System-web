@@ -21,7 +21,7 @@ router.delete("/teacher/teacher-mana/:id", middlewareController.verifyTokenAndAd
 //lấy thông tin báo cáo thường xuyên
 router.get("/teacher/mana-intern/regular-report", middlewareController.verifyTokenAndAdmin,userController.getRegularReport)
 //lấy thông tin báo cáo thường xuyên - chi tiết
-router.get("/teacher/mana-intern/regular-report/details", middlewareController.verifyTokenAndAdmin,userController.getRegularReport_details)
+router.get("/teacher/mana-intern/regular-report/details/:id", middlewareController.verifyTokenAndAdmin,userController.getRegularReport_details)
 //chạy thuật toán matching
 router.post("/runalgorithms", middlewareController.verifyTokenAndAdmin,userController.runcode);
 module.exports = router;

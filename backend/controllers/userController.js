@@ -155,26 +155,30 @@ const userController = {
   },
   getRegularReport_details: async (req, res) => {
     try {
-      const regularReports = await RegularReport.find({});
-      const results = [];
+        const { id } = req.params; 
 
-      regularReports.forEach((regularReport) => {
-        regularReport.reports.forEach((report) => {
-          results.push({
-            time: report.time,
-            work: report.work,
-            progress: report.progress,
-          });
+        const regularReport = await RegularReport.findById(id);
+
+        if (!regularReport) {
+            return res.status(404).json({ error: 'Regular Report not found' });
+        }
+
+        const results = [];
+
+        regularReport.reports.forEach(report => {
+            results.push({
+                time: report.time,
+                work: report.work,
+                progress: report.progress,
+            });
         });
-      });
 
-      return res.status(200).json(results);
+        return res.status(200).json(results);
     } catch (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Internal Server Error" });
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
-  },
-
+},
   runcode: async (req, res) => {
     exec("python .\\algorithms\\demo.py", (error, stdout, stderr) => {
       if (error) {
