@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomButton from "../../../common/button/CustomButton";
 import Container from "react-bootstrap/esm/Container";
 import Table from "react-bootstrap/esm/Table";
@@ -6,44 +6,65 @@ import SideBar2 from "../../../common/sidebar/SideBar2";
 import ReportDetail from "./ReportDetail";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./report.css";
+import teacherApi from "../../../../api/teacherAPI";
+import { useUser } from "../../../../context/UserContext";
 
-const ProcessReport = (props) => {
+const ProcessReport = () => {
+  const { userInfo } = useUser();
+  const [reportProcess, setReportProcess] = useState([]);
+  const [detailData, setDetailData] = useState(null);
   const navigate = useNavigate();
-  const reportProcess = [
-    {
-      MaSinhVien: "12345",
-      HoTen: "Nguyễn Thị Thắng",
-      SDT: "0123456789",
-      Lop: "K66A5",
-      NganhHoc: "Khoa học dữ liệu",
-      CPA: "2.0",
-      Congty: "Viettel",
-      Vitri: "Data Engineer",
-      Detai: "Mô hình xử lý big data",
-    },
-    {
-      MaSinhVien: "12345",
-      HoTen: "Nguyễn Thị Thắng",
-      SDT: "0123456789",
-      Lop: "K66A5",
-      NganhHoc: "Khoa học dữ liệu",
-      CPA: "2.0",
-      Congty: "Viettel",
-      Vitri: "Data Engineer",
-      Detai: "Mô hình xử lý big data",
-    },
-    {
-      MaSinhVien: "12345",
-      HoTen: "Nguyễn Thị Thắng",
-      SDT: "0123456789",
-      Lop: "K66A5",
-      NganhHoc: "Khoa học dữ liệu",
-      CPA: "2.0",
-      Congty: "Viettel",
-      Vitri: "Data Engineer",
-      Detai: "Mô hình xử lý big data",
-    },
-  ];
+
+  console.log(userInfo);
+
+  useEffect(() => {
+    const fetchProcessReport = async () => {
+      try {
+        let response = await teacherApi.getReport(userInfo.accessToken);
+        console.log(response);
+        let data = response;
+        setReportProcess(data);
+      } catch (error) {
+        console.log("Failed to fetch report infor ", error);
+      }
+    };
+    fetchProcessReport();
+  }, []);
+  // const reportProcess = [
+  //   {
+  //     MaSinhVien: "12345",
+  //     HoTen: "Nguyễn Thị Thắng",
+  //     SDT: "0123456789",
+  //     Lop: "K66A5",
+  //     NganhHoc: "Khoa học dữ liệu",
+  //     CPA: "2.0",
+  //     Congty: "Viettel",
+  //     Vitri: "Data Engineer",
+  //     Detai: "Mô hình xử lý big data",
+  //   },
+  //   {
+  //     MaSinhVien: "12345",
+  //     HoTen: "Nguyễn Thị Thắng",
+  //     SDT: "0123456789",
+  //     Lop: "K66A5",
+  //     NganhHoc: "Khoa học dữ liệu",
+  //     CPA: "2.0",
+  //     Congty: "Viettel",
+  //     Vitri: "Data Engineer",
+  //     Detai: "Mô hình xử lý big data",
+  //   },
+  //   {
+  //     MaSinhVien: "12345",
+  //     HoTen: "Nguyễn Thị Thắng",
+  //     SDT: "0123456789",
+  //     Lop: "K66A5",
+  //     NganhHoc: "Khoa học dữ liệu",
+  //     CPA: "2.0",
+  //     Congty: "Viettel",
+  //     Vitri: "Data Engineer",
+  //     Detai: "Mô hình xử lý big data",
+  //   },
+  // ];
   return (
     <div>
       <SideBar2 />
@@ -55,7 +76,7 @@ const ProcessReport = (props) => {
               <th>MSV</th>
               <th className="name">Họ và tên</th>
               <th>Số điện thoại</th>
-              <th>Lớp</th>
+
               <th>Ngành học</th>
               <th>Công ty</th>
               <th>Vị trí</th>
@@ -67,17 +88,20 @@ const ProcessReport = (props) => {
             {reportProcess.map((item, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{item.MaSinhVien}</td>
-                <td className="name-value">{item.HoTen}</td>
-                <td>{item.SDT}</td>
-                <td>{item.Lop}</td>
-                <td>{item.NganhHoc}</td>
-                <td>{item.Congty}</td>
-                <td>{item.Vitri}</td>
+                <td>{item._id}</td>
+                <td className="name-value">{item.name}</td>
+                <td>{item.phone}</td>
+
+                <td>{item.major}</td>
+                <td>{item.business}</td>
+                <td>{item.position}</td>
                 <td>
                   <CustomButton
                     onClick={() => {
-                      navigate("/teacher/mana-intern/regular-report/detail");
+                      setDetailData(item);
+                      navigate("/teacher/mana-intern/regular-report/detail", {
+                        state: { detailData: item },
+                      });
                     }}
                     buttonText={"Xem báo cáo"}
                   />
@@ -87,7 +111,7 @@ const ProcessReport = (props) => {
                     navigate("/teacher/mana-intern/regular-report/topic");
                   }}
                 >
-                  <td>{item.Detai}</td>
+                  <td>{item.project}</td>
                 </button>
               </tr>
             ))}

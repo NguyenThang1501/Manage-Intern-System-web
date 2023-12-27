@@ -23,7 +23,7 @@ const Login = () => {
         login(response);
         navigate("/student");
       } else {
-        if (role === "teacher") {
+        if (role === "admin") {
           login(response);
           navigate("/teacher");
         } else {

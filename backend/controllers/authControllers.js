@@ -6,7 +6,7 @@ const Student = require('../models/Student');
 const Business = require('../models/Business')
 const News = require('../models/News')
 const FinalReport = require('../models/FinalReport');
-const Result = require("../models/FinalList");
+const Result = require("../models/InternshipResult");
 
 const authController = {
     registerUser: async (req, res) => {
@@ -225,6 +225,7 @@ const authController = {
             res.status(500).json({ error: 'Internal Server Error', details: err.message, success: false });
         }
     },
+
     get_result: async (req, res) => {
         try {
             // Fetch all documents from the InternshipResult collection
@@ -237,7 +238,6 @@ const authController = {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }
-    
     
 };
 

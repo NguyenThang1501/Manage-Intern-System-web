@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Table from "react-bootstrap/esm/Table";
 import SideBar2 from "../../../common/sidebar/SideBar2";
 import "./report.css";
+import teacherApi from "../../../../api/teacherAPI";
 
-const ReportDetail = () => {
+const ReportDetail = (props) => {
+  const dataStudent = props.location.state?.data || null;
+  const [reportData, setReportData] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchReportDetails = async () => {
+  //     try {
+  //       let response = await teacherApi.getReportDetails();
+  //       console.log(response);
+  //       let data = response;
+  //       setReportData(data);
+  //     } catch (error) {
+  //       console.log("Failed to fetch report infor ", error);
+  //     }
+  //   };
+  //   fetchReportDetails();
+  // }, []);
+
+  reportData = [];
   return (
     <div>
       <SideBar2 />
@@ -18,55 +37,19 @@ const ReportDetail = () => {
               <tbody>
                 <tr>
                   <th>Mã sinh viên:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            /> */}
-                    0123456
-                  </td>
+                  <td>{dataStudent._id}</td>
                 </tr>
                 <tr>
                   <th>Họ và tên:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            /> */}
-                    Nguyễn Thị Thắng
-                  </td>
+                  <td>{dataStudent.name}</td>
                 </tr>
                 <tr>
                   <th>Công ty:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            /> */}
-                    Viettel
-                  </td>
+                  <td>{dataStudent.business}</td>
                 </tr>
                 <tr>
                   <th>Vị trí thực tập:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            /> */}
-                    Data Engineer
-                  </td>
+                  <td>{dataStudent.position}</td>
                 </tr>
               </tbody>
             </Table>
@@ -80,22 +63,14 @@ const ReportDetail = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {reportProcess.map((item, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{item.MaSinhVien}</td>
-                  <td className="name-value">{item.HoTen}</td>
-                  <td>{item.SDT}</td>
-                  <td>{item.Lop}</td>
-                  <td>{item.NganhHoc}</td>
-                  <td>{item.Congty}</td>
-                  <td>{item.Vitri}</td>
-                  <td>
-                    <CustomButton buttonText={"Xem báo cáo"} />
-                  </td>
-                  <td>{item.Detai}</td>
-                </tr>
-              ))} */}
+                {reportData.map((item, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{item.time}</td>
+                    <td>{item.work}</td>
+                    <td>{item.process}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>
