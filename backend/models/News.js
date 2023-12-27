@@ -15,16 +15,12 @@ const newsSchema = new mongoose.Schema({
         ref: Business,
         require: true
     },
-    title: {
-        type: String,
-        require: true
-    },
-    start_time: {
+    position: {
         type: String,
         require: true
     },
     end_time: {
-        type: String,
+        type: Date,
         require: true
     },
     describe: {
@@ -42,6 +38,10 @@ const newsSchema = new mongoose.Schema({
     address: {
         type: String,
         require: true
+    },
+    daily_time: {
+        type: String,
+        require :true
     }
 });
 

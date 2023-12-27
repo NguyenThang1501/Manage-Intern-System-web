@@ -24,4 +24,11 @@ router.get("/teacher/mana-intern/regular-report", middlewareController.verifyTok
 router.get("/teacher/mana-intern/regular-report/details/:id", middlewareController.verifyTokenAndAdmin,userController.getRegularReport_details)
 //chạy thuật toán matching
 router.post("/runalgorithms", middlewareController.verifyTokenAndAdmin,userController.runcode);
+
+//lấy tin tuyển dụng
+router.get("/mana-news", userController.getNews);
+router.get("/mana-news-details/:id", userController.getNews_details);
+router.get("/teacher-intern/final-report/:id", middlewareController.verifyTokenAndAdmin,userController.getfinalReport)
+router.get("/teacher/mana-business",middlewareController.verifyTokenAndAdmin,userController.getbusiness)
+
 module.exports = router;

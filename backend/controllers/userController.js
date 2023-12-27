@@ -4,7 +4,11 @@ const Accounts = require("../models/Account");
 const FinalReports = require("../models/FinalReport");
 const InternshipResult = require("../models/InternshipResult");
 const RegularReport = require("../models/WeeklyReport");
+const News = require("../models/News")
+const Business = require("../models/Business")
 const { exec } = require("child_process");
+const { format } = require('date-fns');
+const { vi } = require('date-fns/locale');
 const userController = {
   getProfile: async (req, res) => {
     try {
@@ -57,7 +61,7 @@ const userController = {
   deleteProfile: async (req, res) => {
     try {
       const userId = req.params.id;
-      const user = await User.findById(userId).populate("profile");
+      const user = await Accounts.findById(userId).populate("profile");
 
       if (!user) {
         return res.status(404).json("User not found");
@@ -178,7 +182,104 @@ const userController = {
         console.error(err);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
-},
+  },
+
+  getNews: async (req, res) => {
+    try {
+        const newsList = await News.find({});
+        
+        const currentTime = new Date(); 
+        
+        const result = newsList.map(newsItem => {
+            const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
+            const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24)); 
+            return {
+                position: newsItem.position,
+                business: newsItem.business,
+                address: newsItem.address,
+                count_down: daysDifference, 
+            };
+        });
+
+        return res.status(200).json(result);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+  getbusiness: async (req, res) => {
+    try {
+        const business = await Business.find({});
+        const result = business.map(item => {
+            return {
+                name: item.name,
+                describe: item.describe,
+                website: item.website,
+                hotline: item.phone_number 
+            };
+        });
+
+        return res.status(200).json(result);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+
+  getfinalReport: async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const final_report = await FinalReports.findById(id);
+
+        if (!final_report) {
+            return res.status(404).json({ error: 'Final Report not found' });
+        }
+
+        const result = {
+            project: final_report.project,
+            describe: final_report.describe,
+            midresult: final_report.midresult,
+            finalresult: final_report.finalresult
+        };
+
+        return res.status(200).json(result);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+
+  getNews_details: async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const newsItem = await News.findById(id);
+
+        if (!newsItem) {
+            return res.status(404).json({ error: 'News not found' });
+        }
+
+        const formattedEndTime = format(new Date(newsItem.end_time), 'dd MMMM yyyy', { locale: vi });
+
+        const result = {
+            position: newsItem.position,
+            end_time: formattedEndTime,
+            describe: newsItem.describe,
+            require: newsItem.require,
+            profit: newsItem.profit,
+            address: newsItem.address,
+            time: newsItem.daily_time
+        };
+
+        return res.status(200).json(result);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+
+
+
+
   runcode: async (req, res) => {
     exec("python .\\algorithms\\demo.py", (error, stdout, stderr) => {
       if (error) {

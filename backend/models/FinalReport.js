@@ -17,8 +17,16 @@ const finalReportSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    "result": {
+    "describe": {
+        type: String,
+        require: true
+    },
+    "midresult": {
         type: Number,
+        require: true
+    },
+    "finalresult":{
+        type: String,
         require: true
     }
 });

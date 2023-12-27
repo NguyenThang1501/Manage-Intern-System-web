@@ -130,7 +130,7 @@ const authController = {
 
     add_news: async (req, res) => {
         try {
-            const { businessId, title, startTime, endTime, describe, requirement, profit, address } = req.body;
+            const { business, position, title, startTime, endTime, describe, requirement, profit, address } = req.body;
 
             const latestNews = await News.findOne({}, {}, { sort: { '_id': -1 } });
             let nextId;
@@ -144,9 +144,8 @@ const authController = {
     
             const newsData = {
                 _id: nextId,
-                business: businessId,
-                title,
-                start_time: startTime,
+                business: business,
+                position: position,
                 end_time: endTime,
                 describe,
                 require: requirement,
@@ -175,12 +174,16 @@ const authController = {
             }
     
             const project = req.body.project;
-            const result = req.body.result;
+            const midresult = req.body.midresult;
+            const finalresult = req.body.finalresult
+            const describe = req.body.describe
     
             const finalReport = new FinalReport({
                 _id: studentId,
                 project,
-                result
+                describe,
+                midresult,
+                finalresult
             });
     
             await finalReport.save();
