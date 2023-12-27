@@ -122,10 +122,7 @@ const App = () => {
               path="/business/manage-news/add-news"
               element={<BusinessAddNews />}
             />
-            <Route
-              path="/business/manage-news/news-detail"
-              element={<BusinessNewsDetail />}
-            />
+            <Route path="/news-detail" element={<BusinessNewsDetail />} />
             <Route
               path="/teacher/mana-intern/regular-report/topic"
               element={<TopicIntern />}

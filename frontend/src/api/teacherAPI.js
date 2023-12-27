@@ -18,6 +18,24 @@ const teacherApi = {
       },
     });
   },
+
+  getBusinessNewsCard: (token) => {
+    const url = `/teacher/mana-business`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getBusinessInfor: (id, token) => {
+    const url = `/mana-news-details/${id}`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default teacherApi;
