@@ -10,8 +10,8 @@ const teacherApi = {
     });
   },
 
-  getReportDetail: (token) => {
-    const url = "/teacher/mana-intern/regular-report/details";
+  getReportDetail: (id, token) => {
+    const url = `/teacher/mana-intern/regular-report/details/${id}`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,

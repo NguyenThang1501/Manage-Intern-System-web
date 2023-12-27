@@ -12,7 +12,6 @@ import { useUser } from "../../../../context/UserContext";
 const ProcessReport = () => {
   const { userInfo } = useUser();
   const [reportProcess, setReportProcess] = useState([]);
-  const [detailData, setDetailData] = useState(null);
   const navigate = useNavigate();
 
   console.log(userInfo);
@@ -30,6 +29,14 @@ const ProcessReport = () => {
     };
     fetchProcessReport();
   }, []);
+
+  const handleViewReportClick = (item) => {
+    // Navigate to the ReportDetail component and pass data as props
+    navigate("/teacher/mana-intern/regular-report/detail", {
+      state: { detailData: item },
+    });
+  };
+
   // const reportProcess = [
   //   {
   //     MaSinhVien: "12345",
@@ -96,13 +103,9 @@ const ProcessReport = () => {
                 <td>{item.business}</td>
                 <td>{item.position}</td>
                 <td>
+                  {console.log(item)}
                   <CustomButton
-                    onClick={() => {
-                      setDetailData(item);
-                      navigate("/teacher/mana-intern/regular-report/detail", {
-                        state: { detailData: item },
-                      });
-                    }}
+                    onClick={() => handleViewReportClick(item)}
                     buttonText={"Xem báo cáo"}
                   />
                 </td>
