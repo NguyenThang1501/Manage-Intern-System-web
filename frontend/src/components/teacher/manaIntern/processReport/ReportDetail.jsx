@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Table from "react-bootstrap/esm/Table";
@@ -7,8 +9,11 @@ import "./report.css";
 import teacherApi from "../../../../api/teacherAPI";
 
 const ReportDetail = (props) => {
-  const dataStudent = props.location.state?.data || null;
   const [reportData, setReportData] = useState([]);
+  const location = useLocation();
+  const dataStudent = location.state ? location.state.detailData : null;
+  // const dataStudent = props.data;
+  // console.log(dataStudent);
 
   // useEffect(() => {
   //   const fetchReportDetails = async () => {
@@ -24,7 +29,6 @@ const ReportDetail = (props) => {
   //   fetchReportDetails();
   // }, []);
 
-  reportData = [];
   return (
     <div>
       <SideBar2 />
