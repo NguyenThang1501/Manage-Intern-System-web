@@ -7,27 +7,32 @@ import Table from "react-bootstrap/esm/Table";
 import SideBar2 from "../../../common/sidebar/SideBar2";
 import "./report.css";
 import teacherApi from "../../../../api/teacherAPI";
+import { useUser } from "../../../../context/UserContext";
 
-const ReportDetail = (props) => {
+const ReportDetail = () => {
+  const { userInfo } = useUser();
+
   const [reportData, setReportData] = useState([]);
   const location = useLocation();
   const dataStudent = location.state ? location.state.detailData : null;
-  // const dataStudent = props.data;
   // console.log(dataStudent);
 
-  // useEffect(() => {
-  //   const fetchReportDetails = async () => {
-  //     try {
-  //       let response = await teacherApi.getReportDetails();
-  //       console.log(response);
-  //       let data = response;
-  //       setReportData(data);
-  //     } catch (error) {
-  //       console.log("Failed to fetch report infor ", error);
-  //     }
-  //   };
-  //   fetchReportDetails();
-  // }, []);
+  useEffect(() => {
+    const fetchReportDetails = async () => {
+      try {
+        let response = await teacherApi.getReportDetail(
+          dataStudent._id,
+          userInfo.accessToken
+        );
+        console.log(response);
+        let data = response;
+        setReportData(data);
+      } catch (error) {
+        console.log("Failed to fetch report infor ", error);
+      }
+    };
+    fetchReportDetails();
+  }, []);
 
   return (
     <div>
@@ -72,7 +77,7 @@ const ReportDetail = (props) => {
                     <td>{index + 1}</td>
                     <td>{item.time}</td>
                     <td>{item.work}</td>
-                    <td>{item.process}</td>
+                    <td>{item.progress}</td>
                   </tr>
                 ))}
               </tbody>
