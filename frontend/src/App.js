@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "./components/common/heading/Header";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 
@@ -9,7 +8,6 @@ import "./App.css";
 import StudentView from "./components/student/StudentView";
 import StudentInfor from "./components/student/infor/StudentInfor";
 import SideBar from "./components/common/sidebar/SideBar";
-import StudentRegister from "./components/student/register/StudentRegister";
 import NewsIntership from "./components/student/news/NewsInternship";
 import Internshippositions from "./components/student/positions/Internshippositions";
 import Fqas from "./components/student/Fqas";
@@ -39,6 +37,9 @@ import BusinessHome from "./components/business/BusinessHome";
 import BusinessAddNews from "./components/business/BusinessAddNews";
 import BusinessNewsDetail from "./components/business/BusinessNewsDetail";
 import TopicIntern from "./components/teacher/manaIntern/processReport/TopicIntern";
+import StudentNewsJobDetail from "./components/student/news/StudentNewsJobDetail";
+import StudentTopic from "./components/student/reportIntern/StudentTopic";
+import StudentRegularReport from "./components/student/reportIntern/StudentRegularReport";
 
 const App = () => {
   return (
@@ -57,10 +58,7 @@ const App = () => {
             <Route path="/student" element={<StudentView />} />
 
             <Route path="/student/student-infor" element={<StudentInfor />} />
-            <Route
-              path="/student/student-register"
-              element={<StudentRegister />}
-            />
+
             <Route
               path="/student/news-internship"
               element={<NewsIntership />}
@@ -124,8 +122,20 @@ const App = () => {
             />
             <Route path="/news-detail" element={<BusinessNewsDetail />} />
             <Route
+              path="/student/news-internship/st-news-detail"
+              element={<StudentNewsJobDetail />}
+            />
+            <Route
               path="/teacher/mana-intern/regular-report/topic"
               element={<TopicIntern />}
+            />
+            <Route
+              path="/student/report/report-topic"
+              element={<StudentTopic />}
+            />
+            <Route
+              path="/student/report/report-regular"
+              element={<StudentRegularReport />}
             />
           </Routes>
         </UserProvider>

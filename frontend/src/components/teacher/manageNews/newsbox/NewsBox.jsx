@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 const NewsBox = (props) => {
   const navigate = useNavigate();
 
-  const handleViewNewsDetail = (id) => {
-    navigate("/news-detail", {
+  const handleViewNewsDetail = (id, link) => {
+    navigate(link, {
       state: { idNews: id },
     });
   };
@@ -16,7 +16,7 @@ const NewsBox = (props) => {
   return (
     <div
       className="container-box"
-      onClick={() => handleViewNewsDetail("news0")}
+      onClick={() => handleViewNewsDetail("news0", "/news-detail")}
     >
       <div className="wrap-logo-box">
         <img
@@ -34,7 +34,7 @@ const NewsBox = (props) => {
         </div>
         <div className="bottom-box">
           <p>Hà Nội</p>
-          <p>Còn 17 ngày để ứng tuyển</p>
+          <CustomButton buttonText={"Xem chi tiết"} />
         </div>
       </div>
     </div>

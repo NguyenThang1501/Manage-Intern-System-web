@@ -5,12 +5,12 @@ import "./student.css";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
-import studentApi from "../../api/studentApi";
+// import studentApi from "../../api/studentApi";
 
 const StudentView = () => {
   const navigate = useNavigate();
   const { userInfo } = useUser();
-  const [userName, setUserName] = useState();
+  // const [userName, setUserName] = useState();
 
   console.log(userInfo);
   useEffect(() => {
@@ -19,25 +19,25 @@ const StudentView = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchStudentInfor = async () => {
-      try {
-        let response = await studentApi.get(userInfo._id, userInfo.accessToken);
-        console.log(response);
-        let data = response;
-        console.log(data);
-        setUserName(data.name);
-      } catch (error) {
-        console.log("Failed to fetch student infor ", error);
-      }
-    };
-    fetchStudentInfor();
-  }, []);
+  // useEffect(() => {
+  //   const fetchStudentInfor = async () => {
+  //     try {
+  //       let response = await studentApi.get(userInfo._id, userInfo.accessToken);
+  //       console.log(response);
+  //       let data = response;
+  //       console.log(data);
+  //       setUserName(data.name);
+  //     } catch (error) {
+  //       console.log("Failed to fetch student infor ", error);
+  //     }
+  //   };
+  //   fetchStudentInfor();
+  // }, []);
 
   return (
     <div className="student-view">
       <SideBar />
-      <div className="hi-user">
+      {/* <div className="hi-user">
         <Usersymbol
           onClick={() => {
             localStorage.removeItem("token");
@@ -46,7 +46,7 @@ const StudentView = () => {
           userName={userName}
           userRole={"student"}
         />
-      </div>
+      </div> */}
       <Container>
         <div className="student-content">
           <h3 className="heading-student">

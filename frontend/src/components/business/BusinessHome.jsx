@@ -6,8 +6,6 @@ const BusinessHome = () => {
   return (
     <div>
       <SideBar3 />
-      <Usersymbol userName={"Cong ty X"} />
-      <div>home page</div>
     </div>
   );
 };

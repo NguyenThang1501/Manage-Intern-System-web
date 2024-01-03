@@ -1,9 +1,7 @@
 .nv-page {
   padding-top: 50px;
-  margin-left: 250px;
-  margin-top: 50px;
-  position: absolute;
-  width: 70%;
+  margin-left: 350px;
+  width: 60%;
 }
 .nv-heading {
   margin-bottom: 20px;
@@ -11,7 +9,6 @@
   text-align: center;
 }
 .nv-button {
-  position: fixed;
   right: 8rem;
   color: #1c1e53;
   border: 1px solid #1c1e53;
@@ -42,6 +39,13 @@
 }
 .form-infor-business {
   position: absolute;
-  margin-left: 250px;
   width: 70%;
+  margin-left: 250px;
+}
+.title-cp {
+  text-align: center;
+}
+.bt-submit {
+  margin-top: 100px;
+  position: relative;
 }
