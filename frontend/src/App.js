@@ -24,7 +24,6 @@ import OpenRegister from "./components/teacher/divideIntern/openRegister/OpenReg
 import { UserProvider } from "./context/UserContext";
 import PrivateRoute from "./route/PrivateRoute";
 import TeacherInfor from "./components/teacher/teacherInfor/TeacherInfor";
-import AllotIntern from "./components/teacher/divideIntern/AllotIntern";
 import AddStudent from "./components/teacher/manageStudent/AddStudent";
 import BusinessInfor from "./components/teacher/manageBusiness/BusinessInfor";
 import ResultAllot from "./components/teacher/divideIntern/resultAllot/ResultAllot";
@@ -40,6 +39,8 @@ import TopicIntern from "./components/teacher/manaIntern/processReport/TopicInte
 import StudentNewsJobDetail from "./components/student/news/StudentNewsJobDetail";
 import StudentTopic from "./components/student/reportIntern/StudentTopic";
 import StudentRegularReport from "./components/student/reportIntern/StudentRegularReport";
+import DetailInfor from "./components/teacher/manageStudent/DetailInfor";
+import AddNews from "./components/teacher/manageNews/AddNews";
 
 const App = () => {
   return (
@@ -78,7 +79,6 @@ const App = () => {
             />
             <Route path="/teacher" element={<TeacherHome />} />
             <Route path="/teacher/teacher-infor" element={<TeacherInfor />} />
-            <Route path="/teacher/allot-intern" element={<AllotIntern />} />
 
             <Route path="/teacher/mana-student" element={<ManageStudent />} />
             <Route path="/teacher/mana-news" element={<ManageNews />} />
@@ -137,6 +137,11 @@ const App = () => {
               path="/student/report/report-regular"
               element={<StudentRegularReport />}
             />
+            <Route
+              path="/teacher/mana-student/infor"
+              element={<DetailInfor />}
+            />
+            <Route path="/teacher/mana-news/add-news" element={<AddNews />} />
           </Routes>
         </UserProvider>
       </Router>

@@ -38,7 +38,7 @@ const menuItem = [
     icon: <FaRegNewspaper />,
   },
   {
-    path: "/teacher/allot-intern",
+    path: "",
     name: "Phân công thực tập",
     icon: <TfiWrite />,
     iconClosed: <IoIosArrowDown />,

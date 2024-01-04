@@ -4,7 +4,10 @@ import Table from "react-bootstrap/esm/Table";
 import CustomButton from "../../../common/button/CustomButton";
 import "./listRegister.css";
 import Container from "react-bootstrap/esm/Container";
+import { useNavigate } from "react-router-dom";
 const ListRegister = () => {
+  const navigate = useNavigate();
+
   const registerList = [
     {
       MaSinhVien: "12345",
@@ -75,7 +78,12 @@ const ListRegister = () => {
           </Table>
           <div className="bt-allot-intern">
             <CustomButton buttonText={"Phân công thực tập"} />
-            <CustomButton buttonText={"Xem kết quả phân công"} />
+            <CustomButton
+              onClick={() => {
+                navigate("/teacher/allot-intern/result-intern");
+              }}
+              buttonText={"Xem kết quả phân công"}
+            />
           </div>
         </div>
       </Container>

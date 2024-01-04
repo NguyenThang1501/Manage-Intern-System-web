@@ -10,10 +10,12 @@ import AddStudent from "./AddStudent";
 import studentApi from "../../../api/studentApi";
 import { IoPerson, IoSettingsOutline } from "react-icons/io5";
 import { MdDeleteForever } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ManageStudent = () => {
   //const [allStudents, setAllStudents] = useState([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   const fetchAllStudents = async () => {
@@ -27,6 +29,10 @@ const ManageStudent = () => {
   //   };
   //   fetchAllStudents();
   // }, []);
+
+  const handleViewInfor = () => {
+    navigate("/teacher/mana-student/infor");
+  };
 
   const allStudents = [
     {
@@ -113,7 +119,10 @@ const ManageStudent = () => {
                       <td>{item.HoTen}</td>
                       <td>{item.Lop}</td>
                       <td>
-                        <button className="bt-infor-st">
+                        <button
+                          className="bt-infor-st"
+                          onClick={() => handleViewInfor()}
+                        >
                           <IoPerson className="icon-action-inf" />
                           Xem chi tiết
                         </button>

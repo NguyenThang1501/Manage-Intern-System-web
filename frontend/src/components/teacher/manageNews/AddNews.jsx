@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import CustomButton from "../common/button/CustomButton";
-import SideBar3 from "../common/sidebar/SideBar3";
+import CustomButton from "../../common/button/CustomButton";
+import SideBar2 from "../../common/sidebar/SideBar2";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
-import businessApi from "../../api/businessAPI";
 
-const BusinessAddNews = () => {
+const AddNews = () => {
   const [position, setPosition] = useState("");
   const [capacities, setCapacities] = useState("");
   const [address, setAddress] = useState("");
@@ -31,7 +30,7 @@ const BusinessAddNews = () => {
 
   return (
     <div>
-      <SideBar3 />
+      <SideBar2 />
       <Container>
         <div className="wrap-business-news">
           <Col sm={10} className="list-form">
@@ -127,7 +126,7 @@ const BusinessAddNews = () => {
               <CustomButton
                 onClick={() => (
                   // handleAddNews,
-                  alert("Thêm thành công"), navigate("/business/manage-news")
+                  alert("Thêm thành công"), navigate("/teacher/mana-news")
                 )}
                 className="add-positions"
                 buttonText={"Thêm"}
@@ -140,4 +139,4 @@ const BusinessAddNews = () => {
   );
 };
 
-export default BusinessAddNews;
+export default AddNews;
