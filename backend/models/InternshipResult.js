@@ -30,6 +30,15 @@ const internship_resultSchema = new mongoose.Schema({
     business: {
         type: String,
         require: true
+    },
+    instructor: {
+        type: String
+    },
+    instructorphone: {
+        type: String
+    },
+    instructormail: {
+        type: String
     }
 });
 const InternshipResult = mongoose.model("Internship_Result", internship_resultSchema);

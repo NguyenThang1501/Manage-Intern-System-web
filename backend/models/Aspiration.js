@@ -24,5 +24,5 @@ const promiseSchema = new mongoose.Schema({
     // Other properties of the promise schema
 });
 
-const Promises = mongoose.model("Promise", promiseSchema);
-module.exports = Promises;
+const Aspirations = mongoose.model("Aspiration", promiseSchema);
+module.exports = Aspirations;

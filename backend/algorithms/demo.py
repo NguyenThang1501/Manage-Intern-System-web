@@ -5,15 +5,15 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")  # Use the correct IP
 db = client["web"]
 students_collection = db["students"]
 positions_collection = db['positions']
-promises_collection = db['promises']
+aspirations_collection = db['aspirations']
 business_collection = db['businesses']
 
 # Retrieve data from MongoDB collections
 # Replace the following lines with the correct data retrieval code
 # Example:
 id_gpa = [(doc["_id"], doc["cpa"], doc.get("cert", 0)) for doc in students_collection.find({}, {"_id": 1, "cpa": 1, "cert": 1})]
-positions = [(doc["_id"], doc["capacity"], doc["cpa_required"]) for doc in positions_collection.find({}, {"_id": 1, "capacity": 1, "cpa_required": 1})]
-promises = [(doc["_id"], [promise["_id"] for promise in doc.get("promised_positions", [])]) for doc in promises_collection.find({}, {"_id": 1, "promised_positions._id": 1})]
+positions = [(doc["_id"], doc["capacity"], doc.get("cpa_required",0.0)) for doc in positions_collection.find({}, {"_id": 1, "capacity": 1, "cpa_required": 1})]
+promises = [(doc["_id"], [promise["_id"] for promise in doc.get("promised_positions", [])]) for doc in aspirations_collection.find({}, {"_id": 1, "promised_positions._id": 1})]
 students = [(item1[0], item1[1] + item1[2], item2[1]) for item1 in id_gpa for item2 in promises if item1[0] == item2[0]]
 
 students = [(item1[0], item1[1] + item1[2], item2[1]) for item1 in id_gpa for item2 in promises if item1[0] == item2[0]]
@@ -34,12 +34,12 @@ for i in range(3):
 # print(f"{promision}")
 
 #loại bỏ đi các sinh viên có điểm thấp hơn điểm sàn
-# def cut(lst, k):
-#     cut_list = []
-#     for x in lst:
-#         if(x[1] >= k):
-#             cut_list.append((x[0],x[1]))
-#     return cut_list
+def cut(lst, k):
+    cut_list = []
+    for x in lst:
+        if(x[1] >= k):
+            cut_list.append((x[0],x[1]))
+    return cut_list
 #sau khi match được sinh viên thì xóa sinh viên đó khỏi list id
 def delete(id,lst):
     new_id = []
@@ -54,7 +54,7 @@ def matching(promision, ids, mvt_list):
         for mvt in mvt_list:
             list_student = dct[mvt]
             list_student[0].sort(key=lambda x: x[1], reverse=True)
-            # list_student[0] = cut(list_student[0], list_student[2])
+            list_student[0] = cut(list_student[0], list_student[2])
             if len(list_student[0]) > list_student[1]:
                 list_student[0] = (list_student[0])[:list_student[1]]
             msvs = [x[0] for x in list_student[0]]
