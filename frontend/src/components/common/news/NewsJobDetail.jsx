@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 import Col from "react-bootstrap/Col";
 import CustomButton from "../button/CustomButton";
 import "./newDetail.css";
+import commonAPI from "../../../api/commonApi";
 
 const NewsJobDetail = () => {
+  const [newsDetail, setNewsDetail] = useState([]);
+
+  useEffect(() => {
+    const fetchNewsDetail = async () => {
+      try {
+        let response = await commonAPI.getNewsDetail("news0");
+        console.log(response);
+        setNewsDetail(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchNewsDetail();
+  }, []);
+
   const news = {
     TenViTri: "Thực tập sinh Reactjs/Nodejs",
     Han: "15/01/2024",
@@ -24,8 +40,10 @@ const NewsJobDetail = () => {
         <Col md={{ span: 6, offset: 3 }}>
           <div className="wrap-news-detail">
             <div className="title-bs-news">
-              <h4>{news.TenViTri}</h4>
-              <div className="time-position-bs">Hạn nộp hồ sơ: {news.Han}</div>
+              <h4>{newsDetail.position}</h4>
+              <div className="time-position-bs">
+                Hạn nộp hồ sơ: {newsDetail.end_time}
+              </div>
               <button className="button-bs-news">Ứng tuyển ngay</button>
             </div>
             <div className="content-bs-news">
@@ -37,7 +55,7 @@ const NewsJobDetail = () => {
 
               <div className="describe-job-bs">
                 <h6>Yêu cầu ứng viên</h6>
-                <p>{news.YeuCau}</p>
+                <p>{newsDetail.require}</p>
               </div>
 
               <div className="describe-job-bs">
@@ -47,7 +65,7 @@ const NewsJobDetail = () => {
 
               <div className="describe-job-bs">
                 <h6>Địa điểm làm việc</h6>
-                <p>{news.DiaDiem}</p>
+                <p>{newsDetail.address}</p>
                 <h6>Thời gian làm việc</h6>
                 <p>{news.ThoiGianLam}</p>
                 <h6>Cách ứng tuyển</h6>

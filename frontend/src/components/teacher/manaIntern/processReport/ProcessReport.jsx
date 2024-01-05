@@ -31,9 +31,14 @@ const ProcessReport = () => {
   }, []);
 
   const handleViewReportClick = (item) => {
-    // Navigate to the ReportDetail component and pass data as props
     navigate("/teacher/mana-intern/regular-report/detail", {
       state: { detailData: item },
+    });
+  };
+
+  const handleViewTopicClick = (item) => {
+    navigate("/teacher/mana-intern/regular-report/topic", {
+      state: { topicData: item },
     });
   };
 
@@ -109,11 +114,7 @@ const ProcessReport = () => {
                     buttonText={"Xem báo cáo"}
                   />
                 </td>
-                <button
-                  onClick={() => {
-                    navigate("/teacher/mana-intern/regular-report/topic");
-                  }}
-                >
+                <button onClick={() => handleViewTopicClick(item)}>
                   <td>{item.project}</td>
                 </button>
               </tr>

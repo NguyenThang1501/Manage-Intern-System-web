@@ -1,0 +1,29 @@
+.title-st-report {
+  background-color: #efefef;
+
+  height: 30px;
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+  font-size: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.add-table {
+  width: 100%;
+}
+.detail-report {
+  position: absolute;
+}
+.table-allot-intern {
+  position: relative;
+}
+.wrap-table-add {
+  margin-bottom: 30px;
+  width: 100%;
+  margin-top: 30px;
+}
+.bt-add-report {
+  background-color: #fcd980;
+  padding: 5px;
+  margin-bottom: 20px;
+}

@@ -12,6 +12,8 @@ import { BiSolidReport } from "react-icons/bi";
 import { GrScorecard } from "react-icons/gr";
 import { IoBusinessSharp } from "react-icons/io5";
 import SubMenu from "./SubMenu";
+import Usersymbol from "../../user-icon/Usersymbol";
+import { useNavigate } from "react-router-dom";
 
 const menuItem = [
   {
@@ -36,7 +38,7 @@ const menuItem = [
     icon: <FaRegNewspaper />,
   },
   {
-    path: "/teacher/allot-intern",
+    path: "",
     name: "Phân công thực tập",
     icon: <TfiWrite />,
     iconClosed: <IoIosArrowDown />,
@@ -76,31 +78,44 @@ const SideBar2 = ({ children }) => {
   const toggle = () => setIsOpen(!isOpen);
   const [subnav, setSubnav] = useState(false);
   const showSubnav = () => setSubnav(!subnav);
+  const navigate = useNavigate();
 
   return (
-    <div className="container-sidebar">
-      <div style={{ width: isOpen ? "300px" : "50px" }} className="sidebar">
-        <div className="top-section">
-          <Link to="/teacher">
-            <h1
-              style={{ display: isOpen ? "block" : "none" }}
-              className="logo-sidebar"
-            >
-              IMS_HUS
-            </h1>
-          </Link>
-          <div
-            style={{ marginLeft: isOpen ? "110px" : "0px" }}
-            className="bars"
-          >
-            <FaBars className="fa-bar" onClick={toggle} />
-          </div>
-        </div>
-        {menuItem.map((item, index) => {
-          return <SubMenu item={item} key={index} isOpen={isOpen} />;
-        })}
+    <div>
+      <div>
+        <Usersymbol
+          userName={"Thang"}
+          userRole={"teacher"}
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+        />
       </div>
-      <main>{children}</main>
+      <div className="container-sidebar">
+        <div style={{ width: isOpen ? "300px" : "50px" }} className="sidebar">
+          <div className="top-section">
+            <Link to="/teacher">
+              <h1
+                style={{ display: isOpen ? "block" : "none" }}
+                className="logo-sidebar"
+              >
+                IMS_HUS
+              </h1>
+            </Link>
+            <div
+              style={{ marginLeft: isOpen ? "110px" : "0px" }}
+              className="bars"
+            >
+              <FaBars className="fa-bar" onClick={toggle} />
+            </div>
+          </div>
+          {menuItem.map((item, index) => {
+            return <SubMenu item={item} key={index} isOpen={isOpen} />;
+          })}
+        </div>
+        <main>{children}</main>
+      </div>
     </div>
   );
 };

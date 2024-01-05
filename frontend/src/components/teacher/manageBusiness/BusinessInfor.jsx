@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NewsBox from "../manageNews/newsbox/NewsBox";
 import "./manabusiness.css";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/esm/Col";
 import SideBar2 from "../../common/sidebar/SideBar2";
+import teacherApi from "../../../api/teacherAPI";
+import { useUser } from "../../../context/UserContext";
 
 const BusinessInfor = () => {
+  const { userInfo } = useUser;
+  const [businessInfor, setBusinessInfor] = useState([]);
+
+  useEffect(() => {
+    const fetchBusinessInfor = async () => {
+      try {
+        let response = await teacherApi.getBusinessInfor(userInfo._id);
+        console.log(response);
+        setBusinessInfor(response);
+      } catch (error) {
+        console.log("Fail to load business infor", error);
+      }
+    };
+    fetchBusinessInfor();
+  }, []);
   return (
     <div>
       <SideBar2 />

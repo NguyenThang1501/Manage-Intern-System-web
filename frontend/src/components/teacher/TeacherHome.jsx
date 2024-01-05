@@ -14,14 +14,7 @@ const TeacherHome = () => {
   return (
     <>
       <SideBar2 />
-      <Usersymbol
-        userName={"Thang"}
-        userRole={"teacher"}
-        onClick={() => {
-          localStorage.removeItem("token");
-          navigate("/login");
-        }}
-      />
+
       <div>TeacherHome</div>
       {/* <CustomButton buttonText={"Click me"} /> */}
     </>
