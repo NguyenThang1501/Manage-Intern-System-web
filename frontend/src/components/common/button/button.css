@@ -2,8 +2,9 @@
   background-color: #fcd980;
   color: #1c1e53;
   border-radius: 20px;
-  width: 195px;
-  height: 41px;
+  width: fit-content;
+  padding: 10px;
+  height: fit-content;
   font-size: 15px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }

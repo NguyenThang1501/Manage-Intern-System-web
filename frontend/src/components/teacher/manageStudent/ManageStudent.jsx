@@ -34,6 +34,14 @@ const ManageStudent = () => {
     navigate("/teacher/mana-student/infor");
   };
 
+  // const handleDeleteSt = (MaSinhVien) => {
+  //     axios.delete("")
+  //     .then(res => {
+  //       location.reload
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
   const allStudents = [
     {
       MaSinhVien: "1234567",

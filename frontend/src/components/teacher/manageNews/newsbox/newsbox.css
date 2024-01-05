@@ -29,4 +29,26 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
+}
+.bottom-button {
+  display: flex;
+  align-items: center;
+}
+.action-button {
+  background-color: #f19151;
+  color: #000;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 12px;
+  height: 41px;
+  font-size: 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+.content-wrapper {
+  flex: 1;
+  margin-left: 15px;
 }
