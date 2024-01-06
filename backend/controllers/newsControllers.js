@@ -1,8 +1,4 @@
-const Report = require('../models/WeeklyReport');
-const Student = require('../models/Student');
 const News = require('../models/News')
-const FinalReport = require('../models/FinalReport');
-const RegularReport = require("../models/WeeklyReport");
 const { format } = require('date-fns');
 const { vi } = require('date-fns/locale');
 const newsController = {
@@ -47,19 +43,84 @@ const newsController = {
     
     getNews: async (req, res) => {
         try {
-            const newsList = await News.find({});
+            // Use populate to get the business information for each news item
+            const newsList = await News.find({}).populate('business');
             
             const currentTime = new Date(); 
-            
+    
             const result = newsList.map(newsItem => {
                 const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
                 const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24)); 
+                
+                // Access the populated business field to get the business name
+                const businessName = newsItem.business ? newsItem.business.name : null;
+    
                 return {
                     id: newsItem.id,
                     position: newsItem.position,
-                    business: newsItem.business,
+                    business: businessName,
                     address: newsItem.address,
                     count_down: daysDifference, 
+                };
+            });
+    
+            return res.status(200).json(result);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+    get_news_business: async (req, res) => {
+        try {
+            const businessId = req.params.id; // Corrected line based on your route configuration
+    
+            // Use populate to get the business information for each news item
+            const newsList = await News.find({ business: businessId }).populate('business');
+    
+            const currentTime = new Date();
+    
+            const result = newsList.map(newsItem => {
+                const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
+                const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
+    
+                // Access the populated business field to get the business name
+                const businessName = newsItem.business ? newsItem.business.name : null;
+    
+                return {
+                    id: newsItem.id,
+                    position: newsItem.position,
+                    business: businessName,
+                    address: newsItem.address,
+                    count_down: daysDifference,
+                };
+            });
+    
+            return res.status(200).json(result);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+    get_news_selfBusiness: async (req, res) => {
+        try {
+            const businessId = req.account.id; 
+            const newsList = await News.find({ business: businessId }).populate('business');
+    
+            const currentTime = new Date();
+    
+            const result = newsList.map(newsItem => {
+                const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
+                const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
+    
+                // Access the populated business field to get the business name
+                const businessName = newsItem.business ? newsItem.business.name : null;
+    
+                return {
+                    id: newsItem.id,
+                    position: newsItem.position,
+                    business: businessName,
+                    address: newsItem.address,
+                    count_down: daysDifference,
                 };
             });
     

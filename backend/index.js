@@ -4,8 +4,13 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const authRoute = require("./routes/auth");
-const userRoute = require("./routes/user");
+const accountRoute = require("./routes/accountRouter");
+const aspirationRoute = require("./routes/aspirationRouter");
+const businessRoute = require("./routes/businessRouter");
+const newsRoute = require("./routes/newsRouter");
+const positionRoute = require("./routes/positionRouter");
+const profileRoute = require("./routes/profileRouter");
+const reportRoute = require("./routes/reportRouter");
 
 
 const app = express();
@@ -20,8 +25,13 @@ app.use(cookieParser());
 app.use(express.json());
 
 // ROUTES
-app.use("/", authRoute);
-app.use("/", userRoute);
+app.use("/", accountRoute);
+app.use("/", aspirationRoute);
+app.use("/", businessRoute);
+app.use("/", newsRoute);
+app.use("/", positionRoute);
+app.use("/", profileRoute);
+app.use("/", reportRoute);
 
 
 

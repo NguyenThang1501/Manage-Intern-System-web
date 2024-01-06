@@ -10,7 +10,7 @@ const profileController = {
             const requestingUserRole = req.account.role;
 
             // Ensure only admin or the owner can view the profile
-            if (requestingUserRole === "admin" || userId === requestingUserId) {
+            if (requestingUserRole === "teacher" || userId === requestingUserId) {
                 const student = await Student.findById(userId);
                 if (!student) {
                     return res.status(404).json("Student don't have profile");

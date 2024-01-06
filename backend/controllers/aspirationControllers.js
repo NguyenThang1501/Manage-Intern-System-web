@@ -20,11 +20,10 @@ const promiseController = {
           }
         });
     },
-    //add kết quả thực tập cho mấy đứa thực tập ngoài, chỉ cần nhập id, tên vị trí và tên doanh nghiệp
-    // mấy thuộc tính khác tự động được thêm nếu id valid
+    
     add_result: async (req, res) => {
         try {
-            const studentId = req.body.id;
+            const studentId = req.account.id;
             const existingStudent = await Student.findById(studentId).select('name birthday sex major -_id');
     
             if (!existingStudent) {
@@ -54,7 +53,7 @@ const promiseController = {
         }
     },
 
-    get_result: async (req, res) => {
+    get_all_result: async (req, res) => {
         try {
             const internshipResults = await Result.find();
             res.status(200).json(internshipResults);
@@ -63,6 +62,23 @@ const promiseController = {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+
+    getResult: async (req, res) => {
+        try {
+            const studentId = req.account.id;
+            const result = await Result.findOne({ _id: studentId });
+
+            if (!result) {
+                return res.status(404).json({ error: 'Result not found for the student', success: false });
+            }
+
+            res.status(200).json({ success: true, result });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal Server Error', details: err.message, success: false });
+        }
+    },
+
     
     add_aspiration : async (req, res) => {
         try {
