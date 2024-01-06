@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import CustomButton from "../../common/button/CustomButton";
 import Container from "react-bootstrap/esm/Container";
 import SideBar from "../../common/sidebar/SideBar";
+import { useUser } from "../../../context/UserContext";
+import studentApi from "../../../api/studentApi";
 
 const RegisterOutSchool = () => {
+  const { userInfo } = useUser();
+  const [internInfor, setInternInfor] = useState({
+    position: "",
+    business: "",
+    instructor: "",
+    phone: "",
+    mail: "",
+  });
+
+  const handleSubmit = async () => {
+    console.log(internInfor);
+    try {
+      const response = await studentApi.submitInternOut(
+        userInfo.accessToken,
+        internInfor
+      );
+      console.log(response);
+
+      if (response.success) {
+        alert("Hệ thống đã ghi nhận thông tin thực tập bên ngoài của bạn");
+      }
+    } catch (error) {
+      console.log("Failed", error);
+    }
+  };
+
   return (
     <div>
       <SideBar />
@@ -21,10 +49,15 @@ const RegisterOutSchool = () => {
                     Vị trí (*)
                   </Form.Label>
                   <Col sm={5}>
-                    <Form.Select defaultValue="">
-                      <option>1</option>
-                      <option>2</option>
-                    </Form.Select>
+                    <Form.Control
+                      type="text"
+                      onChange={(e) =>
+                        setInternInfor({
+                          ...internInfor,
+                          position: e.target.value,
+                        })
+                      }
+                    ></Form.Control>
                   </Col>
                 </Form.Group>
 
@@ -33,7 +66,15 @@ const RegisterOutSchool = () => {
                     Công ty (*)
                   </Form.Label>
                   <Col sm={7}>
-                    <Form.Control type="text" />
+                    <Form.Control
+                      type="text"
+                      onChange={(e) =>
+                        setInternInfor({
+                          ...internInfor,
+                          business: e.target.value,
+                        })
+                      }
+                    />
                   </Col>
                 </Form.Group>
 
@@ -42,7 +83,15 @@ const RegisterOutSchool = () => {
                     Họ tên người hướng dẫn (*)
                   </Form.Label>
                   <Col sm={7}>
-                    <Form.Control type="text" />
+                    <Form.Control
+                      type="text"
+                      onChange={(e) =>
+                        setInternInfor({
+                          ...internInfor,
+                          instructor: e.target.value,
+                        })
+                      }
+                    />
                   </Col>
                 </Form.Group>
 
@@ -51,7 +100,15 @@ const RegisterOutSchool = () => {
                     SĐT người hướng dẫn (*)
                   </Form.Label>
                   <Col sm={7}>
-                    <Form.Control type="text" />
+                    <Form.Control
+                      type="text"
+                      onChange={(e) =>
+                        setInternInfor({
+                          ...internInfor,
+                          phone: e.target.value,
+                        })
+                      }
+                    />
                   </Col>
                 </Form.Group>
 
@@ -60,12 +117,20 @@ const RegisterOutSchool = () => {
                     Gmail người hướng dẫn (*)
                   </Form.Label>
                   <Col sm={7}>
-                    <Form.Control type="text" />
+                    <Form.Control
+                      type="text"
+                      onChange={(e) =>
+                        setInternInfor({
+                          ...internInfor,
+                          mail: e.target.value,
+                        })
+                      }
+                    />
                   </Col>
                 </Form.Group>
               </Form>
               <div className="bt-submit">
-                <CustomButton buttonText={"Ghi nhận"} />
+                <CustomButton buttonText={"Ghi nhận"} onClick={handleSubmit} />
               </div>
             </div>
           </Col>

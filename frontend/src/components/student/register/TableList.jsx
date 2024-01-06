@@ -26,8 +26,6 @@ const TableList = () => {
     },
   ];
 
-  console.log(userInfo);
-
   return (
     <div className="wrap-intern-positions">
       <Container>

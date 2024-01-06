@@ -22,6 +22,48 @@ const studentApi = {
       },
     });
   },
+
+  submitAspiration: (token, promised_positions) => {
+    const url = `add_aspiration`;
+    return axiosClient.post(
+      url,
+
+      promised_positions,
+
+      {
+        headers: {
+          token: `Bearer ${token}`,
+        },
+      }
+    );
+  },
+
+  getAspirationByID: (token) => {
+    const url = `get_aspiration`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  submitInternOut: (token, internInfor) => {
+    const url = `/result`;
+    return axiosClient.post(url, internInfor, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  submitReport: (token, report) => {
+    const url = `/report`;
+    return axiosClient.post(url, report, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default studentApi;

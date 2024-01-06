@@ -13,8 +13,8 @@ const AddPosition = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body>
-        <Col sm={10} className="list-form">
+      <Modal.Body className="p-0">
+        <Col>
           <div className="title-cp">Thêm vị trí thực tập</div>
           <div className="line-form">
             <Form>
