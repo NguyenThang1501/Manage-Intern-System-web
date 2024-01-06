@@ -27,6 +27,17 @@ const BusinessInfor = () => {
     <div>
       <SideBar2 />
       <Container>
+        <div className="top-image">
+          <div className="inner-top-img"></div>
+          <div className="top-logo"></div>
+          <div className="top-text">
+            <div className="top-company-name">FPT Information system</div>
+            <div className="top-company-link">
+              <a href="#">www.company.com</a>
+            </div>
+          </div>
+        </div>
+
         <div className="wrap-infor-cp">
           <div className="banner-company"></div>
           <div className="container-mana-cp">

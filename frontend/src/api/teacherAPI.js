@@ -36,6 +36,15 @@ const teacherApi = {
       },
     });
   },
+
+  getResultIntern: (token) => {
+    const url = `/get_all_result`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default teacherApi;

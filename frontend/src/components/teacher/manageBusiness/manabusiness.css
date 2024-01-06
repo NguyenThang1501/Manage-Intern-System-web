@@ -56,3 +56,50 @@
 .wrap-infor-cp {
   padding-left: 100px;
 }
+.top-image {
+  background-image: url(../../../assets/img/fpt.jpg);
+  height: 269px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: 250px;
+  position: relative;
+  top: 80px;
+  margin-bottom: 50px;
+}
+
+.inner-top-img {
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+  background: linear-gradient(to right, #1c1e53 0%, #ffffff00 100%);
+}
+
+.top-logo {
+  position: absolute;
+  height: 180px;
+  width: 180px;
+  border-radius: 100%;
+  background-image: url(../../../assets/img/fpt-logo.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  bottom: 10px;
+  left: 20px;
+}
+
+.top-text {
+  position: absolute;
+  bottom: 10px;
+  left: 240px;
+}
+.top-company-name {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 600;
+}
+.top-company-link a {
+  color: #fff;
+}
