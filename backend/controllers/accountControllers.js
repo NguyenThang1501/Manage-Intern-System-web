@@ -66,7 +66,7 @@ const accountController = {
                     secure: false,
                     path: "/",
                     sameSite: "strict",
-                    maxAge: 30 * 60 * 1000 
+                    maxAge: 24 * 60 * 60 * 1000
                 });
 
                 const { pass, ...others } = user._doc;
