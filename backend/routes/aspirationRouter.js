@@ -17,4 +17,6 @@ router.get("/get_aspiration",middlewareController.verifyToken, aspirationControl
 //chạy thuật toán matching
 router.post("/runalgorithms", middlewareController.verifyTokenAndAdmin,aspirationController.runcode);
 
+router.get("/teacher/list-register", middlewareController.verifyTokenAndAdmin, aspirationController.getAllAspirations);
+
 module.exports = router;

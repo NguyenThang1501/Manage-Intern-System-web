@@ -11,6 +11,7 @@ const newsRoute = require("./routes/newsRouter");
 const positionRoute = require("./routes/positionRouter");
 const profileRoute = require("./routes/profileRouter");
 const reportRoute = require("./routes/reportRouter");
+const registerTimeRoute = require("./routes/registerTime");
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use("/", newsRoute);
 app.use("/", positionRoute);
 app.use("/", profileRoute);
 app.use("/", reportRoute);
+app.use("/", registerTimeRoute);
 
 
 

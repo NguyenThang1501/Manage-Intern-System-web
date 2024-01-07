@@ -3,5 +3,12 @@ const positionController = require("../controllers/positionControllers");
 const router = require("express").Router();
 
 // lấy ra tất cả các vị trí
-router.get("/getAllPosition", positionController.get_all_position);
+router.get("/list-positions", middlewareController.verifyToken, positionController.getAllPositions);
+
+router.post("/teacher/create-positions", middlewareController.verifyTokenAndAdmin, positionController.postAPosition);
+
+router.put("/teacher/update-positions/:id", middlewareController.verifyTokenAndAdmin, positionController.updatePosition);
+
+router.delete("/teacher/delete-positions/:id", middlewareController.verifyTokenAndAdmin, positionController.deletePosition);
+
 module.exports = router;

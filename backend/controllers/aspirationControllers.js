@@ -137,6 +137,34 @@ const promiseController = {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
+    },
+    getAllAspirations: async (req, res) => {
+        try {
+          const studentsWithAspirations = await Student.aggregate([
+            {
+              $lookup: {
+                from: 'aspirations',
+                localField: '_id',
+                foreignField: '_id',
+                as: 'aspirations',
+              },
+            },
+            {
+              $project: {
+                _id: 1,
+                name: 1,
+                field: 1,
+                cpa: 1,
+                cert: 1,
+                promised_positions: '$aspirations.promised_positions',
+              },
+            },
+          ]);
+      
+          res.status(200).json(studentsWithAspirations);
+        } catch (err) {
+          res.status(500).json({ error: 'Internal Server Error', details: err.message });
+        }
     }
     
     
