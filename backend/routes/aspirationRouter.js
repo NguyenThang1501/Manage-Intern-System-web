@@ -9,13 +9,13 @@ router.post("/result",middlewareController.verifyToken, aspirationController.add
 // lấy ra tất cả kết quả thực tập 
 router.get("/get_all_result", middlewareController.verifyTokenAndAdmin ,aspirationController.get_all_result);
 // lấy ra kết quả thực tập của sinh viên đã đăng nhập
-router.get("/get_result", middlewareController.verifyToken, aspirationController.getResult);
+router.get("/student/internship-register/collab/result", middlewareController.verifyToken, aspirationController.getResult);
 // thêm nguyện vọng cho sinh viên đã đăng nhập
-router.post("/add_aspiration",middlewareController.verifyToken, aspirationController.add_aspiration);
+router.post("/student/internship-register/collab/register",middlewareController.verifyToken, aspirationController.add_aspiration);
 // xem nguyện vọng của sinh viên (có cần đăng nhập)
 router.get("/get_aspiration",middlewareController.verifyToken, aspirationController.get_aspiration);
 //chạy thuật toán matching
-router.post("/runalgorithms", middlewareController.verifyTokenAndAdmin,aspirationController.runcode);
+router.post("/internship-mana/position-list/matching-request", middlewareController.verifyTokenAndAdmin,aspirationController.runcode);
 
 router.get("/teacher/list-register", middlewareController.verifyTokenAndAdmin, aspirationController.getAllAspirations);
 
