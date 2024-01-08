@@ -1,45 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SideBar2 from "../../../common/sidebar/SideBar2";
 import Table from "react-bootstrap/esm/Table";
 import CustomButton from "../../../common/button/CustomButton";
 import "./listRegister.css";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../../context/UserContext";
+import teacherApi from "../../../../api/teacherAPI";
 const ListRegister = () => {
   const navigate = useNavigate();
 
-  const registerList = [
-    {
-      MaSinhVien: "12345",
-      HoTen: "Nguyễn Thị Thắng",
-      NganhHoc: "Khoa học dữ liệu",
-      CPA: "2.0",
-      NgoaiNgu: "Ielts 9.0",
-      NV1: "DA1",
-      NV2: "DE1",
-      NV3: "DS1",
-    },
-    {
-      MaSinhVien: "12345",
-      HoTen: "Nguyễn Thị Thắng",
-      NganhHoc: "Khoa học dữ liệu",
-      CPA: "2.0",
-      NgoaiNgu: "Ielts 9.0",
-      NV1: "DA1",
-      NV2: "DE1",
-      NV3: "DS1",
-    },
-    {
-      MaSinhVien: "12345",
-      HoTen: "Nguyễn Thị Thắng",
-      NganhHoc: "Khoa học dữ liệu",
-      CPA: "2.0",
-      NgoaiNgu: "Ielts 9.0",
-      NV1: "DA1",
-      NV2: "DE1",
-      NV3: "DS1",
-    },
-  ];
+  const { userInfo } = useUser();
+
+  const [registerList, setRegisterList] = useState([]);
+
+  useEffect(() => {
+    const fetchRegisterList = async () => {
+      try {
+        let response = await teacherApi.listRegister(userInfo.accessToken);
+        console.log(response);
+        setRegisterList(response);
+      } catch (error) {
+        console.log("Failed", error);
+      }
+    };
+    fetchRegisterList();
+  }, []);
+
+  // const registerList = [
+  //   {
+  //     MaSinhVien: "12345",
+  //     HoTen: "Nguyễn Thị Thắng",
+  //     NganhHoc: "Khoa học dữ liệu",
+  //     CPA: "2.0",
+  //     NgoaiNgu: "Ielts 9.0",
+  //     NV1: "DA1",
+  //     NV2: "DE1",
+  //     NV3: "DS1",
+  //   },
+  //   {
+  //     MaSinhVien: "12345",
+  //     HoTen: "Nguyễn Thị Thắng",
+  //     NganhHoc: "Khoa học dữ liệu",
+  //     CPA: "2.0",
+  //     NgoaiNgu: "Ielts 9.0",
+  //     NV1: "DA1",
+  //     NV2: "DE1",
+  //     NV3: "DS1",
+  //   },
+  //   {
+  //     MaSinhVien: "12345",
+  //     HoTen: "Nguyễn Thị Thắng",
+  //     NganhHoc: "Khoa học dữ liệu",
+  //     CPA: "2.0",
+  //     NgoaiNgu: "Ielts 9.0",
+  //     NV1: "DA1",
+  //     NV2: "DE1",
+  //     NV3: "DS1",
+  //   },
+  // ];
 
   return (
     <div>
@@ -64,14 +83,14 @@ const ListRegister = () => {
               {registerList.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
-                  <td>{item.MaSinhVien}</td>
-                  <td className="name-value">{item.HoTen}</td>
-                  <td>{item.NganhHoc}</td>
-                  <td>{item.CPA}</td>
-                  <td>{item.NgoaiNgu}</td>
-                  <td>{item.NV1}</td>
-                  <td>{item.NV2}</td>
-                  <td>{item.NV3}</td>
+                  <td>{item._id}</td>
+                  <td className="name-value">{item.name}</td>
+                  <td>{item.field}</td>
+                  <td>{item.cpa}</td>
+                  <td>{item.cert}</td>
+                  <td>{item.promised_positions[0][0]._id}</td>
+                  <td>{item.promised_positions[0][1]._id}</td>
+                  <td>{item.promised_positions[0][2]._id}</td>
                 </tr>
               ))}
             </tbody>

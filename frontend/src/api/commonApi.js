@@ -6,13 +6,22 @@ const commonAPI = {
     return axiosClient.get(url);
   },
 
-  getAllPositions: () => {
-    const url = `/getAllPosition`;
+  getAllPositions: (token) => {
+    const url = `/list-positions`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getNewsByID: (_id) => {
+    const url = `/mana-news/${_id}`;
     return axiosClient.get(url);
   },
 
-  getNews: () => {
-    const url = `mana-news`;
+  getAllNews: () => {
+    const url = `/mana-news`;
     return axiosClient.get(url);
   },
 };

@@ -83,7 +83,7 @@ const ProcessReport = () => {
       <Container>
         <Table striped bordered hover className="table-report">
           <thead>
-            <tr>
+            <tr className="text-center">
               <th>STT</th>
               <th>MSV</th>
               <th className="name">Họ và tên</th>
@@ -92,13 +92,13 @@ const ProcessReport = () => {
               <th>Ngành học</th>
               <th>Công ty</th>
               <th>Vị trí</th>
-              <td>Báo cáo thường xuyên</td>
-              <td>Đề tài cuối kì thực tập</td>
+              <th>Báo cáo thường xuyên</th>
+              <th>Đề tài cuối kì thực tập</th>
             </tr>
           </thead>
           <tbody>
             {reportProcess.map((item, index) => (
-              <tr key={index}>
+              <tr key={index} className="text-center">
                 <td>{index + 1}</td>
                 <td>{item._id}</td>
                 <td className="name-value">{item.name}</td>
@@ -114,9 +114,11 @@ const ProcessReport = () => {
                     buttonText={"Xem báo cáo"}
                   />
                 </td>
-                <button onClick={() => handleViewTopicClick(item)}>
-                  <td>{item.project}</td>
-                </button>
+                <td>
+                  <button onClick={() => handleViewTopicClick(item)}>
+                    {item.project}
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

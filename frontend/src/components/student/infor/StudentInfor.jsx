@@ -61,7 +61,7 @@ const StudentInfor = () => {
       }
     };
     fetchStudentInfor();
-  }, []);
+  }, [userInfo]);
 
   return (
     <div>
