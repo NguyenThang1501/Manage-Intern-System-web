@@ -15,5 +15,8 @@ router.get("/teacher/mana-intern/regular-report", middlewareController.verifyTok
 router.get("/teacher/mana-intern/regular-report/details/:id", middlewareController.verifyToken,reportController.getRegularReport_details)
 // lấy báo cáo cuối kỳ của sinh viên theo id (dành cho giảng viên)
 router.get("/teacher-intern/final-report/:id", middlewareController.verifyTokenAndAdmin,reportController.getfinalReport)
-
+// sửa tên đề tài và mô tả cho sinh viên
+router.put("/student/update-project",middlewareController.verifyToken,reportController.updateProject)
+// sửa điểm sinh viên
+router.put("/teacher/mana-intern/update-score/:id",middlewareController.verifyTokenAndAdmin,reportController.updateScore)
 module.exports = router;

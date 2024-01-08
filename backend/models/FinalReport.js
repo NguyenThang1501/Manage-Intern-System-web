@@ -26,7 +26,7 @@ const finalReportSchema = mongoose.Schema({
         require: true
     },
     "finalresult":{
-        type: String,
+        type: Number,
         require: true
     }
 });
