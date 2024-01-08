@@ -4,7 +4,7 @@ import SideBar from "../../common/sidebar/SideBar";
 
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/esm/Container";
-import studentApi from "../../../api/studentApi";
+import commonAPI from "../../../api/commonApi";
 import { useUser } from "../../../context/UserContext";
 
 const Intershippositons = () => {
@@ -15,22 +15,23 @@ const Intershippositons = () => {
   useEffect(() => {
     const fetchPotitions = async () => {
       try {
-        let response = await studentApi.getPositions(userInfo.accessToken);
+        let response = await commonAPI.getAllPositions(userInfo.accessToken);
         console.log(response);
-        let data = response;
-        console.log(data);
-        setPositions(data);
+        setPositions(response);
       } catch (error) {
-        console.log("Failed to fetch student infor ", error);
+        console.log("Failed", error);
       }
     };
     fetchPotitions();
-  }, []);
+  }, [userInfo]);
   return (
     <div className="wrap-intern-positions">
       <SideBar />
       <Container>
         <div className="positions-table">
+          <div>
+            <p>Chi tiết các vị trí thực tập</p>
+          </div>
           <Table striped bordered hover>
             <thead>
               <tr>

@@ -31,10 +31,10 @@ const RegisterInschool = () => {
   useEffect(() => {
     const fetchPotitions = async () => {
       try {
-        let response = await commonAPI.getAllPositions();
+        let response = await commonAPI.getAllPositions(userInfo.accessToken);
         console.log(response);
-        let data = response.positions;
-        setAllPositions(data);
+
+        setAllPositions(response);
       } catch (error) {
         console.log("Failed to fetch positions infor ", error);
       }

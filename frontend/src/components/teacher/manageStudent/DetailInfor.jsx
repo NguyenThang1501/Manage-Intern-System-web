@@ -4,20 +4,21 @@ import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
 import Container from "react-bootstrap/esm/Container";
 import SideBar2 from "../../common/sidebar/SideBar2";
+import { useLocation } from "react-router-dom";
 
 const DetailInfor = () => {
   const { userInfo } = useUser();
   const [studentInfor, setStudentInfor] = useState([]);
+  const location = useLocation();
+  const data = location.state ? location.state.data : null;
 
   //call API
-  console.log(userInfo);
   useEffect(() => {
     const fetchStudentInfor = async () => {
       try {
-        let response = await studentApi.get(userInfo._id, userInfo.accessToken);
+        let response = await studentApi.get(data._id, userInfo.accessToken);
         console.log(response);
-        let data = response;
-        setStudentInfor(data);
+        setStudentInfor(response);
       } catch (error) {
         console.log("Failed to fetch student infor ", error);
       }

@@ -86,7 +86,11 @@ const SideBar = ({ children }) => {
   const toggle = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
   const { userInfo } = useUser();
-  const [userName, setUserName] = useState();
+
+  const [userName, setUserName] = useState(() => {
+    const storedState = localStorage.getItem("userName");
+    return storedState ? JSON.parse(storedState) : [];
+  });
 
   console.log(userInfo);
   useEffect(() => {
@@ -103,12 +107,13 @@ const SideBar = ({ children }) => {
         let data = response;
         console.log(data);
         setUserName(data.name);
+        localStorage.setItem("userName", JSON.stringify(data.name));
       } catch (error) {
         console.log("Failed to fetch student infor ", error);
       }
     };
     fetchStudentInfor();
-  }, []);
+  }, [userInfo]);
 
   return (
     <div>

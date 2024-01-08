@@ -7,7 +7,7 @@ const studentApi = {
   },
 
   get: (id, token) => {
-    const url = `/teacher/student-mana/${id}`;
+    const url = `/teacher/teacher-mana/${id}`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,
@@ -24,7 +24,7 @@ const studentApi = {
   },
 
   submitAspiration: (token, promised_positions) => {
-    const url = `add_aspiration`;
+    const url = `/student/internship-register/collab/register`;
     return axiosClient.post(
       url,
 

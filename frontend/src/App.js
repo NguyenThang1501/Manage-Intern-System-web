@@ -41,6 +41,7 @@ import StudentTopic from "./components/student/reportIntern/StudentTopic";
 import StudentRegularReport from "./components/student/reportIntern/StudentRegularReport";
 import DetailInfor from "./components/teacher/manageStudent/DetailInfor";
 import AddNews from "./components/teacher/manageNews/AddNews";
+import UpdatePosition from "./components/teacher/divideIntern/listPositions/UpdatePosition";
 
 const App = () => {
   return (
@@ -104,6 +105,11 @@ const App = () => {
             <Route
               path="/teacher/allot-intern/list-register"
               element={<ListRegister />}
+            />
+
+            <Route
+              path="/teacher/allot-intern/list-positions/update-position"
+              element={<UpdatePosition />}
             />
 
             <Route

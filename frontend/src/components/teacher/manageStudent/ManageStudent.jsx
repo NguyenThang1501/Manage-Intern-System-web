@@ -11,27 +11,32 @@ import studentApi from "../../../api/studentApi";
 import { IoPerson, IoSettingsOutline } from "react-icons/io5";
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import teacherApi from "../../../api/teacherAPI";
+import { useUser } from "../../../context/UserContext";
 
 const ManageStudent = () => {
-  //const [allStudents, setAllStudents] = useState([]);
+  const [allStudents, setAllStudents] = useState([]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const { userInfo } = useUser();
 
-  // useEffect(() => {
-  //   const fetchAllStudents = async () => {
-  //     try {
-  //       let response = await studentApi.getAll();
-  //       console.log(response);
-  //       setAllStudents(response);
-  //     } catch (error) {
-  //       console.log("Failed to fetch all students ", error);
-  //     }
-  //   };
-  //   fetchAllStudents();
-  // }, []);
+  useEffect(() => {
+    const fetchStudentsInfor = async () => {
+      try {
+        let response = await teacherApi.getStudentInfor(userInfo.accessToken);
+        console.log(response);
+        setAllStudents(response);
+      } catch (error) {
+        console.log("Failed to fetch all students ", error);
+      }
+    };
+    fetchStudentsInfor();
+  }, []);
 
-  const handleViewInfor = () => {
-    navigate("/teacher/mana-student/infor");
+  const handleViewInfor = (item) => {
+    navigate("/teacher/mana-student/infor", {
+      state: { data: item },
+    });
   };
 
   // const handleDeleteSt = (MaSinhVien) => {
@@ -41,49 +46,6 @@ const ManageStudent = () => {
   //     })
   //     .catch(err => console.log(err))
   // }
-
-  const allStudents = [
-    {
-      MaSinhVien: "1234567",
-      HoTen: "Nguyễn Văn A",
-      Lop: "K66 Khoa học dữ liệu",
-      GioiTinh: "Nam",
-      KhoaID: "123",
-      NgoainguID: "001",
-      GPA: "2.0",
-      GiaoVienQuanLiID: "002",
-    },
-    {
-      MaSinhVien: "1234",
-      HoTen: "Nguyễn Văn B",
-      Lop: "K66 Khoa học dữ liệu",
-      GioiTinh: "Nam",
-      KhoaID: "123",
-      NgoainguID: "001",
-      GPA: "2.0",
-      GiaoVienQuanLiID: "003",
-    },
-    {
-      MaSinhVien: "1234",
-      HoTen: "Nguyễn Thị Linh",
-      Lop: "K66 Khoa học dữ liệu",
-      GioiTinh: "Nam",
-      KhoaID: "123",
-      NgoainguID: "001",
-      GPA: "2.0",
-      GiaoVienQuanLiID: "003",
-    },
-    {
-      MaSinhVien: "1234",
-      HoTen: "Nguyễn Thị Bình",
-      Lop: "K66 Khoa học dữ liệu",
-      GioiTinh: "Nam",
-      KhoaID: "123",
-      NgoainguID: "001",
-      GPA: "2.0",
-      GiaoVienQuanLiID: "003",
-    },
-  ];
 
   const [addShow, setAddShow] = useState(false);
   return (
@@ -118,18 +80,18 @@ const ManageStudent = () => {
                   .filter((item) => {
                     return search.toLowerCase() === ""
                       ? item
-                      : item.HoTen.toLowerCase().includes(search);
+                      : item.name.toLowerCase().includes(search);
                   })
                   .map((item, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{item.MaSinhVien}</td>
-                      <td>{item.HoTen}</td>
-                      <td>{item.Lop}</td>
+                      <td>{item._id}</td>
+                      <td>{item.name}</td>
+                      <td>{item.major}</td>
                       <td>
                         <button
                           className="bt-infor-st"
-                          onClick={() => handleViewInfor()}
+                          onClick={() => handleViewInfor(item)}
                         >
                           <IoPerson className="icon-action-inf" />
                           Xem chi tiết

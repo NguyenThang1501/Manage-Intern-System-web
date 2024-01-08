@@ -1,6 +1,15 @@
 import axiosClient from "./axiosClient";
 
 const teacherApi = {
+  getStudentInfor: (token) => {
+    const url = `/teacher/teacher-mana`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
   getReport: (token) => {
     const url = "/teacher/mana-intern/regular-report";
     return axiosClient.get(url, {
@@ -20,7 +29,16 @@ const teacherApi = {
   },
 
   getBusinessNewsCard: (token) => {
-    const url = `/teacher/mana-business`;
+    const url = `/teacher/business-mana`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getJobInfor: (id, token) => {
+    const url = `/mana-news-details/${id}`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,
@@ -29,7 +47,7 @@ const teacherApi = {
   },
 
   getBusinessInfor: (id, token) => {
-    const url = `/mana-news-details/${id}`;
+    const url = `/teacher/business-mana/${id}`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,
@@ -39,6 +57,42 @@ const teacherApi = {
 
   getResultIntern: (token) => {
     const url = `/get_all_result`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  deletePosition: (token, id) => {
+    const url = `teacher/delete-positions/${id}`;
+    return axiosClient.delete(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  addPosition: (token, data) => {
+    const url = `/teacher/create-positions`;
+    return axiosClient.post(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  updatePosition: (token, data, id) => {
+    const url = `/teacher/update-positions/${id}`;
+    return axiosClient.put(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  listRegister: (token) => {
+    const url = `/teacher/list-register`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,

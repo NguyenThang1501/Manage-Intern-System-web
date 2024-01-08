@@ -3,15 +3,22 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import CustomButton from "../../../common/button/CustomButton";
-import Modal from "react-bootstrap/Modal";
 import teacherApi from "../../../../api/teacherAPI";
 import { useUser } from "../../../../context/UserContext";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import SideBar2 from "../../../common/sidebar/SideBar2";
+import Container from "react-bootstrap/esm/Container";
+import "./listpositions.css";
 
-const AddPosition = (props) => {
+const UpdatePosition = (props) => {
   const { userInfo } = useUser();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const updateData = location.state ? location.state.updateData : null;
+
+  console.log(updateData);
 
   const [position, setPosition] = useState({
-    _id: "",
     name: "",
     business: "",
     capacity: "",
@@ -19,47 +26,29 @@ const AddPosition = (props) => {
     cpa_required: "",
   });
 
-  const handleButtonAdd = async () => {
+  const handleButtonUpdate = async () => {
     try {
-      const response = await teacherApi.addPosition(
+      const response = await teacherApi.updatePosition(
         userInfo.accessToken,
-        position
+        position,
+        updateData._id
       );
-      alert("Thêm thành công");
+      console.log(response);
+      alert("Đã sửa " + updateData._id);
+      navigate("/teacher/allot-intern/list-positions");
     } catch (error) {
       console.log("Failed", error);
     }
   };
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Body className="p-0">
-        <Col>
-          <div className="title-cp">Thêm vị trí thực tập</div>
+    <div>
+      <SideBar2 />
+      <Container>
+        <Col className="update-position">
+          <div className="title-cp">Sửa vị trí thực tập</div>
           <div className="line-form">
-            <Form>
-              <Form.Group as={Row} className="mb-3">
-                <Form.Label column sm={2}>
-                  Mã vị trí (*)
-                </Form.Label>
-                <Col sm={2}>
-                  <Form.Control
-                    type="text"
-                    onChange={(e) =>
-                      setPosition({
-                        ...position,
-                        _id: e.target.value,
-                      })
-                    }
-                  />
-                </Col>
-              </Form.Group>
-
+            <Form className="">
               <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm={2}>
                   Tên vị trí (*)
@@ -67,6 +56,7 @@ const AddPosition = (props) => {
                 <Col sm={4}>
                   <Form.Control
                     type="text"
+                    defaultValue={updateData.name}
                     onChange={(e) =>
                       setPosition({
                         ...position,
@@ -85,6 +75,7 @@ const AddPosition = (props) => {
               <Col sm={10}>
                 <Form.Control
                   type="text"
+                  defaultValue={updateData.business}
                   onChange={(e) =>
                     setPosition({
                       ...position,
@@ -102,6 +93,7 @@ const AddPosition = (props) => {
               <Col sm={10}>
                 <Form.Control
                   type="text"
+                  defaultValue={updateData.capacity}
                   onChange={(e) =>
                     setPosition({
                       ...position,
@@ -119,6 +111,7 @@ const AddPosition = (props) => {
               <Col sm={10}>
                 <Form.Control
                   as="textarea"
+                  defaultValue={updateData.require}
                   rows={3}
                   onChange={(e) =>
                     setPosition({
@@ -137,6 +130,7 @@ const AddPosition = (props) => {
               <Col sm={10}>
                 <Form.Control
                   type="text"
+                  defaultValue={updateData.cpa_required}
                   onChange={(e) =>
                     setPosition({
                       ...position,
@@ -148,18 +142,16 @@ const AddPosition = (props) => {
             </Form.Group>
             <CustomButton
               onClick={() => {
-                props.onHide();
-
-                handleButtonAdd();
+                handleButtonUpdate();
               }}
               className="add-positions"
-              buttonText={"Thêm vị trí"}
+              buttonText={"Cập nhật vị trí"}
             />
           </div>
         </Col>
-      </Modal.Body>
-    </Modal>
+      </Container>
+    </div>
   );
 };
 
-export default AddPosition;
+export default UpdatePosition;
