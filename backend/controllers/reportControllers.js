@@ -102,25 +102,31 @@ const reportController = {
     },
     getRegularReport_details: async (req, res) => {
         try {
+            const requestingUserId = req.account.id;
+            const requestingUserRole = req.account.role;
             const { id } = req.params; 
+            if (requestingUserRole === "teacher" || id === requestingUserId) {
+                const regularReport = await RegularReport.findById(id);
     
-            const regularReport = await RegularReport.findById(id);
-    
-            if (!regularReport) {
-                return res.status(404).json({ error: 'Regular Report not found' });
-            }
-    
-            const results = [];
-    
-            regularReport.reports.forEach(report => {
-                results.push({
-                    time: report.time,
-                    work: report.work,
-                    progress: report.progress,
+                if (!regularReport) {
+                    return res.status(404).json({ error: 'Regular Report not found' });
+                }
+        
+                const results = [];
+        
+                regularReport.reports.forEach(report => {
+                    results.push({
+                        time: report.time,
+                        work: report.work,
+                        progress: report.progress,
+                    });
                 });
-            });
-    
-            return res.status(200).json(results);
+        
+                return res.status(200).json(results);
+            } else {
+                return res.status(403).json("You're not allowed to view this report");
+            }
+            
         } catch (err) {
             console.error(err);
             return res.status(500).json({ error: 'Internal Server Error' });

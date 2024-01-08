@@ -117,7 +117,7 @@ const promiseController = {
         }
     },
 
-    get_aspiration: async(req,res) => {
+    get_aspiration : async (req, res) => {
         try {
             const studentId = req.account.id;
     
@@ -126,18 +126,37 @@ const promiseController = {
             }
     
             const studentAspirations = await Aspiration.findById(studentId)
-                .populate('promised_positions', 'name business'); // Populate with the desired fields
+                .populate({
+                    path: 'promised_positions',
+                    model: 'Position',
+                    populate: {
+                        path: 'business',
+                        model: 'Business',
+                        select: 'name'
+                    }
+                });
     
             if (!studentAspirations) {
                 return res.status(404).json("Student aspirations not found");
             }
     
-            res.status(200).json({ aspirations: studentAspirations.promised_positions });
+            const result = studentAspirations.promised_positions.map(position => ({
+                position_id: position._id,
+                // Assuming 'name' is a field in 'Position'
+                position_name: position.name,
+                business: position.business.name
+                
+            }));
+    
+            res.status(200).json({ aspirations: result });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+    
+    
+    
     getAllAspirations: async (req, res) => {
         try {
           const studentsWithAspirations = await Student.aggregate([

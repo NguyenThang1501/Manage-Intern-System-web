@@ -1,3 +1,4 @@
+const { it } = require("date-fns/locale");
 const Business = require("../models/Business")
 
 const businessController = {
@@ -6,6 +7,7 @@ const businessController = {
             const business = await Business.find({});
             const result = business.map(item => {
                 return {
+                    id: item._id,
                     name: item.name,
                     describe: item.describe,
                     website: item.website,

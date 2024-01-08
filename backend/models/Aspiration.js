@@ -15,11 +15,9 @@ const promiseSchema = new mongoose.Schema({
         required: true,
     },
     promised_positions: [{
-        _id: {
-            type: String, // Set the type to String
-            ref: Position,
-            required: true,
-        }
+        type: String, // Set the type to String
+        ref: Position,
+        required: true,
     }]
     // Other properties of the promise schema
 });

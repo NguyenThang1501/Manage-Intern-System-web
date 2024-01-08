@@ -12,7 +12,7 @@ router.post("/final_report", middlewareController.verifyToken, reportController.
 //lấy thông tin báo cáo thường xuyên
 router.get("/teacher/mana-intern/regular-report", middlewareController.verifyTokenAndAdmin,reportController.getRegularReport)
 //lấy thông tin báo cáo thường xuyên - chi tiết
-router.get("/teacher/mana-intern/regular-report/details/:id", middlewareController.verifyTokenAndAdmin,reportController.getRegularReport_details)
+router.get("/teacher/mana-intern/regular-report/details/:id", middlewareController.verifyToken,reportController.getRegularReport_details)
 // lấy báo cáo cuối kỳ của sinh viên theo id (dành cho giảng viên)
 router.get("/teacher-intern/final-report/:id", middlewareController.verifyTokenAndAdmin,reportController.getfinalReport)
 
