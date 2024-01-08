@@ -30,7 +30,9 @@ const Intershippositons = () => {
       <Container>
         <div className="positions-table">
           <div>
-            <p>Chi tiết các vị trí thực tập</p>
+            <p className="fw-bold mx-auto text-center fs-5">
+              Chi tiết các vị trí thực tập
+            </p>
           </div>
           <Table striped bordered hover>
             <thead>

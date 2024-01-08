@@ -8,28 +8,28 @@ import { useUser } from "../../../context/UserContext";
 
 const TableList = () => {
   const { userInfo } = useUser();
-  const positions = [
-    {
-      _id: "DA1",
-      name: "DATA ANALYST",
-      business: "Viettel",
-    },
-    {
-      _id: "DA1",
-      name: "DATA ANALYST",
-      business: "Viettel",
-    },
-    {
-      _id: "DA1",
-      name: "DATA ANALYST",
-      business: "Viettel",
-    },
-  ];
+  const [position, setPosition] = useState([]);
+
+  useEffect(() => {
+    const fetchStudentPosition = async () => {
+      try {
+        let response = await studentApi.getAspirationByID(userInfo.accessToken);
+        console.log(response);
+        setPosition(response.aspirations);
+      } catch (error) {
+        console.log("Failed to fetch student infor ", error);
+      }
+    };
+    fetchStudentPosition();
+  }, []);
 
   return (
     <div className="wrap-intern-positions">
       <Container>
         <div className="positions-table">
+          <p className="fw-bold mx-auto text-center fs-5">
+            Vị trí bạn đã đăng ký
+          </p>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -40,11 +40,11 @@ const TableList = () => {
               </tr>
             </thead>
             <tbody>
-              {positions.map((item, index) => (
-                <tr key={item._id}>
+              {position.map((item, index) => (
+                <tr key={item.position_id}>
                   <td>{index + 1}</td>
-                  <td>{item._id}</td>
-                  <td>{item.name}</td>
+                  <td>{item.position_id}</td>
+                  <td>{item.position_name}</td>
                   <td>{item.business}</td>
                 </tr>
               ))}
