@@ -8,16 +8,14 @@ positions_collection = db['positions']
 aspirations_collection = db['aspirations']
 business_collection = db['businesses']
 
-# Retrieve data from MongoDB collections
-# Replace the following lines with the correct data retrieval code
-# Example:
+
 id_gpa = [(doc["_id"], doc["cpa"], doc.get("cert", 0)) for doc in students_collection.find({}, {"_id": 1, "cpa": 1, "cert": 1})]
 positions = [(doc["_id"], doc["capacity"], doc.get("cpa_required",0.0)) for doc in positions_collection.find({}, {"_id": 1, "capacity": 1, "cpa_required": 1})]
-promises = [(doc["_id"], [promise["_id"] for promise in doc.get("promised_positions", [])]) for doc in aspirations_collection.find({}, {"_id": 1, "promised_positions._id": 1})]
+promises = [(doc["_id"], [promise for promise in doc.get("promised_positions", [])]) for doc in aspirations_collection.find({}, {"_id": 1, "promised_positions": 1})]
 students = [(item1[0], item1[1] + item1[2], item2[1]) for item1 in id_gpa for item2 in promises if item1[0] == item2[0]]
 
 students = [(item1[0], item1[1] + item1[2], item2[1]) for item1 in id_gpa for item2 in promises if item1[0] == item2[0]]
-
+print(promises)
 id = [x[0] for x in students]
 mvt = [x[0] for x in positions]
 
