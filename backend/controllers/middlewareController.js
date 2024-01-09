@@ -21,7 +21,7 @@ const middlewareController = {
                 return res.status(401).json("You're not authenticated");
             }
         } catch (err) {
-            return res.status(403).json("Token is not valid");
+            return res.status(403).json("Error");
         }
     },
 

@@ -34,17 +34,16 @@ const profileController = {
     updateProfile: async (req, res) => {
         try {
           const userId = req.params.id;
-          const user = await Accounts.findById(userId).populate("_id");
+          const user = await Profile.findById(userId).populate("_id");
           if (!user) {
             return res.status(404).json("User not found");
           }
     
-          if (req.body.firstname) user.firstname = req.body.firstname;
-          if (req.body.lastname) user.lastname = req.body.lastname;
+          if (req.body.name) user.name = req.body.name;
           if (req.body.address) user.address = req.body.address;
           if (req.body.major) user.major = req.body.major;
           if (req.body.gpa) user.gpa = req.body.gpa;
-    
+          
           await user.save(); // Save the profile separately
           res.status(200).json("Profile updated successfully");
         } catch (err) {
