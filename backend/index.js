@@ -12,7 +12,7 @@ const positionRoute = require("./routes/positionRouter");
 const profileRoute = require("./routes/profileRouter");
 const reportRoute = require("./routes/reportRouter");
 const registerTimeRoute = require("./routes/registerTime");
-
+const teacherRoute = require("./routes/teacherRouter")
 
 const app = express();
 dotenv.config();
@@ -34,7 +34,7 @@ app.use("/", positionRoute);
 app.use("/", profileRoute);
 app.use("/", reportRoute);
 app.use("/", registerTimeRoute);
-
+app.use("/", teacherRoute);
 
 
 app.listen(8000, () => {

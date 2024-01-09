@@ -39,6 +39,20 @@ const middlewareController = {
             return res.status(403).json("Token is not valid");
         }
     },
+
+    verifyAdminAndBusiness: async (req, res, next) => {
+        try {
+            await middlewareController.verifyToken(req, res, async () => {
+                if (req.account.role === "teacher" || req.account.role === "business") {
+                    next();
+                } else {
+                    return res.status(403).json("You're not allowed to perform this action");
+                }
+            });
+        } catch (err) {
+            return res.status(403).json("Token is not valid");
+        }
+    }
 };
 
 module.exports = middlewareController;

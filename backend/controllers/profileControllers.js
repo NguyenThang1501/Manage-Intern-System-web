@@ -34,23 +34,36 @@ const profileController = {
     updateProfile: async (req, res) => {
         try {
           const userId = req.params.id;
-          const user = await Profile.findById(userId).populate("_id");
+          const requestingUserId = req.account.id;
+          const requestingUserRole = req.account.role;
+          
+          if (requestingUserRole === "teacher" || userId === requestingUserId) {
+            const user = await Profile.findById(userId).populate("_id");
           if (!user) {
             return res.status(404).json("User not found");
           }
     
           if (req.body.name) user.name = req.body.name;
-          if (req.body.address) user.address = req.body.address;
+          if (req.body.birthday) user.birthday = req.body.birthday;
+          if (req.body.sex) user.sex = req.body.sex;
+          if (req.body.field) user.field = req.body.field;
           if (req.body.major) user.major = req.body.major;
-          if (req.body.gpa) user.gpa = req.body.gpa;
+          if (req.body.email) user.email = req.body.email;
+          if (req.body.phone) user.phone = req.body.phone;
+          if (req.body.cpa) user.cpa = req.body.cpa;
+          if (req.body.cert) user.cert = req.body.cert;
           
           await user.save(); // Save the profile separately
           res.status(200).json("Profile updated successfully");
-        } catch (err) {
-          res
-            .status(500)
-            .json({ error: "Internal Server Error", chiTiet: err.message });
+        
+        } else {
+            return res.status(403).json("You're not allowed to perform this action");
         }
+      }
+      catch (err) {
+        res.status(500).json({ error: "Internal Server Error", details: err.message });
+      }
+          
     },
     
     deleteProfile: async (req, res) => {
