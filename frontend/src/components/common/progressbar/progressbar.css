@@ -1,0 +1,42 @@
+.progressbar {
+  position: relative;
+  overflow: hidden;
+  width: 350px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.progressPercent {
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #1c1e53;
+}
+
+.run-progress {
+  display: block;
+  margin: 5rem auto;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  width: 100px;
+  height: 40px;
+  background-color: #fcd980;
+  transition: box-shadow 0.5s;
+  font-size: 16px;
+  font-family: arial;
+  color: #1c1e53;
+  cursor: pointer;
+}
+
+.run-progress:hover {
+  -webkit-box-shadow: inset 100px 0 0 0 #fcd980;
+  box-shadow: inset 100px 0 0 0 #fcd980;
+}

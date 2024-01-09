@@ -7,12 +7,14 @@ import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../../context/UserContext";
 import teacherApi from "../../../../api/teacherAPI";
+import ProgressBar from "../../../common/progressbar/ProgressBar";
 const ListRegister = () => {
   const navigate = useNavigate();
 
   const { userInfo } = useUser();
 
   const [registerList, setRegisterList] = useState([]);
+  const [showProgressbar, setShowProgressbar] = useState(false);
 
   useEffect(() => {
     const fetchRegisterList = async () => {
@@ -27,44 +29,34 @@ const ListRegister = () => {
     fetchRegisterList();
   }, []);
 
-  // const registerList = [
-  //   {
-  //     MaSinhVien: "12345",
-  //     HoTen: "Nguyễn Thị Thắng",
-  //     NganhHoc: "Khoa học dữ liệu",
-  //     CPA: "2.0",
-  //     NgoaiNgu: "Ielts 9.0",
-  //     NV1: "DA1",
-  //     NV2: "DE1",
-  //     NV3: "DS1",
-  //   },
-  //   {
-  //     MaSinhVien: "12345",
-  //     HoTen: "Nguyễn Thị Thắng",
-  //     NganhHoc: "Khoa học dữ liệu",
-  //     CPA: "2.0",
-  //     NgoaiNgu: "Ielts 9.0",
-  //     NV1: "DA1",
-  //     NV2: "DE1",
-  //     NV3: "DS1",
-  //   },
-  //   {
-  //     MaSinhVien: "12345",
-  //     HoTen: "Nguyễn Thị Thắng",
-  //     NganhHoc: "Khoa học dữ liệu",
-  //     CPA: "2.0",
-  //     NgoaiNgu: "Ielts 9.0",
-  //     NV1: "DA1",
-  //     NV2: "DE1",
-  //     NV3: "DS1",
-  //   },
-  // ];
+  const handleAllotButton = () => {
+    setShowProgressbar(true);
+  };
 
   return (
     <div>
       <SideBar2 />
       <Container>
         <div className="wrap-allot-intern">
+          <div className="bt-allot-intern">
+            <CustomButton
+              buttonText={"Thực hiện phân công thực tập cho sinh viên"}
+              onClick={() => setShowProgressbar(true)}
+            />
+            <ProgressBar
+              show={showProgressbar}
+              onHide={() => setShowProgressbar(false)}
+            />
+            <CustomButton
+              onClick={() => {
+                navigate("/teacher/allot-intern/result-intern");
+              }}
+              buttonText={"Xem kết quả phân công"}
+            />
+          </div>
+          <p className="fw-bold mx-auto text-center fs-5">
+            DANH SÁCH CÁC SINH VIÊN ĐÃ ĐĂNG KÝ
+          </p>
           <Table striped bordered hover className="table-allot-intern">
             <thead>
               <tr>
@@ -95,15 +87,6 @@ const ListRegister = () => {
               ))}
             </tbody>
           </Table>
-          <div className="bt-allot-intern">
-            <CustomButton buttonText={"Phân công thực tập"} />
-            <CustomButton
-              onClick={() => {
-                navigate("/teacher/allot-intern/result-intern");
-              }}
-              buttonText={"Xem kết quả phân công"}
-            />
-          </div>
         </div>
       </Container>
     </div>

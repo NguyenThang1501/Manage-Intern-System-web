@@ -53,7 +53,7 @@ const NewsBox = ({ link, data }) => {
           <p className="company-name">{data.business}</p>
         </div>
         <div className="bottom-box">
-          <p className="mb-0">{data.address}</p>
+          <p className="mb-0">Hà Nội</p>
           <div className="bottom-button">
             <button className="action-button">
               <BiDetail className="me-1" />
