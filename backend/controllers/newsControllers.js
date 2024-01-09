@@ -134,7 +134,7 @@ const newsController = {
     getNews_details: async (req, res) => {
         try {
             const { id } = req.params; 
-            const newsItem = await News.findById(id);
+            const newsItem = await News.findById(id).populate('business');
     
             if (!newsItem) {
                 return res.status(404).json({ error: 'News not found' });
@@ -145,6 +145,7 @@ const newsController = {
             const result = {
                 id: newsItem.id,
                 position: newsItem.position,
+                business: newsItem.business.name,
                 end_time: formattedEndTime,
                 describe: newsItem.describe,
                 require: newsItem.require,

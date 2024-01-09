@@ -183,7 +183,7 @@ const reportController = {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
     },
-    updateScore: async (req, res) => {
+    updateMidScore: async (req, res) => {
         try {
             const id = req.params.id; 
             const final_report = await FinalReport.findById(id);
@@ -193,6 +193,30 @@ const reportController = {
             }
     
             const midresult = req.body.midresult;
+            // Check if project and describe are present in the request body
+            if (!midresult || !finalresult) {
+                return res.status(400).json({ error: 'Project and describe are required in the request body' });
+            }
+    
+            final_report.midresult = midresult;
+    
+            await final_report.save();
+    
+            return res.status(200).json({ message: 'Final Report updated successfully', final_report });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+    updateFinalScore: async (req, res) => {
+        try {
+            const id = req.params.id; 
+            const final_report = await FinalReport.findById(id);
+    
+            if (!final_report) {
+                return res.status(404).json({ error: 'Final Report not found' });
+            }
+    
             const finalresult = req.body.finalresult;
     
             // Check if project and describe are present in the request body
@@ -200,7 +224,6 @@ const reportController = {
                 return res.status(400).json({ error: 'Project and describe are required in the request body' });
             }
     
-            final_report.midresult = midresult;
             final_report.finalresult = finalresult;
     
             await final_report.save();
