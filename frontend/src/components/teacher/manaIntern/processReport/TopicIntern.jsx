@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/esm/Container";
 
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import { CiEdit } from "react-icons/ci";
 import SideBar2 from "../../../common/sidebar/SideBar2";
+import teacherApi from "../../../../api/teacherAPI";
+import { useUser } from "../../../../context/UserContext";
+import { useLocation } from "react-router-dom";
 
 const TopicReport = () => {
   const [showIcon, setShowIcon] = useState(true);
+  const location = useLocation();
   const [report, setReport] = useState({
-    topic:
-      "Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực.",
-    decribe:
-      "Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực. Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực. Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực. Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực.",
+    project: "",
+    describe: "",
+    finalresult: "",
+    midresult: "",
   });
+
+  const dataStudent = location.state ? location.state.topicData : null;
+  const { userInfo } = useUser();
+
   const [midScore, setMidScore] = useState(0);
   const [finalScore, setFinalScore] = useState(0);
   const [isEditingFinal, setIsEditingFinal] = useState(false);
@@ -42,6 +50,22 @@ const TopicReport = () => {
     setIsEditingFinal(false);
   };
 
+  useEffect(() => {
+    const fetchTopicReport = async () => {
+      try {
+        let response = await teacherApi.getStudentTopicReport(
+          userInfo.accessToken,
+          dataStudent._id
+        );
+        console.log(response);
+        setReport(response);
+      } catch (error) {
+        console.log("Failed", error);
+      }
+    };
+    fetchTopicReport();
+  }, []);
+
   return (
     <div>
       <SideBar2 />
@@ -54,55 +78,19 @@ const TopicReport = () => {
               <tbody>
                 <tr>
                   <th>Mã sinh viên:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            /> */}
-                    0123456
-                  </td>
+                  <td>{dataStudent._id}</td>
                 </tr>
                 <tr>
                   <th>Họ và tên:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            /> */}
-                    Nguyễn Thị Thắng
-                  </td>
+                  <td>{dataStudent.name}</td>
                 </tr>
                 <tr>
                   <th>Công ty:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            /> */}
-                    Viettel
-                  </td>
+                  <td>{dataStudent.business}</td>
                 </tr>
                 <tr>
                   <th>Vị trí thực tập:</th>
-                  <td>
-                    {/* <input
-              type="text"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-            /> */}
-                    Data Engineer
-                  </td>
+                  <td>{dataStudent.position}</td>
                 </tr>
               </tbody>
             </Table>
@@ -115,7 +103,7 @@ const TopicReport = () => {
                 </tr>
               </thead>
               <tbody>
-                <td>{report.topic}</td>
+                <td>{report.project}</td>
               </tbody>
             </Table>
 
@@ -128,7 +116,7 @@ const TopicReport = () => {
                 </tr>
               </thead>
               <tbody>
-                <td>{report.decribe}</td>
+                <td>{report.describe}</td>
               </tbody>
             </Table>
 
@@ -169,7 +157,7 @@ const TopicReport = () => {
                       <button onClick={handleSaveMid}>Lưu</button>
                     </div>
                   ) : (
-                    <td>{midScore}</td>
+                    <td>{report.midresult}</td>
                   )}
                 </td>
                 <td>
@@ -184,7 +172,7 @@ const TopicReport = () => {
                       <button onClick={handleSaveFinal}>Lưu</button>
                     </div>
                   ) : (
-                    <td>{finalScore}</td>
+                    <td>{report.finalresult}</td>
                   )}
                 </td>
               </tbody>

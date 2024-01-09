@@ -15,18 +15,18 @@ const NewsIntership = () => {
         <div className="news-2">
           <Row>
             <Col>
-              <NewsBox />
+              <NewsBox link={"/student/news-internship/st-news-detail"} />
             </Col>
             <Col>
-              <NewsBox />
+              <NewsBox link={"/student/news-internship/st-news-detail"} />
             </Col>
           </Row>
           <Row>
             <Col>
-              <NewsBox />
+              <NewsBox link={"/student/news-internship/st-news-detail"} />
             </Col>
             <Col>
-              <NewsBox />
+              <NewsBox link={"/student/news-internship/st-news-detail"} />
             </Col>
           </Row>
         </div>

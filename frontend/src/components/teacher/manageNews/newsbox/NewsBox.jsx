@@ -8,7 +8,7 @@ import { MdOutlineEditNote } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import commonAPI from "../../../../api/commonApi";
 
-const NewsBox = (props) => {
+const NewsBox = ({ link, data }) => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
   // const newsID = location.state ? location.state.newID : null;
@@ -16,7 +16,7 @@ const NewsBox = (props) => {
   // useEffect(() => {
   //   const fetchNews = async () => {
   //     try {
-  //       let response = await commonAPI.getNewsByID(
+  //       let response = await commonAPI.getNewsDetail(
   //         newsID._id
   //       );
   //       console.log(response);
@@ -38,7 +38,7 @@ const NewsBox = (props) => {
   return (
     <div
       className="container-box"
-      onClick={() => handleViewNewsDetail("news0", "/news-detail")}
+      onClick={() => handleViewNewsDetail("news0", link)}
     >
       <div className="wrap-logo-box">
         <img
@@ -49,13 +49,11 @@ const NewsBox = (props) => {
       </div>
       <div className="content-wrapper">
         <div>
-          <p className="position-name">Intern Data Engineer</p>
-          <p className="company-name">
-            TẬP ĐOÀN CÔNG NGHỆ - VIỄN THÔNG QUÂN ĐỘI
-          </p>
+          <p className="position-name">{data.position}</p>
+          <p className="company-name">{data.business}</p>
         </div>
         <div className="bottom-box">
-          <p className="mb-0">Hà Nội</p>
+          <p className="mb-0">{data.address}</p>
           <div className="bottom-button">
             <button className="action-button">
               <BiDetail className="me-1" />

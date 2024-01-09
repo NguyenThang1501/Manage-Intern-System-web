@@ -99,6 +99,15 @@ const teacherApi = {
       },
     });
   },
+
+  getStudentTopicReport: (token, id) => {
+    const url = `/teacher-intern/final-report/${id}`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default teacherApi;
