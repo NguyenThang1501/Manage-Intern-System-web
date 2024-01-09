@@ -107,41 +107,28 @@ const profileController = {
     },
     
     createProfile: async (req, res) => {
-        try {
-          const userId = req.params.id;
-          const requestingUserId = req.user.id;
-    
-          const user = await Accounts.findById(userId).populate("profile");
-          if (!user) {
-            return res.status(404).json("User not found");
-          }
-    
-          if (user.profile) {
-            return res.status(400).json("User already has a profile");
-          }
-    
+      try {
           const newProfile = {
-            fullName: req.body.fullName,
-            studentId: req.body.studentId,
-            dateOfBirth: req.body.dateOfBirth,
-            gender: req.body.gender,
-            faculty: req.body.faculty,
-            major: req.body.major,
-            gpa: req.body.gpa,
-            advisor: req.body.advisor,
+              _id: userId, 
+              name: req.body.name,
+              birthday: req.body.birthday,
+              sex: req.body.sex,
+              field: req.body.field,
+              major: req.body.major,
+              email: req.body.email,
+              phone: req.body.phone,
+              cpa: req.body.cpa,
+              cert: req.body.cert
           };
-    
-          const createdProfile = await Profile.create(newProfile);
-          user.profile = createdProfile._id;
-          await user.save();
-    
+  
+          const studentProfile = new Student(newProfile);
+          await studentProfile.save();
+  
           res.status(201).json("Profile created successfully");
-        } catch (err) {
-          res
-            .status(500)
-            .json({ error: "Internal Server Error", chiTiet: err.message });
-        }
-    }
+      } catch (err) {
+          res.status(500).json({ error: "Internal Server Error", details: err.message });
+      }
+  },
 };
 
 module.exports = profileController;

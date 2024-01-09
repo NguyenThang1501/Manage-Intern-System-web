@@ -72,9 +72,6 @@ const positionController = {
             // Lấy id của vị trí từ req.params
             const positionId = req.params.id;
     
-            // Lấy dữ liệu cập nhật từ req.body
-            const { name, business, capacity, require, cpa_required } = req.body;
-    
             // Kiểm tra xem vị trí có tồn tại không
             const existingPosition = await Position.findById(positionId);
     
@@ -84,12 +81,12 @@ const positionController = {
             }
     
             // Cập nhật thông tin vị trí
-            existingPosition.name = name;
-            existingPosition.business = business;
-            existingPosition.capacity = capacity;
-            existingPosition.require = require;
-            existingPosition.cpa_required = cpa_required;
-    
+            if (req.body.name) existingPosition.name = req.body.name;
+            if (req.body.business) existingPosition.business = req.body.business;
+            if (req.body.capacity) existingPosition.capacity = req.body.capacity;
+            if (req.body.require) existingPosition.field = req.body.require;
+            if (req.body.cpa_required) existingPosition.major = req.body.cpa_required;
+
             // Lưu vị trí đã cập nhật vào cơ sở dữ liệu
             const updatedPosition = await existingPosition.save();
     

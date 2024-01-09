@@ -1,12 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Accounts = require("../models/Account");
-const Report = require('../models/WeeklyReport');
-const Student = require('../models/Student');
-const Business = require('../models/Business')
-const News = require('../models/News')
-const FinalReport = require('../models/FinalReport');
-const Result = require("../models/InternshipResult");
 
 const accountController = {
     registerUser: async (req, res) => {

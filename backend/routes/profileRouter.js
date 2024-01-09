@@ -12,8 +12,8 @@ router.get("/teacher/student-mana/:id", middlewareController.verifyToken, profil
 // Cập nhật hồ sơ người dùng 
 router.put("/teacher/student-mana/:id", middlewareController.verifyToken, profileController.updateProfile);
 
-// Tạo hồ sơ cho sinh viên có profile null 
-router.post("/teacher/student-mana/:id", middlewareController.verifyTokenAndAdmin, profileController.createProfile);
+// Tạo hồ sơ cho sinh viên 
+router.post("/teacher/student-mana", middlewareController.verifyTokenAndAdmin, profileController.createProfile);
 
 // Xoá hồ sơ người dùng 
 router.delete("/teacher/student-mana/:id", middlewareController.verifyTokenAndAdmin, profileController.deleteProfile);
