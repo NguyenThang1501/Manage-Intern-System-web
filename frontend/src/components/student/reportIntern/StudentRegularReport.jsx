@@ -8,6 +8,7 @@ import teacherApi from "../../../api/teacherAPI";
 import { useUser } from "../../../context/UserContext";
 import AddReport from "./AddReport";
 import { CgAdd } from "react-icons/cg";
+import studentApi from "../../../api/studentApi";
 
 const StudentRegularReport = () => {
   const { userInfo } = useUser();
@@ -15,6 +16,7 @@ const StudentRegularReport = () => {
   const [reportData, setReportData] = useState([]);
 
   const [showAdd, setShowAdd] = useState(false);
+  const [dataStudent, setDataStudent] = useState([]);
 
   const handleClickButton = () => {
     setShowAdd(!showAdd);
@@ -37,6 +39,19 @@ const StudentRegularReport = () => {
     fetchReportDetails();
   }, []);
 
+  useEffect(() => {
+    const fetchStudentResultIntern = async () => {
+      try {
+        let response = await studentApi.getResultIntern(userInfo.accessToken);
+        console.log(response);
+        setDataStudent(response.result);
+      } catch (error) {
+        console.log("Failed ", error);
+      }
+    };
+    fetchStudentResultIntern();
+  });
+
   return (
     <div>
       <SideBar />
@@ -49,19 +64,19 @@ const StudentRegularReport = () => {
               <tbody>
                 <tr>
                   <th>Mã sinh viên:</th>
-                  {/* <td>{dataStudent._id}</td> */}
+                  <td>{dataStudent._id}</td>
                 </tr>
                 <tr>
                   <th>Họ và tên:</th>
-                  {/* <td>{dataStudent.name}</td> */}
+                  <td>{dataStudent.name}</td>
                 </tr>
                 <tr>
                   <th>Công ty:</th>
-                  {/* <td>{dataStudent.business}</td> */}
+                  <td>{dataStudent.business}</td>
                 </tr>
                 <tr>
                   <th>Vị trí thực tập:</th>
-                  {/* <td>{dataStudent.position}</td> */}
+                  <td>{dataStudent.position}</td>
                 </tr>
               </tbody>
             </Table>

@@ -14,6 +14,7 @@ const studentApi = {
       },
     });
   },
+
   getPositions: (token) => {
     const url = `/student/internship-register/collab/positions`;
     return axiosClient.get(url, {
@@ -59,6 +60,15 @@ const studentApi = {
   submitReport: (token, report) => {
     const url = `/report`;
     return axiosClient.post(url, report, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getResultIntern: (token) => {
+    const url = `/student/internship-register/collab/result`;
+    return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,
       },
