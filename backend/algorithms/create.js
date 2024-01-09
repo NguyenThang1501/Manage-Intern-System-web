@@ -99,7 +99,7 @@ async function run() {
         const account = {
             "_id": student._id,
             "pass": hashedPassword,
-            "role": 'student'
+             "role": 'student'
         };
         accounts.push(account);
     }

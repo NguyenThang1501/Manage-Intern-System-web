@@ -46,6 +46,16 @@ const ManageStudent = () => {
   //     })
   //     .catch(err => console.log(err))
   // }
+  const handleSearch = async () => {
+    try {
+      // Call your search API with the entered search value
+      let response = await studentApi.searchByName(search);
+      setAllStudents(response);
+    } catch (error) {
+      console.log("Failed to search students ", error);
+    }
+  };
+
 
   const [addShow, setAddShow] = useState(false);
   return (
@@ -59,10 +69,15 @@ const ManageStudent = () => {
               buttonText="Thêm hồ sơ sinh viên"
             />
             <AddStudent show={addShow} onHide={() => setAddShow(false)} />
-            <Search
+            {/* <Search
               onChange={(e) => setSearch(e.target.value)}
               searchText={"Tìm kiếm sinh viên..."}
-            />
+            /> */}
+            <Search
+            onChange={(e) => setSearch(e.target.value)}
+            onSearch={handleSearch} //Pass the search handler to the Search component 
+            searchText={"Tìm kiếm sinh viên..."}
+          />
           </div>
           <div className="container-tb-mana-st">
             <Table striped bordered hover className="table-mana-st">
