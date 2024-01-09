@@ -42,6 +42,7 @@ import StudentRegularReport from "./components/student/reportIntern/StudentRegul
 import DetailInfor from "./components/teacher/manageStudent/DetailInfor";
 import AddNews from "./components/teacher/manageNews/AddNews";
 import UpdatePosition from "./components/teacher/divideIntern/listPositions/UpdatePosition";
+import NewsDetail from "./components/teacher/manageNews/NewsDetail";
 
 const App = () => {
   return (
@@ -148,6 +149,10 @@ const App = () => {
               element={<DetailInfor />}
             />
             <Route path="/teacher/mana-news/add-news" element={<AddNews />} />
+            <Route
+              path="/teacher/mana-news/tc-news-detail"
+              element={<NewsDetail />}
+            />
           </Routes>
         </UserProvider>
       </Router>
