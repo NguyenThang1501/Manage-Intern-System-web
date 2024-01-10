@@ -2,7 +2,8 @@ const { exec } = require("child_process");
 const Student = require('../models/Student');
 const Result = require("../models/InternshipResult");
 const Aspiration = require("../models/Aspiration");
-const { verifyToken } = require('./middlewareController');
+const RegisterTime = require('../models/RegisterTime');
+const moment = require('moment');
 const promiseController = {
     runcode: async (req, res) => {
         exec("python .\\algorithms\\demo.py", (error, stdout, stderr) => {
@@ -83,35 +84,50 @@ const promiseController = {
     add_aspiration : async (req, res) => {
         try {
             const studentId = req.account.id;
-    
+        
             if (!studentId) {
-                return res.status(403).json("Student ID not available");
+              return res.status(403).json({ error: "Student ID not available" });
             }
-    
+        
             const { promised_positions } = req.body;
-    
+        
             if (!Array.isArray(promised_positions) || promised_positions.length !== 3) {
-                return res.status(400).json("Exactly three promised positions are required");
+              return res.status(400).json({ error: "Exactly three promised positions are required" });
             }
-    
+        
+            // Lấy thời gian hiện tại
+            const currentTime = moment();
+        
+            // Tìm một bản ghi trong registerTime có thời gian hiện tại nằm trong khoảng start_time và end_time
+            const registerTime = await RegisterTime.findOne({
+              start_time: { $lte: currentTime },
+              end_time: { $gte: currentTime },
+            });
+        
+            if (!registerTime) {
+              // Nếu không có khoảng thời gian phù hợp, trả về thông báo
+              return res.status(400).json({ error: 'Ngoài thời hạn đăng ký' });
+            }
+        
             // Find an existing promise for the student
             let existingPromise = await Aspiration.findById(studentId);
-    
+        
             if (existingPromise) {
-                // If an existing promise is found, update it
-                existingPromise.promised_positions = promised_positions.map(position => ({ _id: position._id }));
+              // If an existing promise is found, update it
+              existingPromise.promised_positions = promised_positions.map(position => ({ _id: position._id }));
             } else {
-                // If no existing promise is found, create a new one
-                existingPromise = new Aspiration({
-                    _id: studentId,
-                    promised_positions: aspirated_positions.map(position => ({ _id: position._id }))
-                    // Add other properties of the promise schema if needed
-                });
+              // If no existing promise is found, create a new one
+              existingPromise = new Aspiration({
+                _id: studentId,
+                promised_positions: promised_positions.map(position => ({ _id: position._id })),
+                // Add other properties of the promise schema if needed
+              });
             }
+        
             const savedPromise = await existingPromise.save();
-    
+        
             res.status(201).json({ promise: savedPromise });
-        } catch (error) {
+          } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
         }

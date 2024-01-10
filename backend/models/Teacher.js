@@ -10,11 +10,7 @@ const teacherSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    firstname: {
-        type: String,
-        require: true
-    },
-    lastname: {
+    name: {
         type: String,
         require: true
     },

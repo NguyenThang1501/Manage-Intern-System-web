@@ -2,6 +2,10 @@
 const Profile = require("../models/Student");
 const Accounts = require("../models/Account");
 const Student = require("../models/Student");
+const fs = require('fs');
+const util = require('util');
+
+const readFile = util.promisify(fs.readFile);
 const profileController = {
     getProfile: async (req, res) => {
         try {
@@ -40,10 +44,19 @@ const profileController = {
           }
     
           if (req.body.name) user.name = req.body.name;
-          if (req.body.address) user.address = req.body.address;
+          if (req.body.birthday) user.birthday = req.body.birthday;
           if (req.body.major) user.major = req.body.major;
-          if (req.body.gpa) user.gpa = req.body.gpa;
-          
+          if (req.body.cpa) user.cpa = req.body.cpa;
+          if (req.body.sex) user.sex = req.body.sex;
+          if (req.body.field) user.field = req.body.field;
+          if (req.body.phone) user.phone = req.body.phone;
+          if (req.body.cert) user.cert = req.body.cert;
+          if (req.body.email) user.email = req.body.email;
+          if (req.body.image) {
+            const imageByteArray = Buffer.from(req.body.image, 'base64');
+            user.image = imageByteArray;
+          }
+      
           await user.save(); // Save the profile separately
           res.status(200).json("Profile updated successfully");
         } catch (err) {
