@@ -155,6 +155,28 @@ const reportController = {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+    get_self_finalReport: async (req, res) => {
+        try {
+            const { id } = req.account; 
+            const final_report = await FinalReport.findById(id);
+            
+            if (!final_report) {
+                return res.status(404).json({ error: 'Final Report not found' });
+            }
+    
+            const result = {
+                project: final_report.project,
+                describe: final_report.describe,
+                midresult: final_report.midresult,
+                finalresult: final_report.finalresult
+            };
+    
+            return res.status(200).json(result);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
     updateProject: async (req, res) => {
         try {
             const id = req.account.id; 

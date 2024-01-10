@@ -104,26 +104,39 @@ const profileController = {
 
   createProfile: async (req, res) => {
     try {
-      const newStudent = {
-        _id: req.body._id,
-        name: req.body.name,
-        birthday: req.body.birthday,
-        sex: req.body.sex,
-        field: req.body.field,
+      const userId = req.params.id;
+      const requestingUserId = req.user.id;
+
+      const user = await Accounts.findById(userId).populate("profile");
+      if (!user) {
+        return res.status(404).json("User not found");
+      }
+
+      if (user.profile) {
+        return res.status(400).json("User already has a profile");
+      }
+
+      const newProfile = {
+        fullName: req.body.fullName,
+        studentId: req.body.studentId,
+        dateOfBirth: req.body.dateOfBirth,
+        gender: req.body.gender,
+        faculty: req.body.faculty,
         major: req.body.major,
-        email: req.body.email,
-        phone: req.body.phone,
-        cpa: req.body.cpa,
-        cert: req.body.cert,
+        gpa: req.body.gpa,
+        advisor: req.body.advisor,
       };
 
-      const createdStudent = await Student.create(newStudent);
+      const createdProfile = await Profile.create(newProfile);
+      user.profile = createdProfile._id;
+      await user.save();
 
-      return res.status(201).json({ message: "Student created successfully", student: createdStudent });
+      res.status(201).json("Profile created successfully");
     } catch (err) {
-      return res.status(500).json({ error: "Internal Server Error", chiTiet: err.message });
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", chiTiet: err.message });
     }
-
   }
 };
 
