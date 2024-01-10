@@ -52,10 +52,6 @@ const profileController = {
           if (req.body.phone) user.phone = req.body.phone;
           if (req.body.cert) user.cert = req.body.cert;
           if (req.body.email) user.email = req.body.email;
-          if (req.body.image) {
-            const imageByteArray = Buffer.from(req.body.image, 'base64');
-            user.image = imageByteArray;
-          }
       
           await user.save(); // Save the profile separately
           res.status(200).json("Profile updated successfully");

@@ -43,6 +43,7 @@ import DetailInfor from "./components/teacher/manageStudent/DetailInfor";
 import AddNews from "./components/teacher/manageNews/AddNews";
 import UpdatePosition from "./components/teacher/divideIntern/listPositions/UpdatePosition";
 import NewsDetail from "./components/teacher/manageNews/NewsDetail";
+import ProgressBar from "./components/common/progressbar/ProgressBar";
 
 const App = () => {
   return (
@@ -153,6 +154,7 @@ const App = () => {
               path="/teacher/mana-news/tc-news-detail"
               element={<NewsDetail />}
             />
+            <Route path="/test" element={<ProgressBar />} />
           </Routes>
         </UserProvider>
       </Router>

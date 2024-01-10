@@ -94,6 +94,7 @@ async function run() {
     //     const student = students[i];
     //     const hashedPassword = await hashPassword(`password${student._id}`);
 
+<<<<<<< HEAD
     //     const account = {
     //         "_id": student._id,
     //         "pass": hashedPassword,
@@ -101,6 +102,15 @@ async function run() {
     //     };
     //     accounts.push(account);
     // }
+=======
+        const account = {
+            "_id": student._id,
+            "pass": hashedPassword,
+             "role": 'student'
+        };
+        accounts.push(account);
+    }
+>>>>>>> 32e499f91a7ff112c6999311c4d0f8879fdc7625
 
     // await Accounts.insertMany(accounts);
     mongoose.connection.close();
