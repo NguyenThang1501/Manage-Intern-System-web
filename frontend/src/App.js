@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Login from "./components/login/Login";
-import Home from "./components/home/Home";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -44,6 +43,7 @@ import AddNews from "./components/teacher/manageNews/AddNews";
 import UpdatePosition from "./components/teacher/divideIntern/listPositions/UpdatePosition";
 import NewsDetail from "./components/teacher/manageNews/NewsDetail";
 import ProgressBar from "./components/common/progressbar/ProgressBar";
+import Home1 from "./components/home1/Home1";
 
 const App = () => {
   return (
@@ -56,7 +56,7 @@ const App = () => {
             roles={["student"]}
           /> */}
           <Routes>
-            <Route path="/" exact element={<Home />} />
+            <Route path="/" exact element={<Home1 />} />
             <Route path="/login" element={<Login />} />
 
             <Route path="/student" element={<StudentView />} />

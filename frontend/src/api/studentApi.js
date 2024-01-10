@@ -7,7 +7,7 @@ const studentApi = {
   },
 
   get: (id, token) => {
-    const url = `/teacher/teacher-mana/${id}`;
+    const url = `/teacher/student-mana/${id}`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,

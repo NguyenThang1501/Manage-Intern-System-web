@@ -194,7 +194,7 @@ const reportController = {
     
             const midresult = req.body.midresult;
             // Check if project and describe are present in the request body
-            if (!midresult || !finalresult) {
+            if (!midresult) {
                 return res.status(400).json({ error: 'Project and describe are required in the request body' });
             }
     
@@ -220,7 +220,7 @@ const reportController = {
             const finalresult = req.body.finalresult;
     
             // Check if project and describe are present in the request body
-            if (!midresult || !finalresult) {
+            if (!finalresult) {
                 return res.status(400).json({ error: 'Project and describe are required in the request body' });
             }
     
