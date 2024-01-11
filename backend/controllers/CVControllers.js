@@ -3,24 +3,36 @@ const CV = require("../models/CV");
 
 
 const CVController = {
-    // Verify token
     uploadCV: async (req, res) => {
-        const { originalname, buffer } = req.file;
-        const pdfId = req.account.id; // Assuming the ID is sent in the request body
-
-        const newCV = new CV({
-            _id: pdfId,
-            name: originalname,
-            data: buffer,
-        });
-
         try {
+            if (!req.file) {
+                // No file attached to the request
+                return res.status(400).json({
+                    message: 'No file attached to the request',
+                });
+            }
+    
+            const { originalname, buffer } = req.file;
+            const pdfId = req.account.id; // Assuming the ID is sent in the request body
+    
+            const newCV = new CV({
+                _id: pdfId,
+                name: originalname,
+                data: buffer,
+            });
+    
             const savedPDF = await newCV.save();
-            res.json(savedPDF);
+    
+            return res.status(201).json({
+                message: 'PDF uploaded successfully',
+                pdf: savedPDF,
+            });
         } catch (err) {
-            res.status(500).json({
+            console.error(err);  // Log the error for debugging purposes
+    
+            return res.status(500).json({
                 message: 'Failed to upload PDF',
-                error: err,
+                error: err.message,
             });
         }
     },
