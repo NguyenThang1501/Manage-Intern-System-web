@@ -8,5 +8,6 @@ router.post("/register", accountController.registerUser);
 router.post("/login", accountController.loginUser);
 // Log out
 router.post("/logout", middlewareController.verifyToken, accountController.userLogout);
-router.post("/updatePassword", middlewareController.verifyToken, accountController.updatePassword)
+
+router.put("/updatePassword", middlewareController.verifyToken, accountController.updatePassword);
 module.exports = router;

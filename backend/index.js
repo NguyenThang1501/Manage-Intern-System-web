@@ -16,6 +16,7 @@ const teacherRoute = require("./routes/teacherRouter")
 const resetRoute = require("./routes/resetRouter")
 const searchRoute = require("./routes/searchRouter")
 const CVRoute = require("./routes/CVRouter")
+const studentsRoute = require("./routes/studentRouter")
 
 const app = express();
 dotenv.config();
@@ -40,7 +41,8 @@ app.use("/", registerTimeRoute);
 app.use("/", teacherRoute);
 app.use("/", resetRoute);
 app.use("/", searchRoute);
-app.use("/", CVRoute)
+app.use("/", CVRoute);
+app.use("/", studentsRoute);
 
 app.listen(8000, () => {
     console.log("Server is running");

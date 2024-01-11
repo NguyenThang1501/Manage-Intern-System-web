@@ -32,10 +32,6 @@ router.post("/teacher/business-mana", middlewareController.verifyTokenAndAdmin, 
 
 // count number of business
 router.get('/teacher/business-count', businessController.getBusinessCount);
-router.post(
-  "/teacher/business-mana",
-  middlewareController.verifyTokenAndAdmin,
-  businessController.createABusiness
-);
+
 
 module.exports = router;
