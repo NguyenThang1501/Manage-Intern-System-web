@@ -2,6 +2,13 @@ const News = require('../models/News')
 const { format } = require('date-fns');
 const { vi } = require('date-fns/locale');
 const CV = require("../models/CV")
+
+const getFormattedDate = (dateString) => {
+    // Chuyển đổi từ string sang đối tượng Date
+    const dateObject = new Date(dateString);
+    return dateObject;
+};
+
 const newsController = {
 
     // thêm tin tuyển dụng, id của news sẽ cho tăng dần, ví dụ trong collection đang là id news18 rồi thì tin tiếp theo
@@ -45,8 +52,6 @@ const newsController = {
             }
         }
     },
-    
-    
     
     
     
@@ -94,7 +99,8 @@ const newsController = {
             const currentTime = new Date(); 
     
             const result = newsList.map(newsItem => {
-                const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
+                const endTime = getFormattedDate(newsItem.end_time);
+                const timeDifference = endTime.getTime() - currentTime.getTime();
                 const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24)); 
                 
                 // Access the populated business field to get the business name
@@ -125,7 +131,8 @@ const newsController = {
             const currentTime = new Date();
     
             const result = newsList.map(newsItem => {
-                const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
+                const endTime = getFormattedDate(newsItem.end_time);
+                const timeDifference = endTime.getTime() - currentTime.getTime();
                 const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
     
                 // Access the populated business field to get the business name
@@ -154,10 +161,10 @@ const newsController = {
             const currentTime = new Date();
     
             const result = newsList.map(newsItem => {
-                const timeDifference = newsItem.end_time.getTime() - currentTime.getTime();
+                const endTime = getFormattedDate(newsItem.end_time);
+                const timeDifference = endTime.getTime() - currentTime.getTime();
                 const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
     
-                // Access the populated business field to get the business name
                 const businessName = newsItem.business ? newsItem.business.name : null;
     
                 return {

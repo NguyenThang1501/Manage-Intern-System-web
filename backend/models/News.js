@@ -21,7 +21,7 @@ const newsSchema = new mongoose.Schema({
         require: true
     },
     end_time: {
-        type: Date,
+        type: String,
         require: true
     },
     describe: {
