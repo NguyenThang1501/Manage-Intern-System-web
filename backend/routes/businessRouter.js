@@ -13,6 +13,9 @@ router.put("/teacher/business-mana/:id", middlewareController.verifyTokenAndAdmi
 
 router.delete("/teacher/business-mana/:id", middlewareController.verifyTokenAndAdmin, businessController.deleteBusiness);
 
-router.post("/teacher/business-mana", middlewareController.verifyTokenAndAdmin, businessController.createABusiness)
+router.post("/teacher/business-mana", middlewareController.verifyTokenAndAdmin, businessController.createABusiness);
+
+// count number of business
+router.get('/teacher/business-count', businessController.getBusinessCount);
 
 module.exports = router;

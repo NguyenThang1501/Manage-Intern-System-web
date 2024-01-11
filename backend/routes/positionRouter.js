@@ -11,5 +11,9 @@ router.put("/teacher/update-positions/:id", middlewareController.verifyTokenAndA
 
 router.delete("/teacher/delete-positions/:id", middlewareController.verifyTokenAndAdmin, positionController.deletePosition);
 
-router.get("/checkTime", positionController.checkTime)
+router.get("/checkTime", positionController.checkTime);
+
+// count position
+router.get('/teacher/count-positions', positionController.getPositionCount);
+
 module.exports = router;

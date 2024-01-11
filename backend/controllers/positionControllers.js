@@ -127,6 +127,15 @@ const positionController = {
             res.status(500).json({ error: "Internal Server Error", details: err.message });
         }
     },
+    getPositionCount: async (req, res) => {
+        try {
+            const positionCount = await Position.countDocuments();
+            res.json({ count: positionCount });
+        } catch (error) {
+            console.error('Error fetching position count:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
 
 
 
