@@ -32,5 +32,6 @@ router.get(
 );
 // lấy tin tuyển dụng - chi tiết
 router.get("/mana-news-details/:id", newsController.getNews_details);
-
+router.post("/apply-job/:id", middlewareController.verifyToken, newsController.applied_job);
+router.get("/getCv-news/:id", middlewareController.verifyAdminAndBusiness, newsController.get_cv);
 module.exports = router;

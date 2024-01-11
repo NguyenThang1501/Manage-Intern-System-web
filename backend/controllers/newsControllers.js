@@ -2,7 +2,7 @@ const News = require('../models/News')
 const { format } = require('date-fns');
 const { vi } = require('date-fns/locale');
 const CV = require("../models/CV")
-
+const JSZip = require('jszip');
 const getFormattedDate = (dateString) => {
     // Chuyển đổi từ string sang đối tượng Date
     const dateObject = new Date(dateString);
@@ -90,7 +90,6 @@ const newsController = {
         }
     },    
 
-    
     getNews: async (req, res) => {
         try {
             // Use populate to get the business information for each news item
@@ -213,7 +212,7 @@ const newsController = {
         }
     },
     applied_job: async(req,res) => {
-        const newsId = req.params.newsId;
+        const newsId = req.params.id;
         const cvId = req.account.id;
 
         try {
@@ -239,6 +238,40 @@ const newsController = {
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Lỗi Server' });
+        }
+    },
+
+    get_cv: async(req,res) => {
+        const newsId = req.params.id;
+
+        try {
+            // Tìm tin tuyển dụng
+            const news = await News.findById(newsId).populate('applied_cv');
+
+            if (!news) {
+                return res.status(404).json({
+                    message: 'Tin tuyển dụng không tồn tại',
+                });
+            }
+
+            const appliedCVs = news.applied_cv;
+            for (const appliedCV of appliedCVs) {
+                const cv = await CV.findById(appliedCV._id);
+
+                if (!cv) {
+                    console.error(`CV not found for ID: ${appliedCV._id}`);
+                    continue;
+                }
+                res.setHeader('Content-Type', 'application/pdf');
+                res.setHeader('Content-Disposition', `attachment; filename=${appliedCV.name}`);
+                res.send(appliedCV.data);
+            }
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                message: 'Lỗi Server',
+                error: err.message,
+            });
         }
     }
     
