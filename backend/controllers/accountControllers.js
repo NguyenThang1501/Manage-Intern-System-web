@@ -76,7 +76,18 @@ const accountController = {
         res.clearCookie("accessToken");
         res.status(200).json("Logged out!");
     },
-
+    updatePassword: async (req, res) => {
+        const id = req.account.id;
+        const account = await Accounts.findById(id);
+        if (!account) {
+            res.status(200).json("Account doesn't exist")
+        }
+        const salt = bcrypt.genSaltSync(10);
+        const hashed = bcrypt.hashSync(req.body.pass, salt);
+        account.pass = hashed;
+        await account.save();
+        return res.status(200).json({ message: 'Password updated'});
+    }
 };
 
 
