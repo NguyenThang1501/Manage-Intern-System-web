@@ -3,9 +3,7 @@ const Student = require('../models/Student');
 const FinalReport = require('../models/FinalReport');
 const RegularReport = require("../models/WeeklyReport");
 const reportController = {
-    //thêm báo cáo hàng tuần cho sinh viên nếu id valid, báo cáo thêm vào sẽ được add thêm vào array báo cáo đã có,
-    // ví dụ như id 21002100 trong array reports đang có báo cáo của tuần 1,2,3 thêm 1 báo cáo nữa thì array đó sẽ thành 4 phần tử
-
+    
     weekly_report: async (req, res) => {
         try {
             const newReport = {
@@ -13,10 +11,7 @@ const reportController = {
                 work: req.body.report.work,
                 progress: req.body.report.progress,
             };
-    
             const studentId = req.account.id;
-    
-            // Check if the student with the provided ID exists
             const existingStudent = await Student.findById(studentId);
     
             if (!existingStudent) {

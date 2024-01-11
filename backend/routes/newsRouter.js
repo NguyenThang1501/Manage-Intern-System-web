@@ -7,8 +7,14 @@ const router = express.Router();
 // thêm tin tuyển dụng
 router.post(
   "/add_news",
-  middlewareController.verifyAdminAndBusiness,
+  middlewareController.verifyTokenAndAdmin,
   newsController.add_news
+);
+// công ty tự thêm tin tuyển dụng
+router.post(
+  "/business/add_news",
+  middlewareController.verifyAdminAndBusiness,
+  newsController.add_news_business
 );
 //lấy tất cả tin tuyển dụng
 router.get("/mana-news", newsController.getNews);

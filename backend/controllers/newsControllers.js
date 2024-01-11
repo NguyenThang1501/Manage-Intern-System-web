@@ -8,7 +8,51 @@ const newsController = {
 
     add_news: async (req, res) => {
         try {
-            const { business, position, title, startTime, endTime, describe, requirement, profit, address } = req.body;
+            const { business, position, endTime, describe, requirement, profit, address, daily_time } = req.body;
+    
+            // Generate a random 3-digit number
+            const randomThreeDigitNumber = Math.floor(100 + Math.random() * 900);
+    
+            // Generate the next news ID
+            const nextId = `news${randomThreeDigitNumber}`;
+    
+            // Create news data object
+            const newsData = {
+                _id: nextId,
+                business,
+                position,
+                end_time: endTime,
+                describe,
+                require: requirement,
+                profit,
+                address,
+                daily_time
+            };
+    
+            // Save recruitment news to the database
+            const recruitmentNews = await News.create(newsData);
+    
+            res.status(201).json({ message: 'Recruitment information saved successfully', recruitmentNews });
+        } catch (err) {
+            console.error(err);
+    
+            if (err.code === 11000) {
+                // Duplicate key error
+                res.status(409).json({ error: 'Duplicate Key Error', details: err.message });
+            } else {
+                res.status(500).json({ error: 'Internal Server Error', details: err.message });
+            }
+        }
+    },
+    
+    
+    
+    
+    
+    add_news_business: async (req, res) => {
+        try {
+            const business = req.account.id;
+            const { position, endTime, describe, requirement, profit, address } = req.body;
 
             const latestNews = await News.findOne({}, {}, { sort: { '_id': -1 } });
             let nextId;
@@ -140,7 +184,7 @@ const newsController = {
                 return res.status(404).json({ error: 'News not found' });
             }
     
-            const formattedEndTime = format(new Date(newsItem.end_time), 'dd MMMM yyyy', { locale: vi });
+            const formattedEndTime = format(new Date(newsItem.end_time), 'dd MM yyyy', { locale: vi });
     
             const result = {
                 id: newsItem.id,

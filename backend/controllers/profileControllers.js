@@ -47,8 +47,34 @@ const profileController = {
       if (req.body.sex) user.sex = req.body.sex;
       if (req.body.field) user.field = req.body.field;
       if (req.body.phone) user.phone = req.body.phone;
-      if (req.body.cert) user.cert = req.body.cert;
       if (req.body.email) user.email = req.body.email;
+      if (req.body.cert) {
+        if (req.body.cert == "Ielts"){
+          level = req.body.level;
+          if(level == "4.5 - 5.5" ) {
+            user.cert = 0.1
+          }
+          if(level == "5.5 - 6.5") {
+            user.cert = 0.2
+          }
+          if(level == "> 6.5" ) {
+            user.cert = 0.3
+          }
+        }
+        if (req.body.cert == "Toeic"){
+          level = req.body.level;
+          if(level == "350 - 550") {
+            user.cert = 0.1
+          }
+          if(level == "551 - 780") {
+            user.cert = 0.2
+          }
+          if(level == "> 780" ) {
+            user.cert = 0.3
+          }
+        }
+
+      }
 
       await user.save(); // Save the profile separately
       res.status(200).json("Profile updated successfully");
@@ -85,7 +111,6 @@ const profileController = {
   getAllProfiles: async (req, res) => {
     try {
       const accounts = await Accounts.find({ role: "student" }).populate("_id");
-
       const profiles = accounts.map((account) => ({
         _id: account._id._id,
         name: account._id.name,

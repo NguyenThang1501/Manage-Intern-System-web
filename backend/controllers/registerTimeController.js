@@ -4,7 +4,7 @@ const registerController = {
     try {
       // Extract start_time and end_time from req.body
       const { start_time, end_time } = req.body;
-  
+      const time = RegisterTime.find({})
       // Create a new register time
       const newRegisterTime = new RegisterTime({
         start_time,
