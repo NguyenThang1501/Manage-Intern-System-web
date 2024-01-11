@@ -9,7 +9,7 @@ import teacherApi from "../../../../api/teacherAPI";
 import { useUser } from "../../../../context/UserContext";
 import { useLocation } from "react-router-dom";
 
-const TopicReport = () => {
+const TopicIntern = () => {
   const [showIcon, setShowIcon] = useState(true);
   const location = useLocation();
   const [report, setReport] = useState({
@@ -40,14 +40,36 @@ const TopicReport = () => {
     setEditFinal(finalScore);
   };
 
-  const handleSaveMid = () => {
-    setMidScore(editMid);
-    setisEditingMid(false);
+  const handleSaveMid = async () => {
+    try {
+      setMidScore(editMid);
+      const dataMidScore = { midresult: editMid };
+      setisEditingMid(false);
+      const response = await teacherApi.updateMidScore(
+        userInfo.accessToken,
+        dataMidScore,
+        dataStudent._id
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("Failed ", error);
+    }
   };
 
-  const handleSaveFinal = () => {
-    setFinalScore(editFinal);
-    setIsEditingFinal(false);
+  const handleSaveFinal = async () => {
+    try {
+      setFinalScore(editFinal);
+      setIsEditingFinal(false);
+      const dataFinalScore = { finalresult: editFinal };
+      const response = await teacherApi.updateFinalScore(
+        userInfo.accessToken,
+        dataFinalScore,
+        dataStudent._id
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("Failed ", error);
+    }
   };
 
   useEffect(() => {
@@ -59,6 +81,8 @@ const TopicReport = () => {
         );
         console.log(response);
         setReport(response);
+        setMidScore(response.midresult);
+        setFinalScore(response.finalresult);
       } catch (error) {
         console.log("Failed", error);
       }
@@ -157,7 +181,7 @@ const TopicReport = () => {
                       <button onClick={handleSaveMid}>Lưu</button>
                     </div>
                   ) : (
-                    <td>{report.midresult}</td>
+                    <td>{midScore}</td>
                   )}
                 </td>
                 <td>
@@ -172,7 +196,7 @@ const TopicReport = () => {
                       <button onClick={handleSaveFinal}>Lưu</button>
                     </div>
                   ) : (
-                    <td>{report.finalresult}</td>
+                    <td>{finalScore}</td>
                   )}
                 </td>
               </tbody>
@@ -184,4 +208,4 @@ const TopicReport = () => {
   );
 };
 
-export default TopicReport;
+export default TopicIntern;

@@ -7,7 +7,7 @@ import Container from "react-bootstrap/esm/Container";
 import commonAPI from "../../../api/commonApi";
 import { useUser } from "../../../context/UserContext";
 
-const Intershippositons = () => {
+const Internshippositions = () => {
   const { userInfo } = useUser();
   const [positions, setPositions] = useState([]);
 
@@ -66,4 +66,4 @@ const Intershippositons = () => {
   );
 };
 
-export default Intershippositons;
+export default Internshippositions;

@@ -15,6 +15,8 @@ const RegisterInschool = () => {
   const { userInfo } = useUser();
   const [showTable, setShowTable] = useState(false);
 
+  const [error, setError] = useState();
+
   const [allPositions, setAllPositions] = useState([]);
   const [studentAspiration, setStudentAspiration] = useState({
     NV1: "",
@@ -37,6 +39,7 @@ const RegisterInschool = () => {
         setAllPositions(response);
       } catch (error) {
         console.log("Failed to fetch positions infor ", error);
+        setError("Chưa đến thời gian đăng ký");
       }
     };
     fetchPotitions();
@@ -83,86 +86,90 @@ const RegisterInschool = () => {
       <SideBar />
       <Container>
         <div className="nv-page">
-          <Col sm={10} className="list-form">
-            <div className="title-cp">Đăng ký nguyện vọng</div>
-            <div className="line-form">
-              <Form>
-                <Form.Group as={Row} className="mb-5">
-                  <Form.Label column sm={4}>
-                    Nguyện vọng 1 (*)
-                  </Form.Label>
-                  <Col sm={5}>
-                    <Form.Select
-                      defaultValue={aspiration[0]._id}
-                      onChange={(e) =>
-                        setStudentAspiration({
-                          ...studentAspiration,
-                          NV1: e.target.value,
-                        })
-                      }
-                    >
-                      {allPositions.map((item) => (
-                        <option key={item._id} value={item._id}>
-                          {item._id}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </Col>
-                </Form.Group>
+          {error ? (
+            <p>{error}</p>
+          ) : (
+            <Col sm={10} className="list-form">
+              <div className="title-cp">Đăng ký nguyện vọng</div>
+              <div className="line-form">
+                <Form>
+                  <Form.Group as={Row} className="mb-5">
+                    <Form.Label column sm={4}>
+                      Nguyện vọng 1 (*)
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Select
+                        defaultValue={aspiration[0]._id}
+                        onChange={(e) =>
+                          setStudentAspiration({
+                            ...studentAspiration,
+                            NV1: e.target.value,
+                          })
+                        }
+                      >
+                        {allPositions.map((item) => (
+                          <option key={item._id} value={item._id}>
+                            {item._id}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Col>
+                  </Form.Group>
 
-                <Form.Group as={Row} className="mb-5">
-                  <Form.Label column sm={4}>
-                    Nguyện vọng 2 (*)
-                  </Form.Label>
-                  <Col sm={5}>
-                    <Form.Select
-                      defaultValue={aspiration[1]._id}
-                      onChange={(e) =>
-                        setStudentAspiration({
-                          ...studentAspiration,
-                          NV2: e.target.value,
-                        })
-                      }
-                    >
-                      {allPositions.map((item) => (
-                        <option key={item._id} value={item._id}>
-                          {item._id}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </Col>
-                </Form.Group>
+                  <Form.Group as={Row} className="mb-5">
+                    <Form.Label column sm={4}>
+                      Nguyện vọng 2 (*)
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Select
+                        defaultValue={aspiration[1]._id}
+                        onChange={(e) =>
+                          setStudentAspiration({
+                            ...studentAspiration,
+                            NV2: e.target.value,
+                          })
+                        }
+                      >
+                        {allPositions.map((item) => (
+                          <option key={item._id} value={item._id}>
+                            {item._id}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Col>
+                  </Form.Group>
 
-                <Form.Group as={Row} className="mb-5">
-                  <Form.Label column sm={4}>
-                    Nguyện vọng 3 (*)
-                  </Form.Label>
-                  <Col sm={5}>
-                    <Form.Select
-                      defaultValue={aspiration[2]._id}
-                      onChange={(e) =>
-                        setStudentAspiration({
-                          ...studentAspiration,
-                          NV3: e.target.value,
-                        })
-                      }
-                    >
-                      {allPositions.map((item) => (
-                        <option key={item._id} value={item._id}>
-                          {item._id}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </Col>
-                </Form.Group>
-              </Form>
+                  <Form.Group as={Row} className="mb-5">
+                    <Form.Label column sm={4}>
+                      Nguyện vọng 3 (*)
+                    </Form.Label>
+                    <Col sm={5}>
+                      <Form.Select
+                        defaultValue={aspiration[2]._id}
+                        onChange={(e) =>
+                          setStudentAspiration({
+                            ...studentAspiration,
+                            NV3: e.target.value,
+                          })
+                        }
+                      >
+                        {allPositions.map((item) => (
+                          <option key={item._id} value={item._id}>
+                            {item._id}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Col>
+                  </Form.Group>
+                </Form>
 
-              <CustomButton
-                buttonText={"Ghi nhận"}
-                onClick={handleButtonClick}
-              />
-            </div>
-          </Col>
+                <CustomButton
+                  buttonText={"Ghi nhận"}
+                  onClick={handleButtonClick}
+                />
+              </div>
+            </Col>
+          )}
         </div>
 
         <div className="table-list">{showTable && <TableList />}</div>

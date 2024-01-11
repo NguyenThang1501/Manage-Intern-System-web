@@ -42,41 +42,6 @@ const ProcessReport = () => {
     });
   };
 
-  // const reportProcess = [
-  //   {
-  //     MaSinhVien: "12345",
-  //     HoTen: "Nguyễn Thị Thắng",
-  //     SDT: "0123456789",
-  //     Lop: "K66A5",
-  //     NganhHoc: "Khoa học dữ liệu",
-  //     CPA: "2.0",
-  //     Congty: "Viettel",
-  //     Vitri: "Data Engineer",
-  //     Detai: "Mô hình xử lý big data",
-  //   },
-  //   {
-  //     MaSinhVien: "12345",
-  //     HoTen: "Nguyễn Thị Thắng",
-  //     SDT: "0123456789",
-  //     Lop: "K66A5",
-  //     NganhHoc: "Khoa học dữ liệu",
-  //     CPA: "2.0",
-  //     Congty: "Viettel",
-  //     Vitri: "Data Engineer",
-  //     Detai: "Mô hình xử lý big data",
-  //   },
-  //   {
-  //     MaSinhVien: "12345",
-  //     HoTen: "Nguyễn Thị Thắng",
-  //     SDT: "0123456789",
-  //     Lop: "K66A5",
-  //     NganhHoc: "Khoa học dữ liệu",
-  //     CPA: "2.0",
-  //     Congty: "Viettel",
-  //     Vitri: "Data Engineer",
-  //     Detai: "Mô hình xử lý big data",
-  //   },
-  // ];
   return (
     <div>
       <SideBar2 />

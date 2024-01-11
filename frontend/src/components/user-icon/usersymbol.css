@@ -3,7 +3,7 @@
   display: flex;
   top: 20px;
   right: 30px;
-  width: 180px;
+  width: fit-content;
   padding-left: 10px;
   border-radius: 10px;
   background-color: #1c1e53;

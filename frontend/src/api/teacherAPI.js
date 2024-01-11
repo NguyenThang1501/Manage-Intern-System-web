@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const teacherApi = {
   getStudentInfor: (token) => {
-    const url = `/teacher/teacher-mana`;
+    const url = `/teacher/student-mana`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,
@@ -108,6 +108,33 @@ const teacherApi = {
       },
     });
   },
+
+  updateMidScore: (token, data, id) => {
+    const url = `/teacher/mana-intern/update-mid-score/${id}`;
+    return axiosClient.put(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  updateFinalScore: (token, data, id) => {
+    const url = `/teacher/mana-intern/update-final-score/${id}`;
+    return axiosClient.put(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getTeacherInfor: (token) => {
+    const url = `/teacher/profile`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`
+      }
+    })
+  }
 };
 
 export default teacherApi;
