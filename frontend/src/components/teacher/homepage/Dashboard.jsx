@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StudentsChart from './StudentsChart';
 // import RecruitmentChart from './RecruitmentChart';
-import './styles.css';
+import './dashboard.css';
 
 const Dashboard = () => {
   const [studentsCount, setStudentsCount] = useState(0);

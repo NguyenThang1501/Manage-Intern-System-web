@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import CustomButton from "../button/CustomButton";
 import "./newDetail.css";
 import commonAPI from "../../../api/commonApi";
+import ApplyButton from "./applyButton";
+
 
 const NewsJobDetail = ({ NewsID }) => {
   const [newsDetail, setNewsDetail] = useState([]);
@@ -44,7 +46,8 @@ const NewsJobDetail = ({ NewsID }) => {
               <div className="time-position-bs">
                 Hạn nộp hồ sơ: {newsDetail.end_time}
               </div>
-              <button className="button-bs-news">Ứng tuyển ngay</button>
+              {/* <button className="button-bs-news">Ứng tuyển ngay</button> */}
+              <ApplyButton />
             </div>
             <div className="content-bs-news">
               <h5>Chi tiết tin tuyển dụng</h5>
@@ -77,7 +80,8 @@ const NewsJobDetail = ({ NewsID }) => {
               </div>
             </div>
             <div>
-              <button className="button-bs-news-2">Ứng tuyển ngay</button>
+              {/* <button className="button-bs-news-2">Ứng tuyển ngay</button> */}
+              <ApplyButton />
             </div>
           </div>
         </Col>
