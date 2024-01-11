@@ -28,17 +28,14 @@ router.delete(
   businessController.deleteBusiness
 );
 
-<<<<<<< Updated upstream
 router.post("/teacher/business-mana", middlewareController.verifyTokenAndAdmin, businessController.createABusiness);
 
 // count number of business
 router.get('/teacher/business-count', businessController.getBusinessCount);
-=======
 router.post(
   "/teacher/business-mana",
   middlewareController.verifyTokenAndAdmin,
   businessController.createABusiness
 );
->>>>>>> Stashed changes
 
 module.exports = router;
