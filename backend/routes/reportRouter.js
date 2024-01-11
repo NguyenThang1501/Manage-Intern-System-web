@@ -19,8 +19,6 @@ router.get("/teacher-intern/final-report/:id", middlewareController.verifyTokenA
 router.get("/student-intern/final-report", middlewareController.verifyToken, reportController.get_self_finalReport)
 // sửa tên đề tài và mô tả cho sinh viên
 router.put("/student/update-project",middlewareController.verifyToken,reportController.updateProject)
-// sửa điểm giữa kỳ cho sinh viên
-router.put("/teacher/mana-intern/update-mid-score/:id",middlewareController.verifyTokenAndAdmin,reportController.updateMidScore)
-// sửa điểm cuối kỳ cho sinh viên
-router.put("/teacher/mana-intern/update-final-score/:id",middlewareController.verifyTokenAndAdmin,reportController.updateFinalScore)
+// sửa điểm cho sinh viên
+router.put("/teacher/mana-intern/update-score/:id",middlewareController.verifyTokenAndAdmin,reportController.updateScore)
 module.exports = router;

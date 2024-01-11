@@ -180,17 +180,8 @@ const reportController = {
             if (!final_report) {
                 return res.status(404).json({ error: 'Final Report not found' });
             }
-    
-            const project = req.body.project;
-            const describe = req.body.describe;
-    
-            // Check if project and describe are present in the request body
-            if (!project || !describe) {
-                return res.status(400).json({ error: 'Project and describe are required in the request body' });
-            }
-    
-            final_report.project = project;
-            final_report.describe = describe;
+            if (req.body.project) final_report.project = req.body.project;
+            if (req.body.describe) final_report.describe = req.body.describe;
     
             await final_report.save();
     
@@ -200,7 +191,7 @@ const reportController = {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
     },
-    updateMidScore: async (req, res) => {
+    updateScore: async (req, res) => {
         try {
             const id = req.params.id; 
             const final_report = await FinalReport.findById(id);
@@ -208,40 +199,8 @@ const reportController = {
             if (!final_report) {
                 return res.status(404).json({ error: 'Final Report not found' });
             }
-    
-            const midresult = req.body.midresult;
-            // Check if project and describe are present in the request body
-            if (!midresult) {
-                return res.status(400).json({ error: 'Project and describe are required in the request body' });
-            }
-    
-            final_report.midresult = midresult;
-    
-            await final_report.save();
-    
-            return res.status(200).json({ message: 'Final Report updated successfully', final_report });
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-    },
-    updateFinalScore: async (req, res) => {
-        try {
-            const id = req.params.id; 
-            const final_report = await FinalReport.findById(id);
-    
-            if (!final_report) {
-                return res.status(404).json({ error: 'Final Report not found' });
-            }
-    
-            const finalresult = req.body.finalresult;
-    
-            // Check if project and describe are present in the request body
-            if (!finalresult) {
-                return res.status(400).json({ error: 'Project and describe are required in the request body' });
-            }
-    
-            final_report.finalresult = finalresult;
+            if (req.body.midresult) final_report.midresult = req.body.midresult;
+            if (req.body.finalresult) final_report.finalresult = req.body.finalresult;
     
             await final_report.save();
     
