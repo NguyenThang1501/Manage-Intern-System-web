@@ -33,7 +33,7 @@ const accountController = {
                 role: user.role
             },
             process.env.JWT_ACCESS_KEY,
-            { expiresIn: "3600s" }
+            { expiresIn: "7d" }
         );
     },
 
