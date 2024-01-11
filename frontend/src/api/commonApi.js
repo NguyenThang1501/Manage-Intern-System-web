@@ -15,14 +15,18 @@ const commonAPI = {
     });
   },
 
-  getNewsByID: (_id) => {
-    const url = `/mana-news/${_id}`;
-    return axiosClient.get(url);
-  },
-
   getAllNews: () => {
     const url = `/mana-news`;
     return axiosClient.get(url);
+  },
+
+  getBusinessInfor: (token, id) => {
+    const url = `/teacher/business-mana/${id}`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
   },
 };
 

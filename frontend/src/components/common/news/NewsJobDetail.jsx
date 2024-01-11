@@ -5,13 +5,13 @@ import CustomButton from "../button/CustomButton";
 import "./newDetail.css";
 import commonAPI from "../../../api/commonApi";
 
-const NewsJobDetail = () => {
+const NewsJobDetail = ({ NewsID }) => {
   const [newsDetail, setNewsDetail] = useState([]);
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
       try {
-        let response = await commonAPI.getNewsDetail("news0");
+        let response = await commonAPI.getNewsDetail(NewsID);
         console.log(response);
         setNewsDetail(response);
       } catch (error) {
@@ -50,7 +50,7 @@ const NewsJobDetail = () => {
               <h5>Chi tiết tin tuyển dụng</h5>
               <div className="describe-job-bs">
                 <h6>Mô tả công việc</h6>
-                <p>{news.MoTa}</p>
+                <p>{newsDetail.describe}</p>
               </div>
 
               <div className="describe-job-bs">
@@ -60,7 +60,7 @@ const NewsJobDetail = () => {
 
               <div className="describe-job-bs">
                 <h6>Quyền lợi</h6>
-                <p>{news.QuyenLoi}</p>
+                <p>{newsDetail.profit}</p>
               </div>
 
               <div className="describe-job-bs">
@@ -69,7 +69,11 @@ const NewsJobDetail = () => {
                 <h6>Thời gian làm việc</h6>
                 <p>{news.ThoiGianLam}</p>
                 <h6>Cách ứng tuyển</h6>
-                <p>{news.CachUngTuyen}</p>
+                <p>
+                  {
+                    "Ứng viên nộp hồ sơ trực tuyến bằng cách bấm Ứng tuyển ngay dưới đây."
+                  }
+                </p>
               </div>
             </div>
             <div>

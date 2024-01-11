@@ -29,8 +29,16 @@ const ListRegister = () => {
     fetchRegisterList();
   }, []);
 
-  const handleAllotButton = () => {
-    setShowProgressbar(true);
+  const handleAllotInternClick = async () => {
+    console.log(userInfo);
+
+    try {
+      const response = await teacherApi.runMatchingIntern(userInfo.accessToken);
+      console.log(response);
+    } catch (error) {
+      console.log(userInfo);
+      console.log("Failed  ", error);
+    }
   };
 
   return (
@@ -41,7 +49,7 @@ const ListRegister = () => {
           <div className="bt-allot-intern">
             <CustomButton
               buttonText={"Thực hiện phân công thực tập cho sinh viên"}
-              onClick={() => setShowProgressbar(true)}
+              onClick={() => handleAllotInternClick()}
             />
             <ProgressBar
               show={showProgressbar}
@@ -80,9 +88,9 @@ const ListRegister = () => {
                   <td>{item.field}</td>
                   <td>{item.cpa}</td>
                   <td>{item.cert}</td>
-                  <td>{item.promised_positions[0][0]._id}</td>
-                  <td>{item.promised_positions[0][1]._id}</td>
-                  <td>{item.promised_positions[0][2]._id}</td>
+                  <td>{item.promised_positions[0][0]}</td>
+                  <td>{item.promised_positions[0][1]}</td>
+                  <td>{item.promised_positions[0][2]}</td>
                 </tr>
               ))}
             </tbody>

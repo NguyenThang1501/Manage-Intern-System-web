@@ -9,6 +9,7 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/Col";
 import commonAPI from "../../../api/commonApi";
+import NewsBoxStudent from "./NewsBoxStudent";
 
 const NewsIntership = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const NewsIntership = () => {
               {[0, 1].map((colIndex) => (
                 <Col key={colIndex}>
                   {allNews[index * 2 + colIndex] && (
-                    <NewsBox
+                    <NewsBoxStudent
                       link={"/student/news-internship/st-news-detail"}
                       data={allNews[index * 2 + colIndex]}
                     />
@@ -45,24 +46,7 @@ const NewsIntership = () => {
               ))}
             </Row>
           ))}
-          {/* <Row>
-            <Col>
-              <NewsBox link={"/student/news-internship/st-news-detail"} />
-            </Col>
-            <Col>
-              <NewsBox link={"/student/news-internship/st-news-detail"} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <NewsBox link={"/student/news-internship/st-news-detail"} />
-            </Col>
-            <Col>
-              <NewsBox link={"/student/news-internship/st-news-detail"} />
-            </Col>
-          </Row> */}
         </div>
-        {/* <NewsPagination className="n-pagination" /> */}
       </Container>
     </div>
   );

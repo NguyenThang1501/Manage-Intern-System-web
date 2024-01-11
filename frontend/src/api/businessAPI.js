@@ -25,6 +25,14 @@ const businessApi = {
       },
     });
   },
+  getAllNews: (token) => {
+    const url = `/mana-news/self-business`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default businessApi;

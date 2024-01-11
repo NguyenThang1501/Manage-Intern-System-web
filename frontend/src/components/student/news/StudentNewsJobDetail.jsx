@@ -1,14 +1,18 @@
-import React from 'react'
-import SideBar from '../../common/sidebar/SideBar'
-import NewsJobDetail from '../../common/news/NewsJobDetail'
+import React from "react";
+import SideBar from "../../common/sidebar/SideBar";
+import NewsJobDetail from "../../common/news/NewsJobDetail";
+import { useLocation } from "react-router-dom";
 
 const StudentNewsJobDetail = () => {
+  const location = useLocation();
+  const newsID = location.state ? location.state.idNews : null;
+
   return (
     <div>
-        <SideBar/>
-        <NewsJobDetail/>
+      <SideBar />
+      <NewsJobDetail NewsID={newsID} />
     </div>
-  )
-}
+  );
+};
 
-export default StudentNewsJobDetail
+export default StudentNewsJobDetail;

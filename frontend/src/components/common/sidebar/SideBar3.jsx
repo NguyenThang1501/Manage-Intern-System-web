@@ -28,7 +28,7 @@ const SideBar3 = ({ children }) => {
     <div>
       <div>
         <Usersymbol
-          userName={"Thang"}
+          userName={"Company"}
           userRole={"bussiness"}
           onClick={() => {
             localStorage.removeItem("token");

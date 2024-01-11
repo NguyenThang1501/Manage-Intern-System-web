@@ -131,10 +131,19 @@ const teacherApi = {
     const url = `/teacher/profile`;
     return axiosClient.get(url, {
       headers: {
-        token: `Bearer ${token}`
-      }
-    })
-  }
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  runMatchingIntern: (token) => {
+    const url = `/internship-mana/position-list/matching-request`;
+    return axiosClient.post(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default teacherApi;
