@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { FaBars, FaRegListAlt, FaLockOpen } from "react-icons/fa";
@@ -14,6 +14,8 @@ import { IoBusinessSharp } from "react-icons/io5";
 import SubMenu from "./SubMenu";
 import Usersymbol from "../../user-icon/Usersymbol";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../context/UserContext";
+import teacherApi from "../../../api/teacherAPI";
 
 const menuItem = [
   {
@@ -80,11 +82,28 @@ const SideBar2 = ({ children }) => {
   const showSubnav = () => setSubnav(!subnav);
   const navigate = useNavigate();
 
+  const [teacherInfor, setTeacherInfor] = useState([]);
+  const { userInfo } = useUser();
+
+  useEffect(() => {
+    const fetchTeacherInfor = async () => {
+      try {
+        let response = await teacherApi.getTeacherInfor(userInfo.accessToken);
+        console.log(response);
+        let data = response;
+        setTeacherInfor(data);
+      } catch (error) {
+        console.log("Failed to fetch teacher infor ", error);
+      }
+    };
+    fetchTeacherInfor();
+  }, []);
+
   return (
     <div>
       <div>
         <Usersymbol
-          userName={"Thang"}
+          userName={teacherInfor.name}
           userRole={"teacher"}
           onClick={() => {
             localStorage.removeItem("token");

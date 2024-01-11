@@ -3,24 +3,24 @@ import SideBar2 from "../../common/sidebar/SideBar2";
 import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
 import Container from "react-bootstrap/esm/Container";
+import teacherApi from "../../../api/teacherAPI";
 
 const TeacherInfor = () => {
-  const { user } = useUser();
-  const [studentInfor, setStudentInfor] = useState([]);
+  const { userInfo } = useUser();
+  const [teacherInfor, setTeacherInfor] = useState([]);
 
-  console.log(user);
   useEffect(() => {
-    const fetchStudentInfor = async () => {
+    const fetchTeacherInfor = async () => {
       try {
-        let response = await studentApi.getAll();
+        let response = await teacherApi.getTeacherInfor(userInfo.accessToken);
         console.log(response);
-        let data = response[0];
-        setStudentInfor(data);
+        let data = response;
+        setTeacherInfor(data);
       } catch (error) {
-        console.log("Failed to fetch student infor ", error);
+        console.log("Failed to fetch teacher infor ", error);
       }
     };
-    fetchStudentInfor();
+    fetchTeacherInfor();
   }, []);
 
   return (
@@ -40,58 +40,15 @@ const TeacherInfor = () => {
                   <tbody>
                     <tr>
                       <td className="field">Họ và tên</td>
-                      <td className="value">{studentInfor.HoTen}</td>
+                      <td className="value">{teacherInfor.name}</td>
                     </tr>
                     <tr>
-                      <td className="field">Giới tính</td>
-                      <td className="value">{studentInfor.GioiTinh}</td>
+                      <td className="field">Chức vụ</td>
+                      <td className="value">{teacherInfor.position}</td>
                     </tr>
                     <tr>
-                      <td className="field">Ngày sinh</td>
-                      <td className="value">{studentInfor.Ngaysinh}</td>
-                    </tr>
-                    <tr>
-                      <td className="field">Địa chỉ</td>
-                      <td className="value">{studentInfor.DiaChi}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table className="table table-profile">
-                  <thead>
-                    <tr>
-                      <th colSpan="2">BASIC INFORMATION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="field">Mã sinh viên</td>
-                      <td className="value">{studentInfor.MaSinhVien}</td>
-                    </tr>
-                    <tr>
-                      <td className="field">Email</td>
-                      <td className="value">123@hus.edu.vn</td>
-                    </tr>
-                    <tr>
-                      <td className="field">Khoa</td>
-                      <td className="value">
-                        {studentInfor.KhoaID}
-                        Toán - Cơ - Tin học
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="field">Ngành học</td>
-                      <td className="value">Khoa học dữ liệu</td>
-                    </tr>
-                    <tr>
-                      <td className="field">GPA</td>
-                      <td className="value">{studentInfor.GPA}</td>
-                    </tr>
-                    <tr>
-                      <td className="field">Giáo viên quản lý</td>
-                      <td className="value">
-                        {studentInfor.GiaoVienQuanLiID}
-                        Nguyễn Văn B
-                      </td>
+                      <td className="field">Lĩnh vực nghiên cứu</td>
+                      <td className="value">{teacherInfor.field}</td>
                     </tr>
                   </tbody>
                 </table>

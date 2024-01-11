@@ -2,10 +2,7 @@
 const Profile = require("../models/Student");
 const Accounts = require("../models/Account");
 const Student = require("../models/Student");
-const fs = require('fs');
-const util = require('util');
 
-const readFile = util.promisify(fs.readFile);
 const profileController = {
   getProfile: async (req, res) => {
     try {
@@ -104,40 +101,27 @@ const profileController = {
 
   createProfile: async (req, res) => {
     try {
-      const userId = req.params.id;
-      const requestingUserId = req.user.id;
+        const newStudent = {
+            _id: req.body._id,
+            name: req.body.name,
+            birthday: req.body.birthday,
+            sex: req.body.sex,
+            field: req.body.field,
+            major: req.body.major,
+            email: req.body.email,
+            phone: req.body.phone,
+            cpa: req.body.cpa,
+            cert: req.body.cert,
+        };
 
-      const user = await Accounts.findById(userId).populate("profile");
-      if (!user) {
-        return res.status(404).json("User not found");
-      }
+        const createdStudent = await Student.create(newStudent);
 
-      if (user.profile) {
-        return res.status(400).json("User already has a profile");
-      }
-
-      const newProfile = {
-        fullName: req.body.fullName,
-        studentId: req.body.studentId,
-        dateOfBirth: req.body.dateOfBirth,
-        gender: req.body.gender,
-        faculty: req.body.faculty,
-        major: req.body.major,
-        gpa: req.body.gpa,
-        advisor: req.body.advisor,
-      };
-
-      const createdProfile = await Profile.create(newProfile);
-      user.profile = createdProfile._id;
-      await user.save();
-
-      res.status(201).json("Profile created successfully");
+        return res.status(201).json({ message: "Student created successfully", student: createdStudent });
     } catch (err) {
-      res
-        .status(500)
-        .json({ error: "Internal Server Error", chiTiet: err.message });
+        return res.status(500).json({ error: "Internal Server Error", chiTiet: err.message });
     }
-  }
+}
+
 };
 
 module.exports = profileController;

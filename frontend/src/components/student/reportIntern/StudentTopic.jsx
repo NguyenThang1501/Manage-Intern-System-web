@@ -8,14 +8,9 @@ import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
 import "./studentReport.css";
 
-const TopicReport = () => {
+const StudentTopic = () => {
   const [showIcon, setShowIcon] = useState(true);
-  const [report, setReport] = useState({
-    topic:
-      "Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực.",
-    decribe:
-      "Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực. Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực. Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực. Nghiên cứu, đánh giá các giải pháp gọt bằng dữ liệu ứng dụng trong Radar và điều khiển hoả lực.",
-  });
+  const [report, setReport] = useState({});
 
   const { userInfo } = useUser();
   const [dataStudent, setDataStudent] = useState([]);
@@ -37,7 +32,20 @@ const TopicReport = () => {
       }
     };
     fetchStudentResultIntern();
-  });
+  }, []);
+
+  useEffect(() => {
+    const fetchStudentTopic = async () => {
+      try {
+        let response = await studentApi.getTopicIntern(userInfo.accessToken);
+        console.log(response);
+        setReport(response);
+      } catch (error) {
+        console.log("Failed ", error);
+      }
+    };
+    fetchStudentTopic();
+  }, []);
 
   const handleEditTopic = () => {
     setIsEditingTopic(true);
@@ -122,7 +130,7 @@ const TopicReport = () => {
                       <button onClick={handleSaveTopic}>Lưu</button>
                     </div>
                   ) : (
-                    <td>{report.topic}</td>
+                    <td>{report.project}</td>
                   )}
                 </td>
                 {/* <td>
@@ -148,7 +156,6 @@ const TopicReport = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* <td>{report.decribe}</td> */}
                 <td>
                   {isEditingDecribe ? (
                     <div>
@@ -161,7 +168,7 @@ const TopicReport = () => {
                       <button onClick={handleSaveClick}>Lưu</button>
                     </div>
                   ) : (
-                    <td>{report.decribe}</td>
+                    <td>{report.describe}</td>
                   )}
                 </td>
               </tbody>
@@ -179,8 +186,8 @@ const TopicReport = () => {
                 </tr>
               </thead>
               <tbody>
-                <td>10</td>
-                <td>10</td>
+                <td>{report.midresult}</td>
+                <td>{report.finalresult}</td>
               </tbody>
             </Table>
           </Col>
@@ -190,4 +197,4 @@ const TopicReport = () => {
   );
 };
 
-export default TopicReport;
+export default StudentTopic;

@@ -74,6 +74,15 @@ const studentApi = {
       },
     });
   },
+
+  getTopicIntern: (token) => {
+    const url = `/student-intern/final-report`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default studentApi;
