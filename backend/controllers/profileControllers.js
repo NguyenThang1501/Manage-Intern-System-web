@@ -2,7 +2,7 @@
 const Profile = require("../models/Student");
 const Accounts = require("../models/Account");
 const Student = require("../models/Student");
-
+const bcrypt = require("bcrypt");
 const profileController = {
   getProfile: async (req, res) => {
     try {
@@ -138,8 +138,15 @@ const profileController = {
             cpa: req.body.cpa,
             cert: req.body.cert,
         };
-
+        const salt = bcrypt.genSaltSync(10);
+        const hashed = bcrypt.hashSync(`password${req.body._id}`, salt);
+        const newAccount = {
+          _id: req.body._id,
+          pass: hashed,
+          role: "student"
+        }
         const createdStudent = await Student.create(newStudent);
+        await Accounts.create(newAccount)
 
         return res.status(201).json({ message: "Student created successfully", student: createdStudent });
     } catch (err) {
