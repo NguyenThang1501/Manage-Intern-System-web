@@ -5,26 +5,10 @@ const moment = require('moment');
 const positionController = {
     getAllPositions: async (req, res) => {
         try {
-            if (req.account.role == "student") {
-                const currentTime = moment();
-                const registerTimes = await RegisterTime.find({
-                    start_time: { $lte: currentTime },
-                    end_time: { $gte: currentTime },
-                });
 
-                if (registerTimes.length === 0) {
-                    // Nếu không có khoảng thời gian phù hợp, trả về thông báo
-                    return res.status(400).json({ message: 'Ngoài thời hạn đăng ký' });
-                }
+            const positions = await Position.find();
+            res.status(200).json(positions);
 
-                // Nếu có thời gian phù hợp, lấy danh sách vị trí
-                const positions = await Position.find();
-                res.status(200).json(positions);
-            }
-            if (req.account.role == "teacher") {
-                const positions = await Position.find();
-                res.status(200).json(positions);
-            }
         } catch (err) {
             res.status(500).json({ error: 'Internal Server Error', details: err.message });
         }

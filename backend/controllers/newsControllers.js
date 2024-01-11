@@ -1,6 +1,7 @@
 const News = require('../models/News')
 const { format } = require('date-fns');
 const { vi } = require('date-fns/locale');
+const CV = require("../models/CV")
 const newsController = {
 
     // thêm tin tuyển dụng, id của news sẽ cho tăng dần, ví dụ trong collection đang là id news18 rồi thì tin tiếp theo
@@ -204,6 +205,35 @@ const newsController = {
             return res.status(500).json({ error: 'Internal Server Error' });
         }
     },
+    applied_job: async(req,res) => {
+        const newsId = req.params.newsId;
+        const cvId = req.account.id;
+
+        try {
+            const news = await News.findById(newsId);
+            if (!news) {
+                return res.status(404).json({ error: 'Tin tức không tồn tại' });
+            }
+            const cv = await CV.findById(cvId);
+            if (!cv) {
+                return res.status(404).json({ error: 'CV không tồn tại' });
+            }
+            const appliedCVInfo = {
+                _id: cvId,
+                name: cv.name,
+            };
+            news.applied_cv.push(appliedCVInfo);
+
+            const updatedNews = await news.save();
+            res.status(200).json({
+                message: 'CV đã được áp dụng cho tin tức thành công',
+                updatedNews,
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Lỗi Server' });
+        }
+    }
     
 };
 

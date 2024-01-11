@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Business = require("./Business")
+const CV = require("./CV")
 // Thêm useNewUrlParser và useUnifiedTopology vào options
 mongoose.connect('mongodb://0.0.0.0:27017/web', {
     useNewUrlParser: true,
@@ -42,7 +43,11 @@ const newsSchema = new mongoose.Schema({
     daily_time: {
         type: String,
         require :true
-    }
+    },
+    applied_cv: [{
+        type: String,
+        ref: CV
+    }]
 });
 
 const News = mongoose.model("News", newsSchema);
