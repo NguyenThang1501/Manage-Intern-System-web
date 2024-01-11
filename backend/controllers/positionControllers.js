@@ -29,6 +29,21 @@ const positionController = {
             res.status(500).json({ error: 'Internal Server Error', details: err.message });
         }
     },
+    checkTime: async (req, res) => {
+        const currentTime = moment();
+        const registerTimes = await RegisterTime.find({
+            start_time: { $lte: currentTime },
+            end_time: { $gte: currentTime },
+        });
+
+        if (registerTimes.length === 0) {
+            // Nếu không có khoảng thời gian phù hợp, trả về thông báo
+            return res.status(400).json({ message: 'False' });
+        }
+        else {
+            return res.status(400).json({ message: 'True' });
+        }
+    },
 
     postAPosition: async (req, res) => {
         try {

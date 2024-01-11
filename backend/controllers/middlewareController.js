@@ -21,7 +21,7 @@ const middlewareController = {
                 return res.status(401).json("You're not authenticated");
             }
         } catch (err) {
-            return res.status(403).json("Error");
+            return res.status(403).json(err);
         }
     },
 

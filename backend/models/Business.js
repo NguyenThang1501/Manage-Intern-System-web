@@ -14,10 +14,6 @@ const businessSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    field: {
-        type: String,
-        require: true
-    },
     describe: {
         type: String,
         require: true
@@ -26,7 +22,10 @@ const businessSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    website: {
+    hr: {
+        type: String
+    },
+    email: {
         type: String,
         require: true
     },

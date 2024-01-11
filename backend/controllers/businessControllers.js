@@ -1,6 +1,7 @@
 const { it } = require("date-fns/locale");
 const Business = require("../models/Business")
 
+
 const businessController = {
     getAllBusiness: async (req, res) => {
         try {
@@ -10,7 +11,7 @@ const businessController = {
                     id: item._id,
                     name: item.name,
                     describe: item.describe,
-                    website: item.website,
+                    hr_email: item.email,
                     hotline: item.phone_number 
                 };
             });
@@ -34,14 +35,13 @@ const businessController = {
 
             const result = {
                 name: business.name,
-                field: business.field,
                 describe: business.describe,
                 address: business.address,
-                website: business.website,
+                hr : business.hr,
+                email: business.email,
                 hotline: business.phone_number 
             };
 
-            // Send the formatted result as a JSON response
             return res.status(200).json(result);
         } catch (err) {
             console.error(err);
@@ -60,10 +60,10 @@ const businessController = {
 
             // Update profile information as requested
             if (req.body.name) business.name = req.body.name;
-            if (req.body.field) business.field = req.body.field;
             if (req.body.describe) business.describe = req.body.describe;
             if (req.body.address) business.address = req.body.address;
-            if (req.body.website) business.website = req.body.website;
+            if (req.body.hr) business.hr = req.body.hr;
+            if (req.body.email) business.email = req.body.email;
             if (req.body.phone_number) business.phone_number = req.body.phone_number;
 
             await business.save();
@@ -93,17 +93,11 @@ const businessController = {
     createABusiness: async (req, res) => {
         try {
             // Extract business information from the request body
-            const { _id, name, field, describe, address, website, phone_number } = req.body;
+            const { _id, name, describe, address, hr, phone_number, email } = req.body;
     
             // Create a new business instance
             const newBusiness = new Business({
-                _id, 
-                name,
-                field,
-                describe,
-                address,
-                website,
-                phone_number
+                _id, name, describe, address, hr, phone_number, email
             });
     
             // Save the new business to the database
