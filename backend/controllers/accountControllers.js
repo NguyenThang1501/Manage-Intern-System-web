@@ -76,6 +76,7 @@ const accountController = {
         res.clearCookie("accessToken");
         res.status(200).json("Logged out!");
     },
+    
     updatePassword: async (req, res) => {
         const id = req.account.id;
         const account = await Accounts.findById(id);
