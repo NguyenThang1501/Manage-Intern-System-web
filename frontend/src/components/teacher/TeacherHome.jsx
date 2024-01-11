@@ -3,6 +3,7 @@ import CustomButton from "../common/button/CustomButton";
 import SideBar2 from "../common/sidebar/SideBar2";
 import Usersymbol from "../user-icon/Usersymbol";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "./homepage/Dashboard";
 
 const TeacherHome = () => {
   const navigate = useNavigate();
@@ -15,7 +16,10 @@ const TeacherHome = () => {
     <>
       <SideBar2 />
 
-      <div>TeacherHome</div>
+      <div>
+        <Dashboard /> {/* Include the Dashboard component here */}
+        TeacherHome
+      </div>
       {/* <CustomButton buttonText={"Click me"} /> */}
     </>
   );

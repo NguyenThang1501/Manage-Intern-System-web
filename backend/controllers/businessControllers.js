@@ -108,6 +108,16 @@ const businessController = {
             res.status(500).json({ error: "Internal Server Error", details: err.message });
         }
     
+    },
+    // count business
+    getBusinessCount: async (req, res) => {
+        try {
+            const businessCount = await Business.countDocuments();
+            res.json({ count: businessCount });
+        } catch (error) {
+            console.error('Error fetching business count:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 
 };
