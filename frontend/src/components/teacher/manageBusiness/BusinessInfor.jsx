@@ -6,16 +6,19 @@ import Col from "react-bootstrap/esm/Col";
 import SideBar2 from "../../common/sidebar/SideBar2";
 import teacherApi from "../../../api/teacherAPI";
 import { useUser } from "../../../context/UserContext";
+import { useLocation } from "react-router-dom";
 
 const BusinessInfor = () => {
   const { userInfo } = useUser();
   const [businessInfor, setBusinessInfor] = useState([]);
+  const location = useLocation();
+  const businessID = location.state ? location.state.businessID : null;
 
   useEffect(() => {
     const fetchBusinessInfor = async () => {
       try {
         let response = await teacherApi.getBusinessInfor(
-          "B0",
+          businessID,
           userInfo.accessToken
         );
         console.log(response);
@@ -52,9 +55,9 @@ const BusinessInfor = () => {
               <div className="td-company">
                 <div className="title-cp">Tuyển dụng</div>
                 <div className="td-newsbox">
+                  {/* <NewsBox />
                   <NewsBox />
-                  <NewsBox />
-                  <NewsBox />
+                  <NewsBox /> */}
                 </div>
               </div>
             </Col>

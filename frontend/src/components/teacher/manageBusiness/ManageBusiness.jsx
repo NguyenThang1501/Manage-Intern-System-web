@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./manabusiness.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -15,6 +15,7 @@ import teacherApi from "../../../api/teacherAPI";
 const ManageBusiness = () => {
   const { userInfo } = useUser();
   const [cards, setCards] = useState([]);
+  const navigate = useNavigate();
 
   console.log(userInfo);
   useEffect(() => {
@@ -33,23 +34,11 @@ const ManageBusiness = () => {
     fetchCardInfor();
   }, []);
 
-  // const cards = [
-  //   {
-  //     id: 1,
-  //     title: "Viettel",
-  //     text: "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "FPT",
-  //     text: "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "vin",
-  //     text: "This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
-  //   },
-  // ];
+  const handleClick = (id) => {
+    navigate("/teacher/mana-business/business-infor", {
+      state: { businessID: id },
+    });
+  };
 
   return (
     <div className="">
@@ -58,16 +47,14 @@ const ManageBusiness = () => {
         <Row xs={1} md={2} className="g-4 card-business">
           {cards.map((card) => (
             <Col key={card.website}>
-              <Card className="card-business-body">
-                <Link
-                  to="/teacher/mana-business/business-infor"
-                  className="card-business-title"
-                >
-                  <Card.Body>
-                    <Card.Title>{card.name}</Card.Title>
-                    <Card.Text>{card.hotline}</Card.Text>
-                  </Card.Body>
-                </Link>
+              <Card
+                className="card-business-body"
+                onClick={() => handleClick(card.id)}
+              >
+                <Card.Body>
+                  <Card.Title>{card.name}</Card.Title>
+                  <Card.Text>{card.hotline}</Card.Text>
+                </Card.Body>
               </Card>
             </Col>
           ))}

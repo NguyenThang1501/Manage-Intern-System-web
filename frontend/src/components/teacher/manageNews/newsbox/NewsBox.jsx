@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CustomButton from "../../../common/button/CustomButton";
 import "./newsbox.css";
 import Col from "react-bootstrap/esm/Col";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BiDetail } from "react-icons/bi";
 import { MdOutlineEditNote } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -11,23 +11,21 @@ import commonAPI from "../../../../api/commonApi";
 const NewsBox = ({ link, data }) => {
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState([]);
-  // const newsID = location.state ? location.state.newID : null;
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   const fetchNews = async () => {
-  //     try {
-  //       let response = await commonAPI.getNewsDetail(
-  //         newsID._id
-  //       );
-  //       console.log(response);
-  //       let data = response;
-  //       setNewsData(data)
-  //     } catch (error) {
-  //       console.log("Failed to fetch news", error)
-  //     }
-  //   };
-  //   fetchNews();
-  // },[])
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        let response = await commonAPI.getNewsDetail(data.id);
+        console.log(response);
+        let data = response;
+        setNewsData(data);
+      } catch (error) {
+        console.log("Failed to fetch news", error);
+      }
+    };
+    fetchNews();
+  }, []);
 
   const handleViewNewsDetail = (id, link) => {
     navigate(link, {
@@ -38,7 +36,7 @@ const NewsBox = ({ link, data }) => {
   return (
     <div
       className="container-box"
-      onClick={() => handleViewNewsDetail("news0", link)}
+      onClick={() => handleViewNewsDetail(data.id, link)}
     >
       <div className="wrap-logo-box">
         <img
