@@ -10,8 +10,8 @@ const Awards = () => {
       <section className="awards padding">
         <div className="container">
           <Heading
-            title="Over 1,24,000+ Happy User Bieng With Us Still They Love Our Services"
-            subtitle="Our Awards"
+            title="Trường Đại học Khoa học Tự nhiên - ĐHQGHN"
+            subtitle="Thành tựu nổi bật"
           />
 
           <div className="content grid4 mtop">

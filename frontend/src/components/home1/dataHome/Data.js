@@ -19,72 +19,54 @@ export const featured = [
 export const awards = [
   {
     icon: <i class="fa-solid fa-trophy"></i>,
-    num: "32 M	",
-    name: "Blue Burmin Award",
+    num: "Tiền thân	",
+    name: "Trường Đại học Tổng hợp Hà Nội",
   },
   {
     icon: <i class="fa-solid fa-briefcase"></i>,
-    num: "43 M",
-    name: "Mimo X11 Award",
+    num: "40",
+    name: "Giảng đường chuẩn",
   },
   {
     icon: <i class="fa-solid fa-lightbulb"></i>,
-    num: "51 M",
-    name: "Australian UGC Award",
+    num: ">100",
+    name: "Phòng thí nghiệm",
   },
   {
     icon: <i class="fa-solid fa-heart"></i>,
-    num: "42 M",
-    name: "IITCA Green Award",
+    num: ">30%",
+    name: "Giảng viên chức danh giáo sư, phó giáo sư",
   },
 ];
 export const location = [
   {
     id: 1,
-    name: "Viettel",
-    Villas: "12 Villas",
-    Apartments: "10 Apartments",
-    Offices: "07 Offices",
+
     cover: "./images/location/viettel-image.jpg",
   },
   {
     id: 2,
-    name: "FPT",
-    Villas: "12 Villas",
-    Apartments: "10 Apartments",
-    Offices: "07 Offices",
-    cover: "./images/location/city-2.png",
+
+    cover: "./images/location/VinBigdata.jpg",
   },
   {
     id: 3,
-    name: "SmartLog",
-    Villas: "12 Villas",
-    Apartments: " 10 Apartments",
-    Offices: "07 Offices",
-    cover: "./images/location/city-3.png",
+
+    cover: "./images/location/fpt-logo.jpg",
   },
   {
     id: 4,
-    name: "Vin BigData",
-    Villas: "12 Villas",
-    Apartments: " 10 Apartments",
-    Offices: "07 Offices",
-    cover: "./images/location/city-4.png",
+
+    cover: "./images/location/fis-image.jpg",
   },
   {
     id: 5,
-    name: "FIS",
-    Villas: "12 Villas",
-    Apartments: " 10 Apartments",
-    Offices: "07 Offices",
-    cover: "./images/location/city-5.png",
+
+    cover: "./images/location/smatlog-logo.png",
   },
   {
     id: 6,
-    name: "",
-    Villas: "12 Villas",
-    Apartments: " 10 Apartments",
-    Offices: "07 Offices",
-    cover: "./images/location/city-6.png",
+
+    cover: "./images/location/vietcombank-logo.jpg",
   },
 ];
