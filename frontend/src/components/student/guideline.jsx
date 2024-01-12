@@ -1,26 +1,28 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import StepContent from '@mui/material/StepContent';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 const steps = [
   {
-    label: 'Xem danh sách chi tiết các vị trí thực tập',
-    description: 'Tìm hiểu doanh nghiệp, vị trí và yêu cầu của vị trí. Sau đó, lựa chọn các vị trí phù hợp với nguyện vọng và khả năng của bản thân.',
-  },
-  {
-    label: 'Truy cập trang đăng ký nguyện vọng',
+    label: "Xem danh sách chi tiết các vị trí thực tập",
     description:
-      'Đăng ký nguyện vọng bằng cách nhập mã vị trí mong muốn.',
+      "Tìm hiểu doanh nghiệp, vị trí và yêu cầu của vị trí. Sau đó, lựa chọn các vị trí phù hợp với nguyện vọng và khả năng của bản thân.",
   },
   {
-    label: 'Kiểm tra kết quả phân công',
-    description: 'Khi có kết quả phân công, truy cập vào chức năng Xem kết quả phân công để xem kết quả.',
+    label: "Truy cập trang đăng ký nguyện vọng",
+    description:
+      "Đăng ký nguyện vọng bằng cách nhập mã vị trí mong muốn. Nếu sinh viên đang thực tập bên ngoài, hãy điền thông tin vào mục đăng ký bên ngoài",
+  },
+  {
+    label: "Kiểm tra kết quả phân công",
+    description:
+      "Khi có kết quả phân công, truy cập vào chức năng Xem kết quả phân công để xem kết quả.",
   },
 ];
 
@@ -40,7 +42,7 @@ export default function HướngDẫnĐăngKý() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <Box sx={{ maxWidth: 1000 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>
@@ -62,7 +64,7 @@ export default function HướngDẫnĐăngKý() {
                     onClick={handleNext}
                     sx={{ mt: 1, mr: 1 }}
                   >
-                    {index === steps.length - 1 ? 'Hoàn thành' : 'Tiếp tục'}
+                    {index === steps.length - 1 ? "Hoàn thành" : "Tiếp tục"}
                   </Button>
                   <Button
                     disabled={index === 0}
@@ -79,9 +81,11 @@ export default function HướngDẫnĐăngKý() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>Tất cả các bước đã hoàn thành - bạn đã xong</Typography>
+          <Typography>
+            Đó là tất cả các bước bạn cần làm để đăng ký thực tập
+          </Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Đặt lại
+            Xem lại
           </Button>
         </Paper>
       )}
