@@ -75,9 +75,13 @@ const studentApi = {
     });
   },
 
-  checkTimeRegister: () => {
+  checkTimeRegister: (token) => {
     const url = `/checkTime`;
-    return axiosClient.get(url);
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
   },
 
   getTopicIntern: (token) => {

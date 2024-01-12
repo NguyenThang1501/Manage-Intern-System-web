@@ -3,17 +3,37 @@ const positionController = require("../controllers/positionControllers");
 const router = require("express").Router();
 
 // lấy ra tất cả các vị trí
-router.get("/list-positions", middlewareController.verifyToken, positionController.getAllPositions);
+router.get(
+  "/list-positions",
+  middlewareController.verifyToken,
+  positionController.getAllPositions
+);
 
-router.post("/teacher/create-positions", middlewareController.verifyTokenAndAdmin, positionController.postAPosition);
+router.post(
+  "/teacher/create-positions",
+  middlewareController.verifyTokenAndAdmin,
+  positionController.postAPosition
+);
 
-router.put("/teacher/update-positions/:id", middlewareController.verifyTokenAndAdmin, positionController.updatePosition);
+router.put(
+  "/teacher/update-positions/:id",
+  middlewareController.verifyTokenAndAdmin,
+  positionController.updatePosition
+);
 
-router.delete("/teacher/delete-positions/:id", middlewareController.verifyTokenAndAdmin, positionController.deletePosition);
+router.delete(
+  "/teacher/delete-positions/:id",
+  middlewareController.verifyTokenAndAdmin,
+  positionController.deletePosition
+);
 
-router.get("/checkTime", positionController.checkTime);
+router.get(
+  "/checkTime",
+  middlewareController.verifyToken,
+  positionController.checkTime
+);
 
 // count position
-router.get('/teacher/count-positions', positionController.getPositionCount);
+router.get("/teacher/count-positions", positionController.getPositionCount);
 
 module.exports = router;

@@ -34,12 +34,16 @@ const RegisterInschool = () => {
   useEffect(() => {
     const fetchTime = async () => {
       try {
-        let response = await studentApi.checkTimeRegister();
+        let response = await studentApi.checkTimeRegister(userInfo.accessToken);
         console.log(response);
-        if (response.message === "False") {
+        if (response.check === 0) {
           setTime(false);
         }
       } catch (error) {
+        let errorData = error.response.data;
+        if (errorData.check === 0) {
+          setTime(false);
+        }
         console.log("Failed ", error);
       }
     };
