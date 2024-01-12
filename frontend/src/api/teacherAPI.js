@@ -99,7 +99,14 @@ const teacherApi = {
       },
     });
   },
-
+  deleteStudent: (token, id) => {
+    const url = `/teacher/student-mana/${id}`;
+    return axiosClient.delete(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
   getStudentTopicReport: (token, id) => {
     const url = `/teacher-intern/final-report/${id}`;
     return axiosClient.get(url, {
@@ -157,6 +164,15 @@ const teacherApi = {
   getBusinessNews: (id, token) => {
     const url = `/mana-news/business/${id}`;
     return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  updateStudent: (token, data, id) => {
+    const url = `/teacher/student-mana/${id}`;
+    return axiosClient.put(url, data, {
       headers: {
         token: `Bearer ${token}`,
       },

@@ -38,3 +38,10 @@
   margin-right: 3px;
   margin-bottom: 3px;
 }
+
+.update-st-tb {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 250px;
+  width: 60%;
+}

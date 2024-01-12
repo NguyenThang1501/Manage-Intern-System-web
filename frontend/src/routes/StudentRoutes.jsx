@@ -13,6 +13,7 @@ import StudentTopic from "../components/student/reportIntern/StudentTopic";
 import PrivateRoute from "./PrivateRoute";
 import { useUser } from "../context/UserContext";
 import Login from "../components/login/Login";
+import UpdateStudent from "../components/teacher/manageStudent/UpdateStudent";
 
 const StudentRoutes = () => {
   return (
@@ -43,6 +44,10 @@ const StudentRoutes = () => {
         <Route
           path="/student/report/report-regular"
           element={<StudentRegularReport />}
+        />
+        <Route
+          path="/teacher/mana-student/update-student"
+          element={<UpdateStudent />}
         />
       </Routes>
     </>

@@ -39,23 +39,35 @@ const ManageStudent = () => {
     });
   };
 
-  // const handleDeleteSt = (MaSinhVien) => {
-  //     axios.delete("")
-  //     .then(res => {
-  //       location.reload
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+  const handleDeleteSt = async (id) => {
+    try {
+      const response = await teacherApi.deleteStudent(userInfo.accessToken, id);
+      setAllStudents((prevStudent) =>
+        prevStudent.filter((item) => item._id !== id)
+      );
+
+      console.log(response);
+
+      alert("Đã xoá học sinh " + id);
+    } catch (error) {
+      console.log("Failed", error);
+    }
+  };
+
+  const handleUpdate = (item) => {
+    navigate("/teacher/mana-student/update-student", {
+      state: { updateData: item },
+    });
+  };
+
   const handleSearch = async () => {
     try {
-      // Call your search API with the entered search value
       let response = await studentApi.searchByName(search);
       setAllStudents(response);
     } catch (error) {
       console.log("Failed to search students ", error);
     }
   };
-
 
   const [addShow, setAddShow] = useState(false);
   return (
@@ -74,10 +86,10 @@ const ManageStudent = () => {
               searchText={"Tìm kiếm sinh viên..."}
             /> */}
             <Search
-            onChange={(e) => setSearch(e.target.value)}
-            onSearch={handleSearch} //Pass the search handler to the Search component 
-            searchText={"Tìm kiếm sinh viên..."}
-          />
+              onChange={(e) => setSearch(e.target.value)}
+              onSearch={handleSearch} //Pass the search handler to the Search component
+              searchText={"Tìm kiếm sinh viên..."}
+            />
           </div>
           <div className="container-tb-mana-st">
             <Table striped bordered hover className="table-mana-st">
@@ -111,12 +123,18 @@ const ManageStudent = () => {
                           <IoPerson className="icon-action-inf" />
                           Xem chi tiết
                         </button>
-                        <button className="bt-infor-st">
+                        <button
+                          className="bt-infor-st"
+                          onClick={() => handleUpdate(item)}
+                        >
                           {" "}
                           <IoSettingsOutline className="icon-action-inf" />
                           Sửa
                         </button>
-                        <button className="bt-infor-st">
+                        <button
+                          className="bt-infor-st"
+                          onClick={() => handleDeleteSt(item._id)}
+                        >
                           <MdDeleteForever className="icon-action-inf" />
                           Xoá
                         </button>
@@ -126,7 +144,6 @@ const ManageStudent = () => {
               </tbody>
             </Table>
           </div>
-          {/* {isOverlayVisible && <AddStudent closeOverlay={closeOverlay} />} */}
         </div>
       </Container>
     </div>
