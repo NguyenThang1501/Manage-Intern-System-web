@@ -97,8 +97,8 @@ const DetailInfor = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="field">TOIEC</td>
-                      <td className="value">{studentInfor.english}</td>
+                      <td className="field">Điểm quy đổi</td>
+                      <td className="value">{studentInfor.cert}</td>
                     </tr>
                   </tbody>
                 </table>

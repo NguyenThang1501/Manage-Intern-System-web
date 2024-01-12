@@ -1,25 +1,9 @@
 import axiosClient from "./axiosClient";
 
 const businessApi = {
-  addNews: (
-    business,
-    position,
-    endTime,
-    describe,
-    requirement,
-    profit,
-    address,
-    token
-  ) => {
-    const url = "/add_news";
-    return axiosClient.post(url, {
-      business,
-      position,
-      endTime,
-      describe,
-      requirement,
-      profit,
-      address,
+  addNews: (token, data) => {
+    const url = "/business/add_news";
+    return axiosClient.post(url, data, {
       header: {
         token: `Bearer ${token}`,
       },

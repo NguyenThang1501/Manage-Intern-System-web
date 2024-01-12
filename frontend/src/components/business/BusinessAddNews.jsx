@@ -6,28 +6,34 @@ import CustomButton from "../common/button/CustomButton";
 import SideBar3 from "../common/sidebar/SideBar3";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import businessApi from "../../api/businessAPI";
 
 const BusinessAddNews = () => {
-  const [position, setPosition] = useState("");
-  const [capacities, setCapacities] = useState("");
-  const [address, setAddress] = useState("");
-  const [describe, setDescribe] = useState("");
-  const [requirement, setRequirement] = useState("");
-  const [profit, setProfit] = useState("");
-  const [endTime, setEndtime] = useState("");
+  const [newsInfor, setNewsInfor] = useState({
+    position: "",
+    endTime: "",
+    require: "",
+    profit: "",
+    address: "",
+    daily_time: "",
+    describe: "",
+  });
+  const { userInfo } = useUser();
 
   const navigate = useNavigate();
 
-  // const handleAddNews = async () => {
-  //   try {
-  //     let response = await businessApi.addNews(business, position, endTime, describe, requirement, profit, address);
-  //     console.log(response);
-
-  //   } catch (error) {
-  //     console.log("Failed to login ", error);
-  //   }
-  // };
+  const handleAddNews = async () => {
+    console.log(newsInfor);
+    try {
+      let response = await businessApi.addNews(userInfo.accessToken, newsInfor);
+      console.log(response);
+      alert("Thêm thành công");
+      navigate("/business/manage-news");
+    } catch (error) {
+      console.log("Failed ", error);
+    }
+  };
 
   return (
     <div>
@@ -45,35 +51,16 @@ const BusinessAddNews = () => {
                   <Col sm={4}>
                     <Form.Control
                       type="text"
-                      onChange={(event) => setPosition(event.target.value)}
-                    />
-                  </Col>
-                </Form.Group>
-
-                <Form.Group as={Row} className="mb-3">
-                  <Form.Label column sm={2}>
-                    Số lượng (*)
-                  </Form.Label>
-                  <Col sm={4}>
-                    <Form.Control
-                      type="text"
-                      onChange={(event) => setCapacities(event.target.value)}
+                      onChange={(event) =>
+                        setNewsInfor({
+                          ...newsInfor,
+                          position: event.target.value,
+                        })
+                      }
                     />
                   </Col>
                 </Form.Group>
               </Form>
-
-              <Form.Group as={Row} className="mb-3">
-                <Form.Label column sm={2}>
-                  Nơi làm việc (*)
-                </Form.Label>
-                <Col sm={10}>
-                  <Form.Control
-                    type="text"
-                    onChange={(event) => setAddress(event.target.value)}
-                  />
-                </Col>
-              </Form.Group>
 
               <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm={2}>
@@ -82,7 +69,12 @@ const BusinessAddNews = () => {
                 <Col sm={10}>
                   <Form.Control
                     type="text"
-                    onChange={(event) => setDescribe(event.target.value)}
+                    onChange={(event) =>
+                      setNewsInfor({
+                        ...newsInfor,
+                        describe: event.target.value,
+                      })
+                    }
                   />
                 </Col>
               </Form.Group>
@@ -95,20 +87,59 @@ const BusinessAddNews = () => {
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    onChange={(event) => setRequirement(event.target.value)}
+                    onChange={(event) =>
+                      setNewsInfor({
+                        ...newsInfor,
+                        require: event.target.value,
+                      })
+                    }
                   />
                 </Col>
               </Form.Group>
 
               <Form.Group as={Row} className="mb-3">
                 <Form.Label column sm={2}>
-                  Mức lương (*)
+                  Quyền lợi (*)
                 </Form.Label>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
                     rows={3}
-                    onChange={(event) => setProfit(event.target.value)}
+                    onChange={(event) =>
+                      setNewsInfor({ ...newsInfor, profit: event.target.value })
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={2}>
+                  Địa điểm làm việc (*)
+                </Form.Label>
+                <Col sm={10}>
+                  <Form.Control
+                    type="text"
+                    onChange={(event) =>
+                      setNewsInfor({
+                        ...newsInfor,
+                        address: event.target.value,
+                      })
+                    }
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm={2}>
+                  Thời gian làm việc (*)
+                </Form.Label>
+                <Col sm={10}>
+                  <Form.Control
+                    type="text"
+                    onChange={(event) =>
+                      setNewsInfor({
+                        ...newsInfor,
+                        daily_time: event.target.value,
+                      })
+                    }
                   />
                 </Col>
               </Form.Group>
@@ -120,15 +151,17 @@ const BusinessAddNews = () => {
                 <Col sm={10}>
                   <Form.Control
                     type="text"
-                    onChange={(event) => setEndtime(event.target.value)}
+                    onChange={(event) =>
+                      setNewsInfor({
+                        ...newsInfor,
+                        endTime: event.target.value,
+                      })
+                    }
                   />
                 </Col>
               </Form.Group>
               <CustomButton
-                onClick={() => (
-                  // handleAddNews,
-                  alert("Thêm thành công"), navigate("/business/manage-news")
-                )}
+                onClick={() => handleAddNews()}
                 className="add-positions"
                 buttonText={"Thêm"}
               />

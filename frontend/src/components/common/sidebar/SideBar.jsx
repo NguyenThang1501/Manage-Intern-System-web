@@ -28,7 +28,7 @@ const menuItem = [
   },
   {
     path: "/student/internship-positions",
-    name: "Chi tiết các vị trí thực tập",
+    name: "Chi tiết vị trí thực tập",
     icon: <TbListDetails />,
   },
   {
@@ -128,7 +128,7 @@ const SideBar = ({ children }) => {
         />
       </div>
       <div className="container-sidebar">
-        <div style={{ width: isOpen ? "320px" : "50px" }} className="sidebar">
+        <div style={{ width: isOpen ? "330px" : "50px" }} className="sidebar">
           <div className="top-section">
             <Link to="/student">
               <h1

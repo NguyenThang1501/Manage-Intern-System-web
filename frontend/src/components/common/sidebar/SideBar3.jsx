@@ -37,7 +37,7 @@ const SideBar3 = ({ children }) => {
         />
       </div>
       <div className="container-sidebar">
-        <div style={{ width: isOpen ? "300px" : "50px" }} className="sidebar">
+        <div style={{ width: isOpen ? "330px" : "50px" }} className="sidebar">
           <div className="top-section">
             <Link to="/business">
               <h1
