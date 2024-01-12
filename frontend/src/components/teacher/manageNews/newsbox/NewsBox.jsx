@@ -40,8 +40,8 @@ const NewsBox = ({ link, data }) => {
     >
       <div className="wrap-logo-box">
         <img
-          src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/022021/136157719_1515158478680098_1266420984461920289_o.png?inXGI94r3DGKIRIIw8diLEvCmGKSKDUM&itok=XtqOAYIU"
-          alt="logo-viettel"
+          src="https://th.bing.com/th/id/R.619db371b7b836575025cfadd605a7cd?rik=m1ilBB81gFirqw&riu=http%3a%2f%2ficon-library.com%2fimages%2fhr-icon%2fhr-icon-28.jpg&ehk=fHQYLpMa6IlnvtywEP5Mvu9jnzHrPqTLpuKcLWMp9CM%3d&risl=&pid=ImgRaw&r=0"
+          alt="logo-news"
           className="logo-box"
         />
       </div>
