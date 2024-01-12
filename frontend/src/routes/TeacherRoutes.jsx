@@ -20,6 +20,7 @@ import AddStudent from "../components/teacher/manageStudent/AddStudent";
 import AddNews from "../components/teacher/manageNews/AddNews";
 import { useUser } from "../context/UserContext";
 import Login from "../components/login/Login";
+import TeacherChangePass from "../components/teacher/changepass/TeacherChangePass";
 
 const TeacherRoutes = () => {
   const { userInfo } = useUser();
@@ -76,6 +77,7 @@ const TeacherRoutes = () => {
           path="/teacher/mana-news/tc-news-detail"
           element={<NewsDetail />}
         />
+        <Route path="/teacher/change-pass" element={<TeacherChangePass />} />
       </Routes>
     </div>
   );

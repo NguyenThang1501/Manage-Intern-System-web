@@ -73,6 +73,11 @@ const menuItem = [
     name: "Quản lý thực tập",
     icon: <MdManageAccounts />,
   },
+  {
+    path: "/teacher/change-pass",
+    name: "Đổi mật khẩu",
+    icon: "",
+  },
 ];
 
 const SideBar2 = ({ children }) => {

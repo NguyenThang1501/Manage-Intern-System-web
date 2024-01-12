@@ -14,6 +14,7 @@ import PrivateRoute from "./PrivateRoute";
 import { useUser } from "../context/UserContext";
 import Login from "../components/login/Login";
 import UpdateStudent from "../components/teacher/manageStudent/UpdateStudent";
+import StudentChangePass from "../components/student/changepass/StudentChangePass";
 
 const StudentRoutes = () => {
   return (
@@ -49,6 +50,7 @@ const StudentRoutes = () => {
           path="/teacher/mana-student/update-student"
           element={<UpdateStudent />}
         />
+        <Route path="/student/change-pass" element={<StudentChangePass />} />
       </Routes>
     </>
   );

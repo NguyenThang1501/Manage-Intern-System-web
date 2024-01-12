@@ -79,6 +79,10 @@ const menuItem = [
     name: "Kết quả phân công",
     icon: <BsCardChecklist />,
   },
+  {
+    path: "/student/change-pass",
+    name: "Đổi mật khẩu",
+  },
 ];
 
 const SideBar = ({ children }) => {

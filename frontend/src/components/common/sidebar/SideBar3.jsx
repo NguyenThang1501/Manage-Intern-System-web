@@ -17,6 +17,11 @@ const menuItem = [
     name: "Quản lý tin tuyển dụng",
     icon: <PiNewspaperClippingBold />,
   },
+  {
+    path: "/business/change-pass",
+    name: "Đổi mật khẩu",
+    icon: "",
+  },
 ];
 
 const SideBar3 = ({ children }) => {
