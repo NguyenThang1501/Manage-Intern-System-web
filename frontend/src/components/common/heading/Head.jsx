@@ -9,7 +9,7 @@ const Head = () => {
             <div className="logo-img-wrapper">
               <img
                 className="logo-img"
-                src="./images/logo-hus.jpg"
+                src="./images/logo.png"
                 alt="logo-hus"
               />
             </div>
