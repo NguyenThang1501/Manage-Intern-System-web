@@ -7,17 +7,15 @@ import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../../context/UserContext";
 import teacherApi from "../../../../api/teacherAPI";
-import ProgressBar from "../../../common/progressbar/ProgressBar";
+import ProgressBar from "../../../common/progressbar/AlertRun";
+import AlertRun from "../../../common/progressbar/AlertRun";
 const ListRegister = () => {
   const navigate = useNavigate();
 
-
   const { userInfo } = useUser();
 
-
   const [registerList, setRegisterList] = useState([]);
-  const [showProgressbar, setShowProgressbar] = useState(false);
-
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const fetchRegisterList = async () => {
@@ -25,6 +23,7 @@ const ListRegister = () => {
         const response = await teacherApi.listRegister(userInfo.accessToken);
         console.log(response);
         setRegisterList(response);
+        setShowAlert(true);
       } catch (error) {
         console.log("Failed", error);
       }
@@ -32,10 +31,8 @@ const ListRegister = () => {
     fetchRegisterList();
   }, []);
 
-
   const handleAllotInternClick = async () => {
     console.log(userInfo);
-
 
     try {
       console.log(userInfo);
@@ -47,23 +44,21 @@ const ListRegister = () => {
     }
   };
 
-
   return (
     <div>
       <SideBar2 />
       <Container>
         <div className="wrap-allot-intern">
           <div className="bt-allot-intern">
+            <AlertRun show={showAlert} onHide={() => setShowAlert(false)} />
+
             <CustomButton
               buttonText={"Thực hiện phân công thực tập cho sinh viên"}
               onClick={() => {
                 handleAllotInternClick();
               }}
             />
-            <ProgressBar
-              show={showProgressbar}
-              onHide={() => setShowProgressbar(false)}
-            />
+
             <CustomButton
               onClick={() => {
                 navigate("/teacher/allot-intern/result-intern");
@@ -110,9 +105,4 @@ const ListRegister = () => {
   );
 };
 
-
 export default ListRegister;
-
-
-
-

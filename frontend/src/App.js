@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import { UserProvider } from "./context/UserContext";
-import ProgressBar from "./components/common/progressbar/ProgressBar";
+import ProgressBar from "./components/common/progressbar/AlertRun";
 import Home1 from "./components/home1/Home1";
 import AppRoutes from "./routes/AppRoutes";
 import StudentView from "./components/student/StudentView";
