@@ -16,7 +16,7 @@ const StudentTopic = () => {
   const [dataStudent, setDataStudent] = useState([]);
 
   const [isEditingDecribe, setIsEditingDecribe] = useState(false);
-  const [editDecribe, setEditDecribe] = useState("");
+  const [editDescribe, setEditDescribe] = useState("");
 
   const [isEditingTopic, setIsEditingTopic] = useState(false);
   const [editTopic, setEditTopic] = useState("");
@@ -49,28 +49,52 @@ const StudentTopic = () => {
 
   const handleEditTopic = () => {
     setIsEditingTopic(true);
-    setEditTopic(report.topic);
+    setEditTopic(report.project);
   };
 
   const handleEditClick = () => {
     setIsEditingDecribe(true);
-    setEditDecribe(report.decribe);
+    setEditDescribe(report.describe);
   };
 
-  const handleSaveTopic = () => {
-    setReport({
-      topic: editTopic,
-      decribe: report.decribe,
-    });
-    setIsEditingTopic(false);
+  const handleSaveTopic = async () => {
+    try {
+      setReport({
+        project: editTopic,
+        describe: report.describe,
+        midresult: report.midresult,
+        finalresult: report.finalresult,
+      });
+      const dataTopic = { project: editTopic };
+      setIsEditingTopic(false);
+      const response = await studentApi.updateTopicIntern(
+        userInfo.accessToken,
+        dataTopic
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("Failed ", error);
+    }
   };
 
   const handleSaveClick = () => {
-    setReport({
-      topic: report.topic,
-      decribe: editDecribe,
-    });
-    setIsEditingDecribe(false);
+    try {
+      setReport({
+        project: report.project,
+        describe: editDescribe,
+        midresult: report.midresult,
+        finalresult: report.finalresult,
+      });
+      setIsEditingDecribe(false);
+      const dataDescribe = { describe: editDescribe };
+      const response = studentApi.updateTopicIntern(
+        userInfo.accessToken,
+        dataDescribe
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("Failed ", error);
+    }
   };
 
   return (
@@ -162,8 +186,8 @@ const StudentTopic = () => {
                       <textarea
                         className="input-edit"
                         rows={4}
-                        value={editDecribe}
-                        onChange={(e) => setEditDecribe(e.target.value)}
+                        value={editDescribe}
+                        onChange={(e) => setEditDescribe(e.target.value)}
                       />
                       <button onClick={handleSaveClick}>Lưu</button>
                     </div>

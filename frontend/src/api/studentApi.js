@@ -88,6 +88,15 @@ const studentApi = {
       },
     });
   },
+
+  updateTopicIntern: (token, data) => {
+    const url = `/student/update-project`;
+    return axiosClient.put(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default studentApi;
