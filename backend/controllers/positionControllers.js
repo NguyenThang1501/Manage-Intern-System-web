@@ -22,10 +22,10 @@ const positionController = {
 
         if (registerTimes.length === 0) {
             // Nếu không có khoảng thời gian phù hợp, trả về thông báo
-            return res.status(400).json({ message: 'False' });
+            return res.status(400).json('False');
         }
         else {
-            return res.status(400).json({ message: 'True' });
+            return res.status(400).json('True');
         }
     },
 

@@ -241,7 +241,7 @@ const newsController = {
         }
     },
 
-    get_cv: async(req,res) => {
+    get_AllCV: async(req,res) => {
         const newsId = req.params.id;
 
         try {
@@ -253,19 +253,25 @@ const newsController = {
                     message: 'Tin tuyển dụng không tồn tại',
                 });
             }
+            if (news.business == req.account.id){
+                result = []
+                const appliedCVs = news.applied_cv;
 
-            const appliedCVs = news.applied_cv;
-            for (const appliedCV of appliedCVs) {
-                const cv = await CV.findById(appliedCV._id);
+                for (const appliedCV of appliedCVs) {
+                    const cv = await CV.findById(appliedCV._id);
 
-                if (!cv) {
-                    console.error(`CV not found for ID: ${appliedCV._id}`);
-                    continue;
+                    if (!cv) {
+                        console.error(`CV not found for ID: ${appliedCV._id}`);
+                        continue;
+                    }
+                    result.push(cv._id);
                 }
-                res.setHeader('Content-Type', 'application/pdf');
-                res.setHeader('Content-Disposition', `attachment; filename=${appliedCV.name}`);
-                res.send(appliedCV.data);
+                return res.status(200).json(result);
             }
+            else {
+                return res.status(403).json("You're not allow")
+            }
+            
         } catch (err) {
             console.error(err);
             return res.status(500).json({
@@ -273,6 +279,58 @@ const newsController = {
                 error: err.message,
             });
         }
+    },
+    businessGetCV: async(req,res) => {
+        try {
+            const businessID = req.account.id;  // Assuming req.account.id contains the business ID
+            const studentID = req.params.id;
+    
+            // Find news posted by the business
+            const news = await News.findOne({ business: businessID });
+    
+            if (!news) {
+                return res.status(404).json({
+                    message: 'Business has not posted any news',
+                });
+            }
+    
+            // Check if the news has applied_cv array
+            if (!news.applied_cv || news.applied_cv.length === 0) {
+                return res.status(404).json({
+                    message: 'No CVs applied for this news',
+                });
+            }
+    
+            // Check if the applied_cv array contains the specified studentID
+            const cvID = news.applied_cv.find(appliedCV => appliedCV === studentID);
+    
+            if (!cvID) {
+                return res.status(404).json({
+                    message: 'No CV found for the specified student',
+                });
+            }
+    
+            // Retrieve the CV using the found CV ID
+            const cv = await CV.findById(cvID);
+    
+            if (!cv) {
+                return res.status(404).json({
+                    message: 'CV not found for the specified student',
+                });
+            }
+    
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', `attachment; filename=${cv.name}`);
+            res.send(cv.data);
+    
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({
+                message: 'Internal Server Error',
+                error: err.message,
+            });
+        }
+        
     }
     
 };
