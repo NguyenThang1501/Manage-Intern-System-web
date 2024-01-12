@@ -12,7 +12,7 @@
 .list-positions-tb {
   margin-top: 50px;
   margin-left: 50px;
-  width: 100%;
+  width: 90%;
 }
 .wrap-positions-tb {
   position: absolute;
@@ -27,4 +27,8 @@
   margin-top: 100px;
   position: absolute;
   width: 55%;
+}
+.action-positions,
+.name-positions {
+  width: 160px;
 }

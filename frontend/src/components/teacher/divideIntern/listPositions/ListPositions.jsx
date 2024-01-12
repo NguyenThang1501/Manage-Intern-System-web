@@ -73,12 +73,12 @@ const ListPositions = () => {
               <tr className="text-center">
                 <th>STT</th>
                 <th>Mã vị trí</th>
-                <th>Tên vị trí</th>
+                <th className="name-positions">Tên vị trí</th>
                 <th>Công ty</th>
                 <th>Số lượng tuyển</th>
                 <th>Yêu cầu</th>
                 <th>Yêu cầu về GPA</th>
-                <th>Thao tác</th>
+                <th className="action-positions">Thao tác</th>
               </tr>
             </thead>
             <tbody>

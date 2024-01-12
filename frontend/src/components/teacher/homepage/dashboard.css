@@ -1,56 +1,57 @@
 /* styles.css */
 
-  
-  .dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 20px;
-  }
-  
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+  position: absolute;
+  margin-left: 350px;
+  margin-top: 150px;
+}
+
+.info-box {
+  flex: 1 0 30%;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  width: 200px;
+}
+
+.info-text {
+  font-size: 18px; /* Set the size for the text */
+}
+
+.info-number {
+  font-size: 60px; /* Set a larger size for the number */
+  font-weight: bold; /* Make the number bold if desired */
+}
+
+.info-box:hover {
+  transform: scale(1.05);
+}
+
+.chart-container {
+  flex: 2 0 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
   .info-box {
-    flex: 1 0 30%;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid #ddd;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    width: 200px;
-  }
-  
-  .info-text {
-    font-size: 18px; /* Set the size for the text */
-  }
-  
-  .info-number {
-    font-size: 60px; /* Set a larger size for the number */
-    font-weight: bold; /* Make the number bold if desired */
-  }
-  
-  .info-box:hover {
-    transform: scale(1.05);
-  }
-  
-  .chart-container {
-    flex: 2 0 60%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .info-box {
-      flex: 1 0 100%;
-    }
-  
-    .chart-container {
-      flex: 2 0 100%;
-    }
+    flex: 1 0 100%;
   }
 
+  .chart-container {
+    flex: 2 0 100%;
+  }
+}

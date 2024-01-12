@@ -13,6 +13,7 @@ const BusinessInfor = () => {
   const [businessInfor, setBusinessInfor] = useState([]);
   const location = useLocation();
   const businessID = location.state ? location.state.businessID : null;
+  const [businessNews, setBusinessNews] = useState([]);
 
   useEffect(() => {
     const fetchBusinessInfor = async () => {
@@ -29,6 +30,23 @@ const BusinessInfor = () => {
     };
     fetchBusinessInfor();
   }, []);
+
+  useEffect(() => {
+    const fetchBusinessNews = async () => {
+      try {
+        let response = await teacherApi.getBusinessNews(
+          businessID,
+          userInfo.accessToken
+        );
+        console.log(response);
+        setBusinessNews(response);
+      } catch (error) {
+        console.log("Fail ", error);
+      }
+    };
+    fetchBusinessNews();
+  }, []);
+
   return (
     <div>
       <SideBar2 />
@@ -39,7 +57,7 @@ const BusinessInfor = () => {
           <div className="top-text">
             <div className="top-company-name">{businessInfor.name}</div>
             <div className="top-company-link">
-              <a href="#">{businessInfor.website}</a>
+              <a href="#">Hotline: {businessInfor.hotline}</a>
             </div>
           </div>
         </div>
@@ -53,11 +71,16 @@ const BusinessInfor = () => {
                 <div className="content-intro-cp">{businessInfor.describe}</div>
               </div>
               <div className="td-company">
-                <div className="title-cp">Tuyển dụng</div>
+                <div className="title-cp">Tin tuyển dụng</div>
                 <div className="td-newsbox">
-                  {/* <NewsBox />
-                  <NewsBox />
-                  <NewsBox /> */}
+                  {businessNews.map((item, index) => (
+                    <div key={index} className="box-mana-news">
+                      <NewsBox
+                        link={"/teacher/mana-news/tc-news-detail"}
+                        data={item}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </Col>
@@ -68,7 +91,8 @@ const BusinessInfor = () => {
                 <p>Địa chỉ công ty</p>
                 <p>{businessInfor.address}</p>
                 <hr />
-                <p>Xem bản đồ</p>
+                <p>Nhà tuyển dụng: {businessInfor.hr}</p>
+                <p>Gmail: {businessInfor.email}</p>
               </div>
             </Col>
           </div>
