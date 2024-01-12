@@ -34,10 +34,7 @@ const NewsBox = ({ link, data }) => {
   };
 
   return (
-    <div
-      className="container-box"
-      onClick={() => handleViewNewsDetail(data.id, link)}
-    >
+    <div className="container-box">
       <div className="wrap-logo-box">
         <img
           src="https://th.bing.com/th/id/R.619db371b7b836575025cfadd605a7cd?rik=m1ilBB81gFirqw&riu=http%3a%2f%2ficon-library.com%2fimages%2fhr-icon%2fhr-icon-28.jpg&ehk=fHQYLpMa6IlnvtywEP5Mvu9jnzHrPqTLpuKcLWMp9CM%3d&risl=&pid=ImgRaw&r=0"
@@ -53,7 +50,10 @@ const NewsBox = ({ link, data }) => {
         <div className="bottom-box">
           <p className="mb-0">Hà Nội</p>
           <div className="bottom-button">
-            <button className="action-button">
+            <button
+              className="action-button"
+              onClick={() => handleViewNewsDetail(data.id, link)}
+            >
               <BiDetail className="me-1" />
               Chi tiết
             </button>

@@ -25,9 +25,12 @@ const AddNews = () => {
   const navigate = useNavigate();
 
   const handleAddNews = async () => {
+    console.log(newsInfor);
     try {
       let response = await teacherApi.addNews(userInfo.accessToken, newsInfor);
       console.log(response);
+      alert("Thêm thành công");
+      navigate("/teacher/mana-news");
     } catch (error) {
       console.log("Failed ", error);
     }
@@ -176,11 +179,7 @@ const AddNews = () => {
                 </Col>
               </Form.Group>
               <CustomButton
-                onClick={() => (
-                  handleAddNews,
-                  alert("Thêm thành công"),
-                  navigate("/teacher/mana-news")
-                )}
+                onClick={() => handleAddNews()}
                 className="add-positions"
                 buttonText={"Thêm"}
               />
