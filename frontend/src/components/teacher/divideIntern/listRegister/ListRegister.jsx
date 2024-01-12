@@ -11,15 +11,18 @@ import ProgressBar from "../../../common/progressbar/ProgressBar";
 const ListRegister = () => {
   const navigate = useNavigate();
 
+
   const { userInfo } = useUser();
+
 
   const [registerList, setRegisterList] = useState([]);
   const [showProgressbar, setShowProgressbar] = useState(false);
 
+
   useEffect(() => {
     const fetchRegisterList = async () => {
       try {
-        let response = await teacherApi.listRegister(userInfo.accessToken);
+        const response = await teacherApi.listRegister(userInfo.accessToken);
         console.log(response);
         setRegisterList(response);
       } catch (error) {
@@ -29,10 +32,13 @@ const ListRegister = () => {
     fetchRegisterList();
   }, []);
 
+
   const handleAllotInternClick = async () => {
     console.log(userInfo);
 
+
     try {
+      console.log(userInfo);
       const response = await teacherApi.runMatchingIntern(userInfo.accessToken);
       console.log(response);
     } catch (error) {
@@ -40,6 +46,7 @@ const ListRegister = () => {
       console.log("Failed  ", error);
     }
   };
+
 
   return (
     <div>
@@ -49,7 +56,9 @@ const ListRegister = () => {
           <div className="bt-allot-intern">
             <CustomButton
               buttonText={"Thực hiện phân công thực tập cho sinh viên"}
-              onClick={() => handleAllotInternClick()}
+              onClick={() => {
+                handleAllotInternClick();
+              }}
             />
             <ProgressBar
               show={showProgressbar}
@@ -101,4 +110,9 @@ const ListRegister = () => {
   );
 };
 
+
 export default ListRegister;
+
+
+
+

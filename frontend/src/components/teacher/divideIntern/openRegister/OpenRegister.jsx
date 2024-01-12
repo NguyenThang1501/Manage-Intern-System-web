@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -6,8 +6,30 @@ import CustomButton from "../../../common/button/CustomButton";
 import "./openRegister.css";
 import SideBar2 from "../../../common/sidebar/SideBar2";
 import Container from "react-bootstrap/esm/Container";
+import teacherApi from "../../../../api/teacherAPI";
+import { useUser } from "../../../../context/UserContext";
 
 const OpenRegister = () => {
+  const { userInfo } = useUser();
+  const [dateRegister, setDateRegister] = useState({
+    start_time: "",
+
+    end_time: "",
+  });
+
+  const handleButtonSetDate = async () => {
+    try {
+      const response = await teacherApi.openDate(
+        userInfo.accessToken,
+        dateRegister
+      );
+      console.log(response);
+      alert("Hệ thống đã ghi nhận thiết lập ngày mở đăng ký");
+    } catch (error) {
+      console.log("Failed ", error);
+    }
+  };
+
   return (
     <div>
       <SideBar2 />
@@ -20,7 +42,15 @@ const OpenRegister = () => {
                 Ngày mở đăng ký (*)
               </Form.Label>
               <Col sm={6}>
-                <Form.Control type="date" />
+                <Form.Control
+                  type="date"
+                  onChange={(e) =>
+                    setDateRegister({
+                      ...dateRegister,
+                      start_time: e.target.value,
+                    })
+                  }
+                />
               </Col>
             </Form.Group>
 
@@ -29,10 +59,23 @@ const OpenRegister = () => {
                 Ngày đóng đăng ký (*)
               </Form.Label>
               <Col sm={6}>
-                <Form.Control type="date" />
+                <Form.Control
+                  type="date"
+                  onChange={(e) =>
+                    setDateRegister({
+                      ...dateRegister,
+                      end_time: e.target.value,
+                    })
+                  }
+                />
               </Col>
             </Form.Group>
-            <CustomButton buttonText={"Ghi nhận"} />
+            <CustomButton
+              onClick={() => {
+                handleButtonSetDate();
+              }}
+              buttonText={"Ghi nhận"}
+            />
           </div>
         </Col>
       </Container>

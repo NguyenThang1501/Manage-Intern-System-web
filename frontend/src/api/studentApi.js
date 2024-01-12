@@ -1,10 +1,12 @@
 import axiosClient from "./axiosClient";
 
+
 const studentApi = {
   getAll: () => {
     const url = "/student";
     return axiosClient.get(url);
   },
+
 
   get: (id, token) => {
     const url = `/teacher/student-mana/${id}`;
@@ -15,6 +17,7 @@ const studentApi = {
     });
   },
 
+
   getPositions: (token) => {
     const url = `/student/internship-register/collab/positions`;
     return axiosClient.get(url, {
@@ -24,12 +27,15 @@ const studentApi = {
     });
   },
 
+
   submitAspiration: (token, promised_positions) => {
     const url = `/student/internship-register/collab/register`;
     return axiosClient.post(
       url,
 
+
       promised_positions,
+
 
       {
         headers: {
@@ -38,6 +44,7 @@ const studentApi = {
       }
     );
   },
+
 
   getAspirationByID: (token) => {
     const url = `get_aspiration`;
@@ -48,6 +55,7 @@ const studentApi = {
     });
   },
 
+
   submitInternOut: (token, internInfor) => {
     const url = `/result`;
     return axiosClient.post(url, internInfor, {
@@ -56,6 +64,7 @@ const studentApi = {
       },
     });
   },
+
 
   submitReport: (token, report) => {
     const url = `/report`;
@@ -66,6 +75,7 @@ const studentApi = {
     });
   },
 
+
   getResultIntern: (token) => {
     const url = `/student/internship-register/collab/result`;
     return axiosClient.get(url, {
@@ -74,6 +84,7 @@ const studentApi = {
       },
     });
   },
+
 
   getTopicIntern: (token) => {
     const url = `/student-intern/final-report`;
@@ -84,5 +95,6 @@ const studentApi = {
     });
   },
 };
+
 
 export default studentApi;

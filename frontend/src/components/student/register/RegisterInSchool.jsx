@@ -10,12 +10,16 @@ import "./register.css";
 import commonAPI from "../../../api/commonApi";
 import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
+import Heading from "../../common/heading/Heading";
+
 
 const RegisterInschool = () => {
   const { userInfo } = useUser();
   const [showTable, setShowTable] = useState(false);
 
+
   const [error, setError] = useState();
+
 
   const [allPositions, setAllPositions] = useState([]);
   const [studentAspiration, setStudentAspiration] = useState({
@@ -24,17 +28,20 @@ const RegisterInschool = () => {
     NV3: "",
   });
 
+
   const [aspiration, setAspiration] = useState([
     { _id: "" },
     { _id: "" },
     { _id: "" },
   ]);
 
+
   useEffect(() => {
     const fetchPotitions = async () => {
       try {
         let response = await commonAPI.getAllPositions(userInfo.accessToken);
         console.log(response);
+
 
         setAllPositions(response);
       } catch (error) {
@@ -44,6 +51,7 @@ const RegisterInschool = () => {
     };
     fetchPotitions();
   }, []);
+
 
   const handleButtonClick = async () => {
     setShowTable(true);
@@ -56,6 +64,7 @@ const RegisterInschool = () => {
       ],
     };
 
+
     try {
       const response = await studentApi.submitAspiration(
         userInfo.accessToken,
@@ -66,6 +75,7 @@ const RegisterInschool = () => {
       console.log("Failed", error);
     }
   };
+
 
   useEffect(() => {
     const fetchPotitionByID = async () => {
@@ -81,13 +91,17 @@ const RegisterInschool = () => {
     fetchPotitionByID();
   }, []);
 
+
   return (
     <div>
       <SideBar />
       <Container>
         <div className="nv-page">
           {error ? (
-            <p>{error}</p>
+            <Heading
+              title="CHƯA ĐẾN THỜI GIAN ĐĂNG KÝ"
+              subtitle="Bạn vui lòng quay lại sau nhé ^^!"
+            />
           ) : (
             <Col sm={10} className="list-form">
               <div className="title-cp">Đăng ký nguyện vọng</div>
@@ -116,6 +130,7 @@ const RegisterInschool = () => {
                     </Col>
                   </Form.Group>
 
+
                   <Form.Group as={Row} className="mb-5">
                     <Form.Label column sm={4}>
                       Nguyện vọng 2 (*)
@@ -138,6 +153,7 @@ const RegisterInschool = () => {
                       </Form.Select>
                     </Col>
                   </Form.Group>
+
 
                   <Form.Group as={Row} className="mb-5">
                     <Form.Label column sm={4}>
@@ -163,6 +179,7 @@ const RegisterInschool = () => {
                   </Form.Group>
                 </Form>
 
+
                 <CustomButton
                   buttonText={"Ghi nhận"}
                   onClick={handleButtonClick}
@@ -172,10 +189,16 @@ const RegisterInschool = () => {
           )}
         </div>
 
+
         <div className="table-list">{showTable && <TableList />}</div>
       </Container>
     </div>
   );
 };
 
+
 export default RegisterInschool;
+
+
+
+

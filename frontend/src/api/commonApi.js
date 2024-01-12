@@ -1,10 +1,12 @@
 import axiosClient from "./axiosClient";
 
+
 const commonAPI = {
   getNewsDetail: (_id) => {
     const url = `/mana-news-details/${_id}`;
     return axiosClient.get(url);
   },
+
 
   getAllPositions: (token) => {
     const url = `/list-positions`;
@@ -15,10 +17,12 @@ const commonAPI = {
     });
   },
 
+
   getAllNews: () => {
     const url = `/mana-news`;
     return axiosClient.get(url);
   },
+
 
   getBusinessInfor: (token, id) => {
     const url = `/teacher/business-mana/${id}`;
@@ -30,4 +34,7 @@ const commonAPI = {
   },
 };
 
+
 export default commonAPI;
+
+

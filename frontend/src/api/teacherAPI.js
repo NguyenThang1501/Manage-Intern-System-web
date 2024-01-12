@@ -1,5 +1,6 @@
 import axiosClient from "./axiosClient";
 
+
 const teacherApi = {
   getStudentInfor: (token) => {
     const url = `/teacher/student-mana`;
@@ -10,6 +11,7 @@ const teacherApi = {
     });
   },
 
+
   getReport: (token) => {
     const url = "/teacher/mana-intern/regular-report";
     return axiosClient.get(url, {
@@ -18,6 +20,7 @@ const teacherApi = {
       },
     });
   },
+
 
   getReportDetail: (id, token) => {
     const url = `/teacher/mana-intern/regular-report/details/${id}`;
@@ -28,6 +31,7 @@ const teacherApi = {
     });
   },
 
+
   getBusinessNewsCard: (token) => {
     const url = `/teacher/business-mana`;
     return axiosClient.get(url, {
@@ -36,6 +40,7 @@ const teacherApi = {
       },
     });
   },
+
 
   getJobInfor: (id, token) => {
     const url = `/mana-news-details/${id}`;
@@ -46,6 +51,7 @@ const teacherApi = {
     });
   },
 
+
   getBusinessInfor: (id, token) => {
     const url = `/teacher/business-mana/${id}`;
     return axiosClient.get(url, {
@@ -54,6 +60,7 @@ const teacherApi = {
       },
     });
   },
+
 
   getResultIntern: (token) => {
     const url = `/get_all_result`;
@@ -64,6 +71,7 @@ const teacherApi = {
     });
   },
 
+
   deletePosition: (token, id) => {
     const url = `teacher/delete-positions/${id}`;
     return axiosClient.delete(url, {
@@ -72,6 +80,7 @@ const teacherApi = {
       },
     });
   },
+
 
   addPosition: (token, data) => {
     const url = `/teacher/create-positions`;
@@ -82,6 +91,7 @@ const teacherApi = {
     });
   },
 
+
   updatePosition: (token, data, id) => {
     const url = `/teacher/update-positions/${id}`;
     return axiosClient.put(url, data, {
@@ -90,6 +100,7 @@ const teacherApi = {
       },
     });
   },
+
 
   listRegister: (token) => {
     const url = `/teacher/list-register`;
@@ -100,6 +111,7 @@ const teacherApi = {
     });
   },
 
+
   getStudentTopicReport: (token, id) => {
     const url = `/teacher-intern/final-report/${id}`;
     return axiosClient.get(url, {
@@ -108,6 +120,7 @@ const teacherApi = {
       },
     });
   },
+
 
   updateMidScore: (token, data, id) => {
     const url = `/teacher/mana-intern/update-mid-score/${id}`;
@@ -118,6 +131,7 @@ const teacherApi = {
     });
   },
 
+
   updateFinalScore: (token, data, id) => {
     const url = `/teacher/mana-intern/update-final-score/${id}`;
     return axiosClient.put(url, data, {
@@ -126,6 +140,7 @@ const teacherApi = {
       },
     });
   },
+
 
   getTeacherInfor: (token) => {
     const url = `/teacher/profile`;
@@ -136,9 +151,30 @@ const teacherApi = {
     });
   },
 
+
+  addNews: (token, data) => {
+    const url = `/add_news`;
+    return axiosClient.post(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+
+  openDate: (token, data) => {
+    const url = `/teacher/open-register`;
+    return axiosClient.post(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+
   runMatchingIntern: (token) => {
     const url = `/internship-mana/position-list/matching-request`;
-    return axiosClient.post(url, {
+    return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,
       },
@@ -146,4 +182,7 @@ const teacherApi = {
   },
 };
 
+
 export default teacherApi;
+
+

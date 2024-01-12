@@ -15,7 +15,6 @@ promises = [(doc["_id"], [promise for promise in doc.get("promised_positions", [
 students = [(item1[0], item1[1] + item1[2], item2[1]) for item1 in id_gpa for item2 in promises if item1[0] == item2[0]]
 
 students = [(item1[0], item1[1] + item1[2], item2[1]) for item1 in id_gpa for item2 in promises if item1[0] == item2[0]]
-print(promises)
 id = [x[0] for x in students]
 mvt = [x[0] for x in positions]
 
@@ -29,6 +28,8 @@ for i in range(3):
     lst_pm = [[k,v, *position[1:]] for k,v in pm.items() for position in positions if position[0] == k]
     dct_pm = {x[0] : x[1:] for x in lst_pm}
     promision[f'NV{i+1}'] = dct_pm
+
+
 # print(f"{promision}")
 
 #loại bỏ đi các sinh viên có điểm thấp hơn điểm sàn
@@ -77,10 +78,6 @@ with open("output_match.txt", "w", encoding="utf-8") as output_file:
     for key, value in match_std.items():
         output_file.write(f"{key}: {value}\n")
     
-
-# print("Kết quả matching:")
-for x in match_std:
-    print(x,match_std[x])
 
 results = db['internship_results']
 for i in match_std.keys():

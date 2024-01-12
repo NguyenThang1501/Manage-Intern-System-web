@@ -5,18 +5,23 @@ import Row from "react-bootstrap/Row";
 import CustomButton from "../../common/button/CustomButton";
 import Container from "react-bootstrap/esm/Container";
 import Modal from "react-bootstrap/Modal";
+import teacherApi from "../../../api/teacherAPI";
+import { useUser } from "../../../context/UserContext";
 
 const AddStudent = (props) => {
+  const userInfo = useUser();
+
   const [studentInfor, setStudentInfor] = useState({
     _id: "",
     name: "",
     sex: "",
-    birth: "",
-    khoa: "",
+    birthday: "",
+    field: "",
     major: "",
     email: "",
     phone: "",
-    cpa: "",
+    cpa: 0,
+    cert: 0,
   });
 
   // const handleSubmit = (e) => {
@@ -26,8 +31,17 @@ const AddStudent = (props) => {
   //     .catch(err => console.log(err))
   // }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async () => {
     console.log(studentInfor);
+    try {
+      const response = await teacherApi.addStudent(
+        studentInfor,
+        userInfo.accessToken
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("Failed", error);
+    }
   };
 
   return (
@@ -101,7 +115,7 @@ const AddStudent = (props) => {
                   onChange={(e) =>
                     setStudentInfor({
                       ...studentInfor,
-                      birth: e.target.value,
+                      birthday: e.target.value,
                     })
                   }
                 />
@@ -116,7 +130,7 @@ const AddStudent = (props) => {
                 <Form.Control
                   type="text"
                   onChange={(e) =>
-                    setStudentInfor({ ...studentInfor, khoa: e.target.value })
+                    setStudentInfor({ ...studentInfor, field: e.target.value })
                   }
                 />
               </Col>
