@@ -4,6 +4,7 @@ import "../student.css";
 import studentApi from "../../../api/studentApi";
 import { useUser } from "../../../context/UserContext";
 import Container from "react-bootstrap/esm/Container";
+import teacherApi from "../../../api/teacherAPI";
 
 const StudentInfor = () => {
   const { userInfo } = useUser();
@@ -12,29 +13,20 @@ const StudentInfor = () => {
   const [firstSelectValue, setFirstSelectValue] = useState("");
   const [secondSelectValue, setSecondSelectValue] = useState("");
   const [optionsForSecondSelect, setOptionsForSecondSelect] = useState([]);
+  const [cert, setCert] = useState("");
+  const [level, setLevel] = useState("");
 
   //Select English cert
   const handleFirstSelectChange = (event) => {
     const selectedValue = event.target.value;
     setFirstSelectValue(selectedValue);
+    setCert(selectedValue);
 
     // Dựa vào giá trị của select đầu tiên, cập nhật danh sách tùy chọn của select thứ hai
-    if (selectedValue === "option1") {
-      setOptionsForSecondSelect([
-        "9.0",
-        "8.5",
-        "8.0",
-        "7.5",
-        "7.0",
-        "6.5",
-        "6.0",
-        "5.5",
-        "5.0",
-        "4.5",
-        "4.0",
-      ]);
-    } else if (selectedValue === "option2") {
-      setOptionsForSecondSelect(["Option X", "Option Y", "Option Z"]);
+    if (selectedValue === "Ielts") {
+      setOptionsForSecondSelect(["4.5 - 5.5", "5.5 - 6.5", "> 6.5"]);
+    } else if (selectedValue === "Topic") {
+      setOptionsForSecondSelect(["350 - 550", "551 - 780", "> 780"]);
     } else {
       setOptionsForSecondSelect([]);
     }
@@ -45,6 +37,24 @@ const StudentInfor = () => {
   const handleSecondSelectChange = (event) => {
     const selectedValue = event.target.value;
     setSecondSelectValue(selectedValue);
+    setLevel(selectedValue);
+  };
+
+  const handleUpdateCert = async () => {
+    try {
+      const data = {
+        cert: cert,
+        level: level,
+      };
+      const response = await teacherApi.updateStudent(
+        userInfo.accessToken,
+        data,
+        studentInfor._id
+      );
+      console.log(response);
+    } catch (error) {
+      console.log("Failed ", error);
+    }
   };
 
   //call API
@@ -123,6 +133,10 @@ const StudentInfor = () => {
                       <td className="field">CPA</td>
                       <td className="value">{studentInfor.cpa}</td>
                     </tr>
+                    <tr>
+                      <td className="field">Quy đổi chứng chỉ ngoại ngữ</td>
+                      <td className="value">{studentInfor.cert}</td>
+                    </tr>
                   </tbody>
                 </table>
 
@@ -140,8 +154,8 @@ const StudentInfor = () => {
                           onChange={handleFirstSelectChange}
                         >
                           <option value="">Tên chứng chỉ</option>
-                          <option value="option1">IELTS</option>
-                          <option value="option2">Toiec</option>
+                          <option value="Ielts">Ielts</option>
+                          <option value="Topic">Toiec</option>
                         </select>
                       </td>
                       <td className="value">
@@ -162,7 +176,7 @@ const StudentInfor = () => {
                 </table>
                 <button
                   className="add-english"
-                  onClick={() => alert("Thêm chứng chỉ thành công")}
+                  onClick={() => handleUpdateCert()}
                 >
                   Thêm chứng chỉ ngoại ngữ (nếu có)
                 </button>
