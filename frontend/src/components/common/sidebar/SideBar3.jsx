@@ -8,7 +8,7 @@ import Usersymbol from "../../user-icon/Usersymbol";
 
 const menuItem = [
   {
-    path: "/business/business-information",
+    path: "/business",
     name: "Thông tin doanh nghiệp",
     icon: <TiBusinessCard />,
   },

@@ -5,9 +5,11 @@ import CustomButton from "../button/CustomButton";
 import "./newDetail.css";
 import commonAPI from "../../../api/commonApi";
 import ApplyButton from "./applyButton";
+import UploadCV from "../uploadCV/UploadCV";
 
 const NewsJobDetail = ({ NewsID }) => {
   const [newsDetail, setNewsDetail] = useState([]);
+  const [addShow, setAddShow] = useState(false);
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
@@ -65,7 +67,12 @@ const NewsJobDetail = ({ NewsID }) => {
               </div>
             </div>
             <div>
-              <ApplyButton />
+              <ApplyButton onClick={() => setAddShow(true)} />
+              <UploadCV
+                id={NewsID}
+                show={addShow}
+                onHide={() => setAddShow(false)}
+              />
             </div>
           </div>
         </Col>

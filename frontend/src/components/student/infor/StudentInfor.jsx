@@ -52,6 +52,7 @@ const StudentInfor = () => {
         studentInfor._id
       );
       console.log(response);
+      alert("Đã thêm chứng chỉ thành công");
     } catch (error) {
       console.log("Failed ", error);
     }

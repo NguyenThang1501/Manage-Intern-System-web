@@ -16,6 +16,7 @@ const ListRegister = () => {
 
   const [registerList, setRegisterList] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  const [reset, setReset] = useState(false);
 
   useEffect(() => {
     const fetchRegisterList = async () => {
@@ -23,12 +24,28 @@ const ListRegister = () => {
         const response = await teacherApi.listRegister(userInfo.accessToken);
         console.log(response);
         setRegisterList(response);
-        setShowAlert(true);
       } catch (error) {
         console.log("Failed", error);
       }
     };
     fetchRegisterList();
+  }, []);
+
+  useEffect(() => {
+    const fetchResultIntern = async () => {
+      try {
+        let response = await teacherApi.getResultIntern(userInfo.accessToken);
+        console.log(response);
+        if (response.length !== 0) {
+          setReset(true);
+
+          setShowAlert(true);
+        }
+      } catch (error) {
+        console.log("Failed", error);
+      }
+    };
+    fetchResultIntern();
   }, []);
 
   const handleAllotInternClick = async () => {
@@ -38,9 +55,23 @@ const ListRegister = () => {
       console.log(userInfo);
       const response = await teacherApi.runMatchingIntern(userInfo.accessToken);
       console.log(response);
+      setShowAlert(true);
+      setReset(true);
     } catch (error) {
       console.log(userInfo);
       console.log("Failed  ", error);
+    }
+  };
+
+  const handleResetButton = async () => {
+    console.log(userInfo.accessToken);
+    try {
+      const response = await teacherApi.reset(userInfo.accessToken);
+      console.log(response);
+      setReset(false);
+      alert("Đã reset, bây giờ bạn có thể thực hiện lại quá trình phân công");
+    } catch (error) {
+      console.log("Failed ", error);
     }
   };
 
@@ -50,15 +81,21 @@ const ListRegister = () => {
       <Container>
         <div className="wrap-allot-intern">
           <div className="bt-allot-intern">
+            {reset ? (
+              <CustomButton
+                buttonText={"Reset"}
+                onClick={() => handleResetButton()}
+              />
+            ) : (
+              <CustomButton
+                buttonText={"Thực hiện phân công thực tập cho sinh viên"}
+                onClick={() => {
+                  handleAllotInternClick();
+                  setShowAlert(true);
+                }}
+              />
+            )}
             <AlertRun show={showAlert} onHide={() => setShowAlert(false)} />
-
-            <CustomButton
-              buttonText={"Thực hiện phân công thực tập cho sinh viên"}
-              onClick={() => {
-                handleAllotInternClick();
-              }}
-            />
-
             <CustomButton
               onClick={() => {
                 navigate("/teacher/allot-intern/result-intern");

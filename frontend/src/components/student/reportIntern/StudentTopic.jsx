@@ -10,7 +10,12 @@ import "./studentReport.css";
 
 const StudentTopic = () => {
   const [showIcon, setShowIcon] = useState(true);
-  const [report, setReport] = useState({});
+  const [report, setReport] = useState({
+    project: "",
+    describe: "",
+    midresult: 0,
+    finalresult: 0,
+  });
 
   const { userInfo } = useUser();
   const [dataStudent, setDataStudent] = useState([]);
@@ -62,12 +67,10 @@ const StudentTopic = () => {
       setReport({
         project: editTopic,
         describe: report.describe,
-        midresult: report.midresult,
-        finalresult: report.finalresult,
       });
       const dataTopic = { project: editTopic };
       setIsEditingTopic(false);
-      const response = await studentApi.updateTopicIntern(
+      const response = await studentApi.submitProject(
         userInfo.accessToken,
         dataTopic
       );
@@ -82,12 +85,10 @@ const StudentTopic = () => {
       setReport({
         project: report.project,
         describe: editDescribe,
-        midresult: report.midresult,
-        finalresult: report.finalresult,
       });
       setIsEditingDecribe(false);
       const dataDescribe = { describe: editDescribe };
-      const response = studentApi.updateTopicIntern(
+      const response = studentApi.submitProject(
         userInfo.accessToken,
         dataDescribe
       );

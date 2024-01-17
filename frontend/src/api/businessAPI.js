@@ -17,6 +17,24 @@ const businessApi = {
       },
     });
   },
+
+  getCV: (token, id) => {
+    const url = `/getCv-news/${id}`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  getDetailCV: (token, id) => {
+    const url = `/business/getCV/${id}`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 };
 
 export default businessApi;

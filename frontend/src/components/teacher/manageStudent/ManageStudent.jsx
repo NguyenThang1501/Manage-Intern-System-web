@@ -40,6 +40,7 @@ const ManageStudent = () => {
   };
 
   const handleDeleteSt = async (id) => {
+    console.log(id);
     try {
       const response = await teacherApi.deleteStudent(userInfo.accessToken, id);
       setAllStudents((prevStudent) =>

@@ -1,5 +1,4 @@
 // controllers/userController.js
-const Profile = require("../models/Student");
 const Accounts = require("../models/Account");
 const Student = require("../models/Student");
 const bcrypt = require("bcrypt");
@@ -26,9 +25,10 @@ const profileController = {
       //         return res.status(404).json("Student don't have profile");
       //     }
       //     res.status(200).json(student);
-
     } catch (err) {
-      res.status(500).json({ error: "Internal Server Error", details: err.message });
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", details: err.message });
     }
   },
 
@@ -49,31 +49,30 @@ const profileController = {
       if (req.body.phone) user.phone = req.body.phone;
       if (req.body.email) user.email = req.body.email;
       if (req.body.cert) {
-        if (req.body.cert == "Ielts"){
+        if (req.body.cert == "Ielts") {
           level = req.body.level;
-          if(level == "4.5 - 5.5" ) {
-            user.cert = 0.1
+          if (level == "4.5 - 5.5") {
+            user.cert = 0.1;
           }
-          if(level == "5.5 - 6.5") {
-            user.cert = 0.2
+          if (level == "5.5 - 6.5") {
+            user.cert = 0.2;
           }
-          if(level == "> 6.5" ) {
-            user.cert = 0.3
+          if (level == "> 6.5") {
+            user.cert = 0.3;
           }
         }
-        if (req.body.cert == "Toeic"){
+        if (req.body.cert == "Toeic") {
           level = req.body.level;
-          if(level == "350 - 550") {
-            user.cert = 0.1
+          if (level == "350 - 550") {
+            user.cert = 0.1;
           }
-          if(level == "551 - 780") {
-            user.cert = 0.2
+          if (level == "551 - 780") {
+            user.cert = 0.2;
           }
-          if(level == "> 780" ) {
-            user.cert = 0.3
+          if (level == "> 780") {
+            user.cert = 0.3;
           }
         }
-
       }
 
       await user.save(); // Save the profile separately
@@ -88,18 +87,14 @@ const profileController = {
   deleteProfile: async (req, res) => {
     try {
       const userId = req.params.id;
-      const user = await Accounts.findById(userId).populate("profile");
-
+      const user = await Student.findById(userId);
       if (!user) {
         return res.status(404).json("User not found");
       }
 
-      if (user.profile) {
-        await Profile.findByIdAndDelete(user.profile._id); // Delete the profile separately
-        user.profile = null;
-      }
+      await Student.findByIdAndDelete(userId);
+      await Accounts.findByIdAndDelete(userId);
 
-      await user.save();
       res.status(200).json("Profile deleted successfully");
     } catch (err) {
       res
@@ -126,34 +121,40 @@ const profileController = {
 
   createProfile: async (req, res) => {
     try {
-        const newStudent = {
-            _id: req.body._id,
-            name: req.body.name,
-            birthday: req.body.birthday,
-            sex: req.body.sex,
-            field: req.body.field,
-            major: req.body.major,
-            email: req.body.email,
-            phone: req.body.phone,
-            cpa: req.body.cpa,
-            cert: req.body.cert,
-        };
-        const salt = bcrypt.genSaltSync(10);
-        const hashed = bcrypt.hashSync(`password${req.body._id}`, salt);
-        const newAccount = {
-          _id: req.body._id,
-          pass: hashed,
-          role: "student"
-        }
-        const createdStudent = await Student.create(newStudent);
-        await Accounts.create(newAccount)
+      const newStudent = {
+        _id: req.body._id,
+        name: req.body.name,
+        birthday: req.body.birthday,
+        sex: req.body.sex,
+        field: req.body.field,
+        major: req.body.major,
+        email: req.body.email,
+        phone: req.body.phone,
+        cpa: req.body.cpa,
+        cert: req.body.cert,
+      };
+      const salt = bcrypt.genSaltSync(10);
+      const hashed = bcrypt.hashSync(`password${req.body._id}`, salt);
+      const newAccount = {
+        _id: req.body._id,
+        pass: hashed,
+        role: "student",
+      };
+      const createdStudent = await Student.create(newStudent);
+      await Accounts.create(newAccount);
 
-        return res.status(201).json({ message: "Student created successfully", student: createdStudent });
+      return res
+        .status(201)
+        .json({
+          message: "Student created successfully",
+          student: createdStudent,
+        });
     } catch (err) {
-        return res.status(500).json({ error: "Internal Server Error", chiTiet: err.message });
+      return res
+        .status(500)
+        .json({ error: "Internal Server Error", chiTiet: err.message });
     }
-}
-
+  },
 };
 
 module.exports = profileController;

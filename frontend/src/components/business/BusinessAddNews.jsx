@@ -25,6 +25,7 @@ const BusinessAddNews = () => {
 
   const handleAddNews = async () => {
     console.log(newsInfor);
+    console.log(userInfo.accessToken);
     try {
       let response = await businessApi.addNews(userInfo.accessToken, newsInfor);
       console.log(response);

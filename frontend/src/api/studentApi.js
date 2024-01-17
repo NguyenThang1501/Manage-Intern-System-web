@@ -66,6 +66,15 @@ const studentApi = {
     });
   },
 
+  submitProject: (token, data) => {
+    const url = `/final_report`;
+    return axiosClient.post(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
   getResultIntern: (token) => {
     const url = `/student/internship-register/collab/result`;
     return axiosClient.get(url, {
@@ -96,6 +105,15 @@ const studentApi = {
   updateTopicIntern: (token, data) => {
     const url = `/student/update-project`;
     return axiosClient.put(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  uploadCV: (token, file, id) => {
+    const url = `/apply-job/${id}`;
+    return axiosClient.post(url, file, {
       headers: {
         token: `Bearer ${token}`,
       },

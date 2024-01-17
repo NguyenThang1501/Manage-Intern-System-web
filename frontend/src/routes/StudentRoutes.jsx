@@ -15,7 +15,7 @@ import { useUser } from "../context/UserContext";
 import Login from "../components/login/Login";
 import UpdateStudent from "../components/teacher/manageStudent/UpdateStudent";
 import StudentChangePass from "../components/student/changepass/StudentChangePass";
-
+import UploadCV from "../components/common/uploadCV/UploadCV";
 const StudentRoutes = () => {
   return (
     <>
@@ -51,6 +51,7 @@ const StudentRoutes = () => {
           element={<UpdateStudent />}
         />
         <Route path="/student/change-pass" element={<StudentChangePass />} />
+        <Route path="/test" element={<UploadCV />} />
       </Routes>
     </>
   );

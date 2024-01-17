@@ -1,7 +1,9 @@
 const express = require("express");
 const middlewareController = require("../controllers/middlewareController");
 const newsController = require("../controllers/newsControllers");
-
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 const router = express.Router();
 
 // thêm tin tuyển dụng
@@ -32,7 +34,20 @@ router.get(
 );
 // lấy tin tuyển dụng - chi tiết
 router.get("/mana-news-details/:id", newsController.getNews_details);
-router.post("/apply-job/:id", middlewareController.verifyToken, newsController.applied_job);
-router.get("/getCv-news/:id", middlewareController.verifyAdminAndBusiness, newsController.get_AllCV);
-router.get("/business/getCV/:id", middlewareController.verifyAdminAndBusiness,newsController.businessGetCV)
+router.post(
+  "/apply-job/:id",
+  upload.single("file"),
+  middlewareController.verifyToken,
+  newsController.applied_job
+);
+router.get(
+  "/getCv-news/:id",
+  middlewareController.verifyAdminAndBusiness,
+  newsController.get_AllCV
+);
+router.get(
+  "/business/getCV/:id",
+  middlewareController.verifyAdminAndBusiness,
+  newsController.businessGetCV
+);
 module.exports = router;

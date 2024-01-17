@@ -3,8 +3,6 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/esm/Modal";
 function AlertRun(props) {
-  const [show, setShow] = useState(true);
-
   return (
     <>
       <Modal
@@ -14,7 +12,7 @@ function AlertRun(props) {
         centered
       >
         <Modal.Body className="p-0">
-          <Alert show={show} variant="success">
+          <Alert variant="success">
             <Alert.Heading>Thông báo</Alert.Heading>
             <p>Hệ thống đã thực hiện phân công thực tập cho sinh viên</p>
             <hr />
@@ -22,7 +20,6 @@ function AlertRun(props) {
               <Button
                 onClick={() => {
                   props.onHide();
-                  setShow(false);
                 }}
                 variant="outline-success"
               >

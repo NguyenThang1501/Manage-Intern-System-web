@@ -178,9 +178,26 @@ const teacherApi = {
       },
     });
   },
+  addStudent: (data, token) => {
+    const url = `/teacher/student-mana`;
+    return axiosClient.post(url, data, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
 
   runMatchingIntern: (token) => {
     const url = `/internship-mana/position-list/matching-request`;
+    return axiosClient.get(url, {
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+  },
+
+  reset: (token) => {
+    const url = `/reset`;
     return axiosClient.get(url, {
       headers: {
         token: `Bearer ${token}`,

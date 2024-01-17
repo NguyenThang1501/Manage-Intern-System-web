@@ -21,3 +21,9 @@
   margin-left: 200px;
   width: 60%;
 }
+
+.sv-ap {
+  right: 10px;
+  width: 300px;
+  position: absolute;
+}
